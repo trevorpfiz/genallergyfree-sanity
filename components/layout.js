@@ -1,16 +1,18 @@
-import Alert from '../components/alert'
-import Footer from '../components/footer'
-import Meta from '../components/meta'
+import { Box, Container } from '@mantine/core';
+
+import Alert from '../components/alert';
+import Footer from '../components/footer';
+import Meta from '../components/meta';
 
 export default function Layout({ preview, children }) {
   return (
     <>
       <Meta />
-      <div className="min-h-screen">
+      <Box component='main' sx={{ minHeight: '100vh' }}>
         <Alert preview={preview} />
-        <main>{children}</main>
-      </div>
+        <Container size={'xl'}>{children}</Container>
+      </Box>
       <Footer />
     </>
-  )
+  );
 }

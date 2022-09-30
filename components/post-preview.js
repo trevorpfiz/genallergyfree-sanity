@@ -1,7 +1,9 @@
-import Avatar from '../components/avatar'
-import Date from '../components/date'
-import CoverImage from './cover-image'
-import Link from 'next/link'
+import { Box, Text, Title, Anchor } from '@mantine/core';
+import Link from 'next/link';
+
+import Avatar from '../components/avatar';
+import Date from '../components/date';
+import CoverImage from './cover-image';
 
 export default function PostPreview({
   title,
@@ -12,20 +14,37 @@ export default function PostPreview({
   slug,
 }) {
   return (
-    <div>
-      <div className="mb-5">
+    <Box>
+      <Box mb={'lg'}>
         <CoverImage slug={slug} title={title} image={coverImage} />
-      </div>
-      <h3 className="mb-3 text-3xl leading-snug">
+      </Box>
+      <Title
+        order={3}
+        size={'h1'}
+        weight='normal'
+        mb={'sm'}
+        sx={{ lineHeight: '1.375' }}
+      >
         <Link href={`/posts/${slug}`}>
-          <a className="hover:underline">{title}</a>
+          <Anchor
+            color={'dark.9'}
+            sx={{
+              '&:hover': {
+                textDecoration: 'underline',
+              },
+            }}
+          >
+            {title}
+          </Anchor>
         </Link>
-      </h3>
-      <div className="mb-4 text-lg">
+      </Title>
+      <Box mb={'lg'} sx={{ fontSize: 18 }}>
         <Date dateString={date} />
-      </div>
-      <p className="mb-4 text-lg leading-relaxed">{excerpt}</p>
+      </Box>
+      <Text mb={'lg'} size={18} sx={{ lineHeight: '1.625' }}>
+        {excerpt}
+      </Text>
       {author && <Avatar name={author.name} picture={author.picture} />}
-    </div>
-  )
+    </Box>
+  );
 }

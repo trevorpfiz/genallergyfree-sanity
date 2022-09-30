@@ -1,7 +1,9 @@
-import Avatar from '../components/avatar'
-import Date from '../components/date'
-import CoverImage from '../components/cover-image'
-import Link from 'next/link'
+import Link from 'next/link';
+import { Box, Title, Anchor, SimpleGrid, Text } from '@mantine/core';
+
+import Avatar from '../components/avatar';
+import Date from '../components/date';
+import CoverImage from '../components/cover-image';
 
 export default function HeroPost({
   title,
@@ -12,26 +14,43 @@ export default function HeroPost({
   slug,
 }) {
   return (
-    <section>
-      <div className="mb-8 md:mb-16">
+    <Box component='section'>
+      <Box mb={64}>
         <CoverImage slug={slug} title={title} image={coverImage} priority />
-      </div>
-      <div className="mb-20 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 md:mb-28">
-        <div>
-          <h3 className="mb-4 text-4xl leading-tight lg:text-6xl">
+      </Box>
+      <SimpleGrid cols={2} spacing={128} mb={112}>
+        <Box>
+          <Title
+            order={3}
+            size='2.75rem'
+            weight='normal'
+            mb={'md'}
+            sx={{ lineHeight: '1.25' }}
+          >
             <Link href={`/posts/${slug}`}>
-              <a className="hover:underline">{title}</a>
+              <Anchor
+                color={'dark.9'}
+                sx={{
+                  '&:hover': {
+                    textDecoration: 'underline',
+                  },
+                }}
+              >
+                {title}
+              </Anchor>
             </Link>
-          </h3>
-          <div className="mb-4 text-lg md:mb-0">
+          </Title>
+          <Box sx={{ fontSize: 18 }}>
             <Date dateString={date} />
-          </div>
-        </div>
-        <div>
-          <p className="mb-4 text-lg leading-relaxed">{excerpt}</p>
+          </Box>
+        </Box>
+        <Box>
+          <Text mb={'md'} size={18} sx={{ lineHeight: '1.625' }}>
+            {excerpt}
+          </Text>
           {author && <Avatar name={author.name} picture={author.picture} />}
-        </div>
-      </div>
-    </section>
-  )
+        </Box>
+      </SimpleGrid>
+    </Box>
+  );
 }

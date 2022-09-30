@@ -1,42 +1,40 @@
-import Container from './container'
-import cn from 'classnames'
-import { EXAMPLE_PATH } from '../lib/constants'
+import { Anchor, Box, Container, Text } from '@mantine/core';
 
 export default function Alert({ preview }) {
   return (
-    <div
-      className={cn('border-b', {
-        'bg-accent-7 border-accent-7 text-white': preview,
-        'bg-accent-1 border-accent-2': !preview,
-      })}
-    >
-      <Container>
-        <div className="py-2 text-center text-sm">
-          {preview ? (
+    <>
+      {preview && (
+        <Container
+          fluid={true}
+          px='lg'
+          sx={{
+            backgroundColor: '#333',
+            borderBottom: '1px solid #333',
+            paddingTop: '8px',
+            paddingBottom: '8px',
+          }}
+        >
+          <Text size='sm' align='center' sx={{ color: 'white' }}>
             <>
               This page is a preview.{' '}
-              <a
-                href="/api/exit-preview"
-                className="underline hover:text-cyan duration-200 transition-colors"
+              <Anchor
+                href='/api/exit-preview'
+                underline='true'
+                sx={{
+                  '&:hover': {
+                    color: 'coral',
+                  },
+                  transition: 'color 200ms',
+                  color: 'white',
+                }}
               >
                 Click here
-              </a>{' '}
+              </Anchor>{' '}
               to exit preview mode.
             </>
-          ) : (
-            <>
-              The source code for this blog is{' '}
-              <a
-                href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
-                className="underline hover:text-success duration-200 transition-colors"
-              >
-                available on GitHub
-              </a>
-              .
-            </>
-          )}
-        </div>
-      </Container>
-    </div>
-  )
+          </Text>
+        </Container>
+      )}
+    </>
+  );
 }

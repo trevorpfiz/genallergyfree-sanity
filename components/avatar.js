@@ -1,23 +1,27 @@
-import Image from 'next/future/image'
-import { urlForImage } from '../lib/sanity'
+import { Box, Group, Text } from '@mantine/core';
+import Image from 'next/future/image';
+
+import { urlForImage } from '../lib/sanity';
 
 export default function Avatar({ name, picture }) {
   return (
-    <div className="flex items-center">
-      <div className="relative w-12 h-12 mr-4">
+    <Group align='center'>
+      <Box sx={{ position: 'relative', width: '48px', height: '48px' }}>
         <Image
           src={
             picture?.asset?._ref
               ? urlForImage(picture).height(96).width(96).fit('crop').url()
               : 'https://source.unsplash.com/96x96/?face'
           }
-          className="rounded-full"
+          style={{ borderRadius: '9999px', maxWidth: '100%', height: 'auto' }}
           height={96}
           width={96}
           alt={name}
         />
-      </div>
-      <div className="text-xl font-bold">{name}</div>
-    </div>
-  )
+      </Box>
+      <Text size={'xl'} weight={700}>
+        {name}
+      </Text>
+    </Group>
+  );
 }

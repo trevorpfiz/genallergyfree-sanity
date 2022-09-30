@@ -1,12 +1,29 @@
-import Link from 'next/link'
+import { Anchor, Title } from '@mantine/core';
+import Link from 'next/link';
 
 export default function Header() {
   return (
-    <h2 className="text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8">
-      <Link href="/">
-        <a className="hover:underline">Blog</a>
+    <Title
+      order={2}
+      size={'h1'}
+      weight='bold'
+      mt={'xl'}
+      mb={'5rem'}
+      sx={{ lineHeight: '1.25', letterSpacing: '-0.025em' }}
+    >
+      <Link href='/'>
+        <Anchor
+          color={'dark.9'}
+          sx={{
+            '&:hover': {
+              textDecoration: 'underline',
+            },
+          }}
+        >
+          Blog
+        </Anchor>
       </Link>
       .
-    </h2>
-  )
+    </Title>
+  );
 }

@@ -1,26 +1,23 @@
-import Avatar from '../components/avatar'
-import Date from '../components/date'
-import CoverImage from '../components/cover-image'
-import PostTitle from '../components/post-title'
+import { Box, Container } from '@mantine/core';
+
+import Avatar from '../components/avatar';
+import Date from '../components/date';
+import CoverImage from '../components/cover-image';
+import PostTitle from '../components/post-title';
 
 export default function PostHeader({ title, coverImage, date, author }) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
-      <div className="hidden md:block md:mb-12">
+      <Box mb={'3rem'}>
         {author && <Avatar name={author.name} picture={author.picture} />}
-      </div>
-      <div className="mb-8 md:mb-16 sm:mx-0">
+      </Box>
+      <Box mb={'3rem'}>
         <CoverImage title={title} image={coverImage} priority />
-      </div>
-      <div className="max-w-2xl mx-auto">
-        <div className="block mb-6 md:hidden">
-          {author && <Avatar name={author.name} picture={author.picture} />}
-        </div>
-        <div className="mb-6 text-lg">
-          <Date dateString={date} />
-        </div>
-      </div>
+      </Box>
+      <Container size={'sm'} sx={{ fontSize: 18 }}>
+        <Date dateString={date} />
+      </Container>
     </>
-  )
+  );
 }
