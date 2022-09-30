@@ -1,4 +1,4 @@
-import { Box, Text, Title, Anchor } from '@mantine/core';
+import { Box, Text, Title, Anchor, Paper } from '@mantine/core';
 import Link from 'next/link';
 
 import Avatar from '../components/avatar';
@@ -15,9 +15,23 @@ export default function PostPreview({
 }) {
   return (
     <Box>
-      <Box mb={'lg'}>
+      <Paper
+        shadow='sm'
+        mb='lg'
+        sx={(theme) => ({
+          '&:hover': {
+            boxShadow: theme.shadows.lg,
+          },
+          transition: 'box-shadow 200ms',
+
+          '@media (max-width: 768px)': {
+            marginLeft: -16,
+            marginRight: -16,
+          },
+        })}
+      >
         <CoverImage slug={slug} title={title} image={coverImage} />
-      </Box>
+      </Paper>
       <Title
         order={3}
         size={'h1'}

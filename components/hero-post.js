@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Box, Title, Anchor, SimpleGrid, Text } from '@mantine/core';
+import { Box, Title, Anchor, SimpleGrid, Text, Paper } from '@mantine/core';
 
 import Avatar from '../components/avatar';
 import Date from '../components/date';
@@ -15,10 +15,28 @@ export default function HeroPost({
 }) {
   return (
     <Box component='section'>
-      <Box mb={64}>
+      <Paper
+        shadow='sm'
+        mb={64}
+        sx={(theme) => ({
+          '&:hover': {
+            boxShadow: theme.shadows.lg,
+          },
+          transition: 'box-shadow 200ms',
+
+          '@media (max-width: 768px)': {
+            marginLeft: -16,
+            marginRight: -16,
+            marginBottom: theme.spacing.xl,
+          },
+        })}
+      >
         <CoverImage slug={slug} title={title} image={coverImage} priority />
-      </Box>
-      <SimpleGrid cols={2} spacing={128} mb={112}>
+      </Paper>
+      <SimpleGrid
+        mb={112}
+        breakpoints={[{ minWidth: 'sm', cols: 2, spacing: 128 }]}
+      >
         <Box>
           <Title
             order={3}

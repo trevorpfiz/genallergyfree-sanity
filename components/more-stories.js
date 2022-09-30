@@ -14,7 +14,10 @@ export default function MoreStories({ posts }) {
       >
         More Stories
       </Title>
-      <SimpleGrid cols={2} spacing={128}>
+      <SimpleGrid
+        mb={112}
+        breakpoints={[{ minWidth: 'sm', cols: 2, spacing: 128 }]}
+      >
         {posts.map((post) => (
           <PostPreview
             key={post.slug}

@@ -22,7 +22,7 @@ export default function Index({ allPosts: initialAllPosts, preview }) {
         <Head>
           <title>{WEBSITE_NAME}</title>
         </Head>
-        <Container fluid='true'>
+        <Container fluid='true' px='0'>
           <Intro />
           {heroPost && (
             <HeroPost
