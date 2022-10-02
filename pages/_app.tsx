@@ -22,6 +22,9 @@ export default function App(props: AppProps) {
         theme={{
           /** Put your mantine theme override here */
           colorScheme: 'light',
+          breakpoints: {
+            smD: 767,
+          },
         }}
       >
         <Component {...pageProps} />

@@ -7,16 +7,21 @@ export default function MoreStories({ posts }) {
     <Box component='section'>
       <Title
         order={2}
-        size='4.5rem'
+        size='2.75rem'
         weight='bold'
         mb={'xl'}
-        sx={{ lineHeight: '1.25', letterSpacing: '-0.025em' }}
+        sx={(theme) => ({
+          lineHeight: '1.25',
+          letterSpacing: '-0.025em',
+
+          [theme.fn.largerThan('smD')]: { fontSize: '4.5rem' },
+        })}
       >
         More Stories
       </Title>
       <SimpleGrid
         mb={112}
-        breakpoints={[{ minWidth: 'sm', cols: 2, spacing: 128 }]}
+        breakpoints={[{ minWidth: 'smD', cols: 2, spacing: 128 }]}
       >
         {posts.map((post) => (
           <PostPreview

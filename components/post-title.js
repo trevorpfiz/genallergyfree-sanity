@@ -1,25 +1,17 @@
-import { Title, createStyles } from '@mantine/core';
+import { Title } from '@mantine/core';
 
-const useStyles = createStyles((theme) => ({
-  myResponsiveText: {
-    fontSize: '6rem',
-
-    [theme.fn.smallerThan('sm')]: {
-      fontSize: '2.75rem',
-      textAlign: 'center',
-    },
-  },
-}));
+import { useStyles } from './intro';
 
 export default function PostTitle({ children }) {
   const { classes } = useStyles();
+
   return (
     <Title
       order={1}
       weight='bold'
       mb={'3rem'}
+      className={classes.myResponsiveTitle}
       sx={{ lineHeight: '1.25', letterSpacing: '-0.025em' }}
-      className={classes.myResponsiveText}
     >
       {children}
     </Title>

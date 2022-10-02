@@ -3,7 +3,7 @@ import { Box, Title, Anchor, SimpleGrid, Text, Paper } from '@mantine/core';
 
 import Avatar from '../components/avatar';
 import Date from '../components/date';
-import CoverImage from '../components/cover-image';
+import CoverImage, { useStyles } from '../components/cover-image';
 
 export default function HeroPost({
   title,
@@ -13,20 +13,21 @@ export default function HeroPost({
   author,
   slug,
 }) {
+  const { classes } = useStyles();
+
   return (
     <Box component='section'>
       <Paper
         shadow='sm'
         mb={64}
+        className={classes.negMarginImage}
         sx={(theme) => ({
           '&:hover': {
             boxShadow: theme.shadows.lg,
           },
           transition: 'box-shadow 200ms',
 
-          '@media (max-width: 768px)': {
-            marginLeft: -16,
-            marginRight: -16,
+          [theme.fn.smallerThan('smD')]: {
             marginBottom: theme.spacing.xl,
           },
         })}
@@ -35,7 +36,7 @@ export default function HeroPost({
       </Paper>
       <SimpleGrid
         mb={112}
-        breakpoints={[{ minWidth: 'sm', cols: 2, spacing: 128 }]}
+        breakpoints={[{ minWidth: 'smD', cols: 2, spacing: 128 }]}
       >
         <Box>
           <Title

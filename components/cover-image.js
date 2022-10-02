@@ -1,8 +1,17 @@
-import { Anchor, Box, Paper } from '@mantine/core';
+import { Anchor, Box, createStyles } from '@mantine/core';
 import Image from 'next/future/image';
 import Link from 'next/link';
 
 import { urlForImage } from '../lib/sanity';
+
+export const useStyles = createStyles((theme) => ({
+  negMarginImage: {
+    [theme.fn.smallerThan('smD')]: {
+      marginLeft: -16,
+      marginRight: -16,
+    },
+  },
+}));
 
 export default function CoverImage({ title, slug, image: source, priority }) {
   const image = source?.asset?._ref ? (

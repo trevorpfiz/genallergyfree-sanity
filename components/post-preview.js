@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import Avatar from '../components/avatar';
 import Date from '../components/date';
-import CoverImage from './cover-image';
+import CoverImage, { useStyles } from './cover-image';
 
 export default function PostPreview({
   title,
@@ -13,21 +13,19 @@ export default function PostPreview({
   author,
   slug,
 }) {
+  const { classes } = useStyles();
+
   return (
     <Box>
       <Paper
         shadow='sm'
         mb='lg'
+        className={classes.negMarginImage}
         sx={(theme) => ({
           '&:hover': {
             boxShadow: theme.shadows.lg,
           },
           transition: 'box-shadow 200ms',
-
-          '@media (max-width: 768px)': {
-            marginLeft: -16,
-            marginRight: -16,
-          },
         })}
       >
         <CoverImage slug={slug} title={title} image={coverImage} />
