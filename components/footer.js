@@ -1,25 +1,15 @@
-import {
-  createStyles,
-  Text,
-  Container,
-  ActionIcon,
-  Group,
-} from '@mantine/core';
-import {
-  IconBrandTwitter,
-  IconBrandYoutube,
-  IconBrandInstagram,
-} from '@tabler/icons';
+import { ActionIcon, Container, createStyles, Group, Text } from '@mantine/core';
+import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from '@tabler/icons';
+import Image from 'next/future/image';
+
+import logo from '../public/genallergyfree-upscaled.svg';
 
 const useStyles = createStyles((theme) => ({
   footer: {
     marginTop: 120,
     paddingTop: theme.spacing.xl * 2,
     paddingBottom: theme.spacing.xl * 2,
-    backgroundColor:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[6]
-        : theme.colors.gray[0],
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     borderTop: `1px solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
@@ -69,10 +59,7 @@ const useStyles = createStyles((theme) => ({
 
   link: {
     display: 'block',
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[1]
-        : theme.colors.gray[6],
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[6],
     fontSize: theme.fontSizes.sm,
     paddingTop: 3,
     paddingBottom: 3,
@@ -113,18 +100,14 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function FooterLinks() {
+export default function Footer() {
   const { classes } = useStyles();
 
   return (
     <footer className={classes.footer}>
       <Container size={'lg'} className={classes.inner}>
         <div className={classes.logo}>
-          <img
-            src='/genallergyfree-upscaled.svg'
-            alt='Logo'
-            style={{ width: '100%', height: 'auto' }}
-          />
+          <Image src={logo} alt='Logo' style={{ width: '100%', height: 'auto' }} />
         </div>
 
         <Group spacing={0} className={classes.social} position='right' noWrap>

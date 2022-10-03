@@ -1,4 +1,4 @@
-import { Anchor, Box, Container, Text } from '@mantine/core';
+import { Anchor, Container, Text } from '@mantine/core';
 
 export default function Alert({ preview }) {
   return (
