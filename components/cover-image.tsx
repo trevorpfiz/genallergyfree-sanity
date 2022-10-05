@@ -6,23 +6,29 @@ import { urlForImage } from '../lib/sanity';
 
 export const useStyles = createStyles((theme) => ({
   negMarginImage: {
-    [theme.fn.smallerThan('smD')]: {
+    [theme.fn.smallerThan('sm')]: {
       marginLeft: -16,
       marginRight: -16,
     },
   },
 }));
 
-export default function CoverImage({ title, slug, image: source, priority }) {
+interface CoverImageProps {
+  title: string;
+  slug?: string; // look into ways to optionally pass slug
+  image: any; // and pass image type from sanity
+  priority: boolean;
+}
+
+export default function CoverImage({ title, slug, image: source, priority }: CoverImageProps) {
   const image = source?.asset?._ref ? (
     <Image
       style={{ maxWidth: '100%', height: 'auto' }}
-      layout='responsive'
       width={2000}
       height={1000}
       alt={`Cover image for ${title}`}
       src={urlForImage(source).height(1000).width(2000).url()}
-      sizes='100vw'
+      sizes="100vw"
       priority={priority}
     />
   ) : (

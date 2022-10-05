@@ -1,12 +1,12 @@
 import { Anchor, Container, Text } from '@mantine/core';
 
-export default function Alert({ preview }) {
+export default function Alert({ preview }: any) {
   return (
     <>
       {preview && (
         <Container
-          fluid={true}
-          px='lg'
+          fluid
+          px="lg"
           sx={{
             backgroundColor: '#333',
             borderBottom: '1px solid #333',
@@ -14,12 +14,12 @@ export default function Alert({ preview }) {
             paddingBottom: '8px',
           }}
         >
-          <Text size='sm' align='center' sx={{ color: 'white' }}>
+          <Text size="sm" align="center" sx={{ color: 'white' }}>
             <>
               This page is a preview.{' '}
               <Anchor
-                href='/api/exit-preview'
-                underline='true'
+                href="/api/exit-preview"
+                underline
                 sx={{
                   '&:hover': {
                     color: 'coral',

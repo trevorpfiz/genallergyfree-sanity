@@ -18,7 +18,7 @@ const useStyles = createStyles((theme) => ({
   logo: {
     maxWidth: 200,
 
-    [theme.fn.smallerThan('smD')]: {
+    [theme.fn.smallerThan('sm')]: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -28,7 +28,7 @@ const useStyles = createStyles((theme) => ({
   description: {
     marginTop: 5,
 
-    [theme.fn.smallerThan('smD')]: {
+    [theme.fn.smallerThan('sm')]: {
       marginTop: theme.spacing.xs,
       textAlign: 'center',
     },
@@ -38,7 +38,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
 
-    [theme.fn.smallerThan('smD')]: {
+    [theme.fn.smallerThan('sm')]: {
       flexDirection: 'column',
       alignItems: 'center',
     },
@@ -48,7 +48,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
 
-    [theme.fn.smallerThan('smD')]: {
+    [theme.fn.smallerThan('sm')]: {
       display: 'none',
     },
   },
@@ -88,13 +88,13 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
     }`,
 
-    [theme.fn.smallerThan('smD')]: {
+    [theme.fn.smallerThan('sm')]: {
       flexDirection: 'column',
     },
   },
 
   social: {
-    [theme.fn.smallerThan('smD')]: {
+    [theme.fn.smallerThan('sm')]: {
       marginTop: theme.spacing.xs,
     },
   },
@@ -105,33 +105,33 @@ export default function Footer() {
 
   return (
     <footer className={classes.footer}>
-      <Container size={'lg'} className={classes.inner}>
+      <Container size="lg" className={classes.inner}>
         <div className={classes.logo}>
-          <Image src={logo} alt='Logo' style={{ width: '100%', height: 'auto' }} />
+          <Image src={logo} alt="Logo" style={{ width: '100%', height: 'auto' }} />
         </div>
 
-        <Group spacing={0} className={classes.social} position='right' noWrap>
-          <ActionIcon size='lg'>
+        <Group spacing={0} className={classes.social} position="right" noWrap>
+          <ActionIcon size="lg">
             <IconBrandTwitter size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size='lg'>
+          <ActionIcon size="lg">
             <IconBrandYoutube size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size='lg'>
+          <ActionIcon size="lg">
             <IconBrandInstagram size={18} stroke={1.5} />
           </ActionIcon>
         </Group>
       </Container>
-      <Container size={'lg'} className={classes.afterFooter}>
-        <Text color='dimmed' size='sm'>
+      <Container size="lg" className={classes.afterFooter}>
+        <Text color="dimmed" size="sm">
           © 2022 TwinZ LLC - All Rights Reserved
         </Text>
 
-        <Group spacing={'md'} position='right' noWrap>
-          <Text size='xs' color='dimmed'>
+        <Group spacing="md" position="right" noWrap>
+          <Text size="xs" color="dimmed">
             Privacy Policy
           </Text>
-          <Text size='xs' color='dimmed'>
+          <Text size="xs" color="dimmed">
             Terms of Service
           </Text>
         </Group>

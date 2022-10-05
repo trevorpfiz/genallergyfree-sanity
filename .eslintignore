@@ -6,3 +6,6 @@ public
 .cache
 .eslintrc.js
 *.d.ts
+
+# ignore api for now
+api

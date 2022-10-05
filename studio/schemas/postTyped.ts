@@ -1,53 +1,53 @@
-export default {
+import { s } from 'sanity-typed-schema-builder';
+import authorTyped from './authorTyped';
+
+const post = s.document({
   name: 'post',
-  title: 'Post',
-  type: 'document',
   fields: [
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
+      type: s.string(),
     },
     {
       name: 'slug',
       title: 'Slug',
-      type: 'slug',
       options: {
         source: 'title',
         maxLength: 96,
       },
-      validation: (Rule) => Rule.required(),
+      type: s.slug(),
     },
     {
       name: 'content',
       title: 'Content',
-      type: 'array',
-      of: [{ type: 'block' }],
+      type: s.array({
+        of: [s.block()],
+      }),
     },
     {
       name: 'excerpt',
       title: 'Excerpt',
-      type: 'string',
+      type: s.string(),
     },
     {
       name: 'coverImage',
       title: 'Cover Image',
-      type: 'image',
-      options: {
+      type: s.image({
         hotspot: true,
-      },
+      }),
     },
     {
       name: 'date',
       title: 'Date',
-      type: 'datetime',
+      type: s.datetime(),
     },
     {
       name: 'author',
       title: 'Author',
-      type: 'reference',
-      to: [{ type: 'author' }],
+      type: s.reference({
+        to: [authorTyped],
+      }),
     },
   ],
   preview: {
@@ -61,4 +61,6 @@ export default {
       return { ...selection, subtitle: author && `by ${author}` };
     },
   },
-};
+});
+
+export default post;

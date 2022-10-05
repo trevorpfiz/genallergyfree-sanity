@@ -1,24 +1,23 @@
+import { Anchor, Box, Paper, SimpleGrid, Text, Title } from '@mantine/core';
 import Link from 'next/link';
-import { Box, Title, Anchor, SimpleGrid, Text, Paper } from '@mantine/core';
+import { s } from 'sanity-typed-schema-builder';
+import post from 'studio/schemas/postTyped';
 
-import Avatar from '../components/avatar';
-import Date from '../components/date';
-import CoverImage, { useStyles } from '../components/cover-image';
+import Avatar from './avatar';
+import CoverImage, { useStyles } from './cover-image';
+import Date from './date';
 
 export default function HeroPost({
-  title,
-  coverImage,
-  date,
-  excerpt,
-  author,
-  slug,
+  post: { title, coverImage, date, excerpt, author, slug },
+}: {
+  post: s.resolved<typeof post>;
 }) {
   const { classes } = useStyles();
 
   return (
-    <Box component='section'>
+    <Box component="section">
       <Paper
-        shadow='sm'
+        shadow="sm"
         mb={64}
         className={classes.negMarginImage}
         sx={(theme) => ({
@@ -27,28 +26,19 @@ export default function HeroPost({
           },
           transition: 'box-shadow 200ms',
 
-          [theme.fn.smallerThan('smD')]: {
+          [theme.fn.smallerThan('sm')]: {
             marginBottom: theme.spacing.xl,
           },
         })}
       >
         <CoverImage slug={slug} title={title} image={coverImage} priority />
       </Paper>
-      <SimpleGrid
-        mb={112}
-        breakpoints={[{ minWidth: 'smD', cols: 2, spacing: 128 }]}
-      >
+      <SimpleGrid mb={112} breakpoints={[{ minWidth: 'sm', cols: 2, spacing: 128 }]}>
         <Box>
-          <Title
-            order={3}
-            size='2.75rem'
-            weight='normal'
-            mb={'md'}
-            sx={{ lineHeight: '1.25' }}
-          >
+          <Title order={3} size="2.75rem" weight="normal" mb="md" sx={{ lineHeight: '1.25' }}>
             <Link href={`/posts/${slug}`}>
               <Anchor
-                color={'dark.9'}
+                color="dark.9"
                 sx={{
                   '&:hover': {
                     textDecoration: 'underline',
@@ -64,10 +54,10 @@ export default function HeroPost({
           </Box>
         </Box>
         <Box>
-          <Text mb={'md'} size={18} sx={{ lineHeight: '1.625' }}>
+          <Text mb="md" size={18} sx={{ lineHeight: '1.625' }}>
             {excerpt}
           </Text>
-          {author && <Avatar name={author.name} picture={author.picture} />}
+          {author && <Avatar author={author} />}
         </Box>
       </SimpleGrid>
     </Box>
