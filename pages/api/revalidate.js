@@ -29,6 +29,7 @@ const log = (msg, error) => console[error ? 'error' : 'log'](`[revalidate] ${msg
 
 async function readBody(readable) {
   const chunks = [];
+  // eslint-disable-next-line no-restricted-syntax
   for await (const chunk of readable) {
     chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
   }
@@ -41,8 +42,7 @@ export default async function revalidate(req, res) {
   if (!isValidSignature(body, signature, process.env.SANITY_REVALIDATE_SECRET?.trim())) {
     const invalidSignature = 'Invalid signature';
     log(invalidSignature, true);
-    res.status(401).json({ success: false, message: invalidSignature });
-    return;
+    return res.status(401).json({ success: false, message: invalidSignature });
   }
 
   const jsonBody = JSON.parse(body);

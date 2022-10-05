@@ -26,18 +26,16 @@ export default function Index({
   const [heroPost, ...morePosts] = allPosts || [];
 
   return (
-    <>
-      <Layout preview={preview}>
-        <Head>
-          <title>{WEBSITE_NAME}</title>
-        </Head>
-        <Container fluid px="0">
-          <Intro />
-          {heroPost && <HeroPost post={heroPost} />}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
-      </Layout>
-    </>
+    <Layout preview={preview}>
+      <Head>
+        <title>{WEBSITE_NAME}</title>
+      </Head>
+      <Container fluid px="0">
+        <Intro />
+        {heroPost && <HeroPost post={heroPost} />}
+        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+      </Container>
+    </Layout>
   );
 }
 
