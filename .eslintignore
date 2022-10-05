@@ -5,7 +5,10 @@ dist
 public
 .cache
 .eslintrc.js
+.prettierrc.js
 *.d.ts
 
-# ignore api for now
+# ignore for now
+*.config.js
 api
+studio
