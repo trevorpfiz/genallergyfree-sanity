@@ -78,12 +78,6 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.stories.@(ts|tsx|js|jsx|mjs|cjs)'],
-      rules: {
-        'storybook/hierarchy-separator': 'error',
-      },
-    },
-    {
       files: ['**/*.ts', '**/*.tsx'],
       plugins: ['@typescript-eslint'],
       extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'airbnb-typescript'],
@@ -98,6 +92,13 @@ module.exports = {
       parser: '@typescript-eslint/parser',
       parserOptions: {
         project: './tsconfig.json',
+      },
+    },
+    {
+      files: ['*.stories.@(ts|tsx|js|jsx|mjs|cjs)'],
+      rules: {
+        'storybook/hierarchy-separator': 'error',
+        'import/no-extraneous-dependencies': 'off',
       },
     },
   ],

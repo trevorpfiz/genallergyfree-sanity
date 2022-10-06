@@ -7,6 +7,3 @@ public
 .eslintrc.js
 .prettierrc.js
 *.d.ts
-
-# ignore for now
-*.config.js

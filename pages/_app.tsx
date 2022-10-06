@@ -1,9 +1,21 @@
 import { MantineProvider } from '@mantine/core';
+import type { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import type { ReactElement, ReactNode } from 'react';
 
-export default function App(props: AppProps) {
-  const { Component, pageProps } = props;
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement, pageProps: any) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  // Use the layout defined at the page level, if available
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <>
@@ -24,7 +36,7 @@ export default function App(props: AppProps) {
           },
         }}
       >
-        <Component {...pageProps} />
+        {getLayout(<Component {...pageProps} />, pageProps)}
       </MantineProvider>
     </>
   );

@@ -1,6 +1,6 @@
 import { Anchor, Container, Text } from '@mantine/core';
 
-export default function Alert({ preview }: any) {
+export default function Alert({ preview }: { preview: boolean }) {
   return (
     <>
       {preview && (
