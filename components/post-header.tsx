@@ -27,7 +27,7 @@ export default function PostHeader({
         <Box mb="xl">{author && <Avatar author={author} />}</Box>
       </MediaQuery>
       <Container size="sm" sx={{ fontSize: 18 }}>
-        <Date dateString={date} />
+        <Date dateCreated={date} />
       </Container>
     </>
   );

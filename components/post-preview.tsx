@@ -44,7 +44,7 @@ export default function PostPreview({
         </Link>
       </Title>
       <Box mb="lg" sx={{ fontSize: 18 }}>
-        <Date dateString={date} />
+        <Date dateCreated={date} />
       </Box>
       <Text mb="lg" size={18} sx={{ lineHeight: '1.625' }}>
         {excerpt}

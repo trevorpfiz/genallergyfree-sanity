@@ -50,7 +50,7 @@ export default function HeroPost({
             </Link>
           </Title>
           <Box sx={{ fontSize: 18 }}>
-            <Date dateString={date} />
+            <Date dateCreated={date} />
           </Box>
         </Box>
         <Box>
