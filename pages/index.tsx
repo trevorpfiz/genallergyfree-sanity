@@ -4,10 +4,10 @@ import type { ReactElement } from 'react';
 import { s } from 'sanity-typed-schema-builder';
 import post from 'studio/schemas/postTyped';
 
-import HeroPost from '../components/hero-post';
+import HeroPost from '../components/content/hero-post';
+import MoreStories from '../components/content/more-stories';
 import Intro from '../components/intro';
-import Layout from '../components/layout';
-import MoreStories from '../components/more-stories';
+import Layout from '../components/layouts/primary/layout';
 import { WEBSITE_NAME } from '../lib/constants';
 import { indexQuery } from '../lib/queries';
 import { usePreviewSubscription } from '../lib/sanity';

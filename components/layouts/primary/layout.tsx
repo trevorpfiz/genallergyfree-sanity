@@ -1,8 +1,8 @@
 import { Box, Container } from '@mantine/core';
 
-import Alert from './alert';
-import Footer from './footer';
-import Meta from './meta';
+import Alert from '../../alert';
+import Meta from '../../meta';
+import Footer from '../../navigation/footer';
 
 export default function Layout({
   preview,

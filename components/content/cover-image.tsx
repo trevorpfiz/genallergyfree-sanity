@@ -2,7 +2,7 @@ import { Anchor, Box, createStyles } from '@mantine/core';
 import Image from 'next/future/image';
 import Link from 'next/link';
 
-import { urlForImage } from '../lib/sanity';
+import { urlForImage } from '../../lib/sanity';
 
 export const useStyles = createStyles((theme) => ({
   negMarginImage: {

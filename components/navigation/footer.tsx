@@ -2,7 +2,7 @@ import { ActionIcon, Container, createStyles, Group, Text } from '@mantine/core'
 import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from '@tabler/icons';
 import Image from 'next/future/image';
 
-import logo from '../public/genallergyfree-upscaled.svg';
+import logo from '../../public/genallergyfree-upscaled.svg';
 
 const useStyles = createStyles((theme) => ({
   footer: {

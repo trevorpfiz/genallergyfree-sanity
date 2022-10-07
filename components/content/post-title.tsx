@@ -1,6 +1,6 @@
 import { Title } from '@mantine/core';
 
-import { useStyles } from './intro';
+import { useStyles } from '../intro';
 
 export default function PostTitle(props: { children: React.ReactNode }) {
   const { classes } = useStyles();

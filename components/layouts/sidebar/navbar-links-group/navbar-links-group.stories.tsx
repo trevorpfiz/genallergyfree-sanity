@@ -1,20 +1,20 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import BaseTemplate, { IBaseTemplate } from './base-template';
-import { mockBaseTemplateProps } from './base-template.mocks';
+import { LinksGroup, LinksGroupProps } from './navbar-links-group';
+import { mockNavbarLinksGroupProps } from './navbar-links-group.mocks';
 
 export default {
-  title: 'templates/base-template',
-  component: BaseTemplate,
+  title: 'sidebar/navbar-links-group',
+  component: LinksGroup,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {},
-} as ComponentMeta<typeof BaseTemplate>;
+} as ComponentMeta<typeof LinksGroup>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof BaseTemplate> = (args) => <BaseTemplate {...args} />;
+const Template: ComponentStory<typeof LinksGroup> = (args) => <LinksGroup {...args} />;
 
 export const Base = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
 Base.args = {
-  ...mockBaseTemplateProps.base,
-} as IBaseTemplate;
+  ...mockNavbarLinksGroupProps.base,
+} as LinksGroupProps;

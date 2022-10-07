@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { s } from 'sanity-typed-schema-builder';
 import post from 'studio/schemas/postTyped';
 
+import Date from '../utils/date';
 import Avatar from './avatar';
 import CoverImage, { useStyles } from './cover-image';
-import Date from './date';
 
 export default function HeroPost({
   post: { title, coverImage, date, excerpt, author, slug },

@@ -3,7 +3,7 @@ import Image from 'next/future/image';
 import { s } from 'sanity-typed-schema-builder';
 import author from 'studio/schemas/authorTyped';
 
-import { urlForImage } from '../lib/sanity';
+import { urlForImage } from '../../lib/sanity';
 
 export default function Avatar({
   author: { name, picture },

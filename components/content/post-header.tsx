@@ -2,9 +2,9 @@ import { Box, Container, MediaQuery } from '@mantine/core';
 import { s } from 'sanity-typed-schema-builder';
 import post from 'studio/schemas/postTyped';
 
+import Date from '../utils/date';
 import Avatar from './avatar';
 import CoverImage, { useStyles } from './cover-image';
-import Date from './date';
 import PostTitle from './post-title';
 
 export default function PostHeader({
