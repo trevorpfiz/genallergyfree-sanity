@@ -1,4 +1,4 @@
-import { AppShell, Container } from '@mantine/core';
+import { AppShell, Container, Header } from '@mantine/core';
 
 import Alert from '../../alert';
 import Meta from '../../meta';
@@ -18,7 +18,11 @@ export default function SidebarLayout({
       <AppShell
         padding={0}
         navbar={<NavbarNested {...mockNavbarNestedProps.base} />}
-        header={<Alert preview={preview} />}
+        header={
+          <Header height={preview ? 39 : 0}>
+            <Alert preview={preview} />
+          </Header>
+        }
         sx={{ minHeight: '100vh' }}
       >
         <Container size="xl">{children}</Container>

@@ -1,4 +1,4 @@
-import { Code, createStyles, Group, Navbar, ScrollArea } from '@mantine/core';
+import { createStyles, Group, Navbar, ScrollArea } from '@mantine/core';
 import Image from 'next/future/image';
 
 import logo from '../../../../public/genallergyfree-upscaled.svg';
@@ -54,7 +54,6 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
       <Navbar.Section className={classes.header}>
         <Group position="apart">
           <Image src={logo} alt="Logo" width={250} height={21} />
-          <Code sx={{ fontWeight: 700 }}>v0.0.1</Code>
         </Group>
       </Navbar.Section>
 
