@@ -12,11 +12,11 @@ export default function Alert({ preview }: { preview: boolean }) {
             borderBottom: '1px solid #333',
             paddingTop: '8px',
             paddingBottom: '8px',
+            width: '100%',
           }}
         >
           <Text size="sm" align="center" sx={{ color: 'white' }}>
             <>
-              This page is a preview.{' '}
               <Anchor
                 href="/api/exit-preview"
                 underline

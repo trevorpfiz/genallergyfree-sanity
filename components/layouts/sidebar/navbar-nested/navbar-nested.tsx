@@ -1,6 +1,7 @@
 import { createStyles, Group, Navbar, ScrollArea } from '@mantine/core';
 import Image from 'next/future/image';
 
+import { useContext } from 'contexts/context';
 import logo from '../../../../public/genallergyfree-upscaled.svg';
 import UserButton from '../../../buttons/user/user-button';
 import { LinksGroup, LinksGroupProps } from '../navbar-links-group/navbar-links-group';
@@ -8,7 +9,15 @@ import { LinksGroup, LinksGroupProps } from '../navbar-links-group/navbar-links-
 const useStyles = createStyles((theme) => ({
   navbar: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
-    paddingBottom: 0,
+    paddingBottom: '0 !important',
+
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none',
+    },
+  },
+  navbarOpened: {
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
+    paddingBottom: '0 !important',
   },
 
   header: {
@@ -46,11 +55,17 @@ export interface NavbarNestedProps {
 }
 
 export default function NavbarNested({ linksData }: NavbarNestedProps) {
+  const { state } = useContext();
   const { classes } = useStyles();
+
   const links = linksData.map((item) => <LinksGroup {...item} key={item.label} />);
 
   return (
-    <Navbar width={{ sm: 300 }} p="md" className={classes.navbar}>
+    <Navbar
+      width={{ sm: 300 }}
+      p="md"
+      className={state.opened ? classes.navbarOpened : classes.navbar}
+    >
       <Navbar.Section className={classes.header}>
         <Group position="apart">
           <Image src={logo} alt="Logo" width={250} height={21} />

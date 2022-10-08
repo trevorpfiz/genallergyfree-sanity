@@ -1,4 +1,5 @@
 import { MantineProvider } from '@mantine/core';
+import { ContextProvider } from 'contexts/context';
 import type { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -33,7 +34,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           colorScheme: 'light',
         }}
       >
-        {getLayout(<Component {...pageProps} />, pageProps)}
+        <ContextProvider>{getLayout(<Component {...pageProps} />, pageProps)}</ContextProvider>
       </MantineProvider>
     </>
   );
