@@ -25,6 +25,7 @@ const getQueryForType = (type) => {
   }
 };
 
+// eslint-disable-next-line no-console
 const log = (msg, error) => console[error ? 'error' : 'log'](`[revalidate] ${msg}`);
 
 async function readBody(readable) {

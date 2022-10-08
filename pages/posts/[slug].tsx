@@ -1,5 +1,6 @@
 import { Container } from '@mantine/core';
 import SidebarLayout from 'components/layouts/sidebar/sidebar-layout';
+import { GetStaticProps } from 'next';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -75,9 +76,9 @@ const Post: NextPageWithLayout<PostProps> = ({ data = {}, preview }) => {
   );
 };
 
-export async function getStaticProps({ params, preview = false }: any) {
+export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
   const { post, morePosts } = await getClient(preview).fetch(postQuery, {
-    slug: params.slug,
+    slug: params?.slug,
   });
 
   return {
@@ -91,7 +92,7 @@ export async function getStaticProps({ params, preview = false }: any) {
     // If webhooks isn't setup then attempt to re-generate in 1 minute intervals
     revalidate: process.env.SANITY_REVALIDATE_SECRET ? undefined : 60,
   };
-}
+};
 
 export async function getStaticPaths() {
   const paths = await sanityClient.fetch(postSlugsQuery);
