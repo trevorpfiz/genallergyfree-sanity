@@ -3,8 +3,9 @@ import createSchema from 'part:@sanity/base/schema-creator';
 
 import author from './authorTyped';
 import post from './postTyped';
+import section from './sectionTyped';
 
 export default createSchema({
   name: 'default',
-  types: [post.schema(), author.schema()],
+  types: [post.schema(), author.schema(), section.schema()],
 });

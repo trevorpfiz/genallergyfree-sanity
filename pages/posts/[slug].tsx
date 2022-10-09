@@ -56,12 +56,12 @@ const Post: NextPageWithLayout<PostProps> = ({ data = {}, preview }) => {
           <article>
             <Head>
               <title>{`${post?.title} | ${WEBSITE_NAME}`}</title>
-              {post?.coverImage?.asset?._ref && (
+              {post?.heroImage?.asset?._ref && (
                 <meta
                   key="ogImage"
                   property="og:image"
                   // eslint-disable-next-line newline-per-chained-call
-                  content={urlForImage(post.coverImage).width(1200).height(627).fit('crop').url()}
+                  content={urlForImage(post.heroImage).width(1200).height(627).fit('crop').url()}
                 />
               )}
             </Head>

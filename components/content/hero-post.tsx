@@ -5,10 +5,10 @@ import post from 'studio/schemas/postTyped';
 
 import Date from '../utils/date';
 import Avatar from './avatar';
-import CoverImage, { useStyles } from './cover-image';
+import HeroImage, { useStyles } from './hero-image';
 
 export default function HeroPost({
-  post: { title, coverImage, date, excerpt, author, slug },
+  post: { title, heroImage, publishedDate, excerpt, author, slug },
 }: {
   post: s.resolved<typeof post>;
 }) {
@@ -31,7 +31,7 @@ export default function HeroPost({
           },
         })}
       >
-        <CoverImage slug={slug} title={title} image={coverImage} priority />
+        <HeroImage slug={slug} title={title} image={heroImage} priority />
       </Paper>
       <SimpleGrid mb={112} breakpoints={[{ minWidth: 'sm', cols: 2, spacing: 128 }]}>
         <Box>
@@ -50,7 +50,7 @@ export default function HeroPost({
             </Link>
           </Title>
           <Box sx={{ fontSize: 18 }}>
-            <Date dateCreated={date} />
+            <Date dateCreated={publishedDate} />
           </Box>
         </Box>
         <Box>

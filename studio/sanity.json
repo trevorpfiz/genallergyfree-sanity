@@ -9,11 +9,15 @@
     "@sanity/default-login",
     "@sanity/desk-tool",
     "asset-source-unsplash",
-    "@sanity/production-preview"
+    "@sanity/production-preview",
+    "order-documents"
   ],
   "env": {
     "development": {
-      "plugins": ["@sanity/vision"]
+      "plugins": [
+        "@sanity/vision",
+        "order-documents"
+      ]
     }
   },
   "parts": [
@@ -24,6 +28,10 @@
     {
       "implements": "part:@sanity/production-preview/resolve-production-url",
       "path": "./resolveProductionUrl.js"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./deskStructure.ts"
     }
   ]
 }

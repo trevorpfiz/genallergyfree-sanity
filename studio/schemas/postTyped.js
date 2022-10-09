@@ -1,5 +1,7 @@
 import { s } from 'sanity-typed-schema-builder';
+
 import authorTyped from './authorTyped';
+import sectionTyped from './sectionTyped';
 
 const post = s.document({
   name: 'post',
@@ -31,15 +33,15 @@ const post = s.document({
       type: s.string(),
     },
     {
-      name: 'coverImage',
-      title: 'Cover Image',
+      name: 'heroImage',
+      title: 'Hero Image',
       type: s.image({
         hotspot: true,
       }),
     },
     {
-      name: 'date',
-      title: 'Date',
+      name: 'publishedDate',
+      title: 'Published Date',
       type: s.datetime(),
     },
     {
@@ -49,12 +51,33 @@ const post = s.document({
         to: [authorTyped],
       }),
     },
+    {
+      name: 'section',
+      title: 'Section',
+      type: s.reference({
+        to: [sectionTyped],
+      }),
+    },
+    {
+      name: 'order',
+      title: 'Order',
+      type: s.number(),
+      optional: true,
+      hidden: true,
+    },
+  ],
+  orderings: [
+    {
+      name: 'manualOrder',
+      title: 'Manual order',
+      by: [{ field: 'order', direction: 'asc' }],
+    },
   ],
   preview: {
     select: {
       title: 'title',
       author: 'author.name',
-      media: 'coverImage',
+      media: 'heroImage',
     },
     prepare(selection) {
       const { author } = selection;

@@ -13,20 +13,20 @@ export const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface CoverImageProps {
+interface HeroImageProps {
   title: string;
   slug?: string; // look into ways to optionally pass slug
   image: any; // and pass image type from sanity
   priority: boolean;
 }
 
-export default function CoverImage({ title, slug, image: source, priority }: CoverImageProps) {
+export default function HeroImage({ title, slug, image: source, priority }: HeroImageProps) {
   const image = source?.asset?._ref ? (
     <Image
       style={{ maxWidth: '100%', height: 'auto' }}
       width={2000}
       height={1000}
-      alt={`Cover image for ${title}`}
+      alt={`Hero image for ${title}`}
       src={urlForImage(source).height(1000).width(2000).url()}
       sizes="100vw"
       priority={priority}

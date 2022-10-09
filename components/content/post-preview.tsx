@@ -5,10 +5,10 @@ import post from 'studio/schemas/postTyped';
 
 import Date from '../utils/date';
 import Avatar from './avatar';
-import CoverImage, { useStyles } from './cover-image';
+import HeroImage, { useStyles } from './hero-image';
 
 export default function PostPreview({
-  post: { title, coverImage, date, excerpt, author, slug },
+  post: { title, heroImage, publishedDate, excerpt, author, slug },
 }: {
   post: s.resolved<typeof post>;
 }) {
@@ -27,7 +27,7 @@ export default function PostPreview({
           transition: 'box-shadow 200ms',
         })}
       >
-        <CoverImage slug={slug} title={title} image={coverImage} priority />
+        <HeroImage slug={slug} title={title} image={heroImage} priority />
       </Paper>
       <Title order={3} size="h1" weight="normal" mb="sm" sx={{ lineHeight: '1.375' }}>
         <Link href={`/posts/${slug}`}>
@@ -44,7 +44,7 @@ export default function PostPreview({
         </Link>
       </Title>
       <Box mb="lg" sx={{ fontSize: 18 }}>
-        <Date dateCreated={date} />
+        <Date dateCreated={publishedDate} />
       </Box>
       <Text mb="lg" size={18} sx={{ lineHeight: '1.625' }}>
         {excerpt}

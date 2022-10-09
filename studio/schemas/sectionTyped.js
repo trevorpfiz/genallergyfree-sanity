@@ -1,16 +1,16 @@
 import { s } from 'sanity-typed-schema-builder';
 
-const author = s.document({
-  name: 'author',
+const section = s.document({
+  name: 'section',
   fields: [
     {
-      name: 'name',
-      title: 'Name',
+      name: 'title',
+      title: 'Title',
       type: s.string(),
     },
     {
-      name: 'portrait',
-      title: 'Portrait',
+      name: 'picture',
+      title: 'Picture',
       type: s.image({
         hotspot: true,
       }),
@@ -32,4 +32,4 @@ const author = s.document({
   ],
 });
 
-export default author;
+export default section;

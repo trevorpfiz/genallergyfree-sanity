@@ -190,7 +190,7 @@ We're all set to do some content creation!
   </details>
 
 - Set the **Date**
-- Select a **Cover Image** from [Unsplash].
+- Select a **Hero Image** from [Unsplash].
   <details>
   <summary>View screenshot ✨</summary>
 
@@ -200,7 +200,7 @@ We're all set to do some content creation!
 
 - Let's create an **Author** inline, click **Create new**.
 - Give the **Author** a **Name**.
-- After selecting a **Picture** of a **face** from [Unsplash], set a hotspot to ensure pixel-perfect cropping.
+- After selecting a **Portrait** of a **face** from [Unsplash], set a hotspot to ensure pixel-perfect cropping.
   <details>
   <summary>View screenshot ✨</summary>
 

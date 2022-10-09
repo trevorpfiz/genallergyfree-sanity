@@ -6,7 +6,7 @@ import author from 'studio/schemas/authorTyped';
 import { urlForImage } from '../../lib/sanity';
 
 export default function Avatar({
-  author: { name, picture },
+  author: { name, portrait },
 }: {
   author: s.resolved<typeof author>;
 }) {
@@ -15,9 +15,9 @@ export default function Avatar({
       <Box sx={{ position: 'relative', width: '48px', height: '48px' }}>
         <Image
           src={
-            picture?.asset?._ref
+            portrait?.asset?._ref
               ? // eslint-disable-next-line newline-per-chained-call
-                urlForImage(picture).height(96).width(96).fit('crop').url()
+                urlForImage(portrait).height(96).width(96).fit('crop').url()
               : 'https://source.unsplash.com/96x96/?face'
           }
           style={{ borderRadius: '9999px', maxWidth: '100%', height: 'auto' }}
