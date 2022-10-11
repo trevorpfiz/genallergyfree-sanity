@@ -1,4 +1,3 @@
-import React from 'react';
 import { s } from 'sanity-typed-schema-builder';
 
 import authorTyped from './authorTyped';
@@ -81,7 +80,7 @@ const post = s.document({
                         x<sup>2</sup>
                       </div>
                     ),
-                    render: (props: { children: React.ReactNode }) => <sup>{props.children}</sup>,
+                    render: ({ children }: { children: any }) => <sup>{children}</sup>,
                   },
                 },
               ],
