@@ -10,7 +10,9 @@
     "@sanity/desk-tool",
     "asset-source-unsplash",
     "@sanity/production-preview",
-    "order-documents"
+    "order-documents",
+    "media",
+    "@sanity/vision"
   ],
   "env": {
     "development": {
@@ -29,6 +31,14 @@
     {
       "name": "part:@sanity/desk-tool/structure",
       "path": "./deskStructure"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input/image/asset-sources",
+      "path": "./parts/assetSources.js"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input/file/asset-sources",
+      "path": "./parts/assetSources.js"
     }
   ]
 }

@@ -1,6 +1,7 @@
 import { Anchor, Box, createStyles } from '@mantine/core';
 import Image from 'next/future/image';
 import Link from 'next/link';
+import { s } from 'sanity-typed-schema-builder';
 
 import { urlForImage } from '../../lib/sanity';
 
@@ -13,10 +14,12 @@ export const useStyles = createStyles((theme) => ({
   },
 }));
 
+const type = s.image();
+
 interface HeroImageProps {
   title: string;
-  slug?: string; // look into ways to optionally pass slug
-  image: any; // and pass image type from sanity
+  slug?: string;
+  image: s.infer<typeof type>;
   priority: boolean;
 }
 

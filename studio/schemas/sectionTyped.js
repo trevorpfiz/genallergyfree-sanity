@@ -9,8 +9,8 @@ const section = s.document({
       type: s.string(),
     },
     {
-      name: 'picture',
-      title: 'Picture',
+      name: 'thumbnail',
+      title: 'Thumbnail',
       type: s.image({
         hotspot: true,
       }),
