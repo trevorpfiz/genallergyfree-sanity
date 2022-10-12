@@ -12,7 +12,7 @@ const components: any = {
       const { slug = {} } = value;
       const href = `/posts/${slug.current}`;
       return (
-        <Link href={href}>
+        <Link href={href} passHref>
           <Anchor>{children}</Anchor>
         </Link>
       );

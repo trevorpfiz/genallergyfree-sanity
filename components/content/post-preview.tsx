@@ -30,7 +30,7 @@ export default function PostPreview({
         <HeroImage slug={slug} title={title} image={heroImage} priority />
       </Paper>
       <Title order={3} size="h1" weight="normal" mb="sm" sx={{ lineHeight: '1.375' }}>
-        <Link href={`/posts/${slug}`}>
+        <Link href={`/posts/${slug}`} passHref>
           <Anchor
             color="dark.9"
             sx={{

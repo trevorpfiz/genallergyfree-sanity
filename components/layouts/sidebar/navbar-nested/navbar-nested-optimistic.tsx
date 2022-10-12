@@ -1,10 +1,9 @@
-import { createStyles, Group, Navbar, ScrollArea } from '@mantine/core';
+import { createStyles, Group, Navbar } from '@mantine/core';
 import Image from 'next/future/image';
 
 import { useContext } from 'contexts/context';
 import logo from '../../../../public/genallergyfree-upscaled.svg';
 import UserButton from '../../../buttons/user/user-button';
-import { LinksGroup, LinksGroupProps } from '../navbar-links-group/navbar-links-group';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
@@ -50,15 +49,9 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export interface NavbarNestedProps {
-  linksData: LinksGroupProps[];
-}
-
-export default function NavbarNested({ linksData }: NavbarNestedProps) {
+export default function NavbarNestedOptimistic() {
   const { state } = useContext();
   const { classes } = useStyles();
-
-  const links = linksData.map((section) => <LinksGroup {...section} key={section.title} />);
 
   return (
     <Navbar
@@ -72,8 +65,8 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
         </Group>
       </Navbar.Section>
 
-      <Navbar.Section grow className={classes.links} component={ScrollArea}>
-        <div className={classes.linksInner}>{links}</div>
+      <Navbar.Section grow className={classes.links}>
+        <div className={classes.linksInner} />
       </Navbar.Section>
 
       <Navbar.Section className={classes.footer}>

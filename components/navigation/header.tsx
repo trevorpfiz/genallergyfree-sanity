@@ -11,7 +11,7 @@ export default function Header() {
       mb="5rem"
       sx={{ lineHeight: '1.25', letterSpacing: '-0.025em' }}
     >
-      <Link href="/">
+      <Link href="/" passHref>
         <Anchor
           color="dark.9"
           sx={{

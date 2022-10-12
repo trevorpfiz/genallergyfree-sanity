@@ -1,6 +1,9 @@
 import { Box, Collapse, createStyles, Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
-import { IconChevronLeft, IconChevronRight, TablerIcon } from '@tabler/icons';
+import { IconChevronLeft, IconChevronRight, IconNotes } from '@tabler/icons';
 import { useState } from 'react';
+
+import ActiveLink from 'components/utils/active-link';
+import { useContext } from 'contexts/context';
 
 const useStyles = createStyles((theme) => ({
   control: {
@@ -17,7 +20,7 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
-  link: {
+  slug: {
     fontWeight: 500,
     display: 'block',
     textDecoration: 'none',
@@ -33,6 +36,28 @@ const useStyles = createStyles((theme) => ({
     '&:hover': {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
       color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      cursor: 'pointer',
+    },
+  },
+
+  activeSlug: {
+    fontWeight: 500,
+    display: 'block',
+    textDecoration: 'none',
+    padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
+    paddingLeft: 31,
+    marginLeft: 30,
+    fontSize: theme.fontSizes.sm,
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.blue[7],
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.blue[0],
+    borderLeft: `1px solid ${
+      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.blue[3]
+    }`,
+
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.blue[0],
+      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      cursor: 'pointer',
     },
   },
 
@@ -42,27 +67,34 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export interface LinksGroupProps {
-  icon: TablerIcon;
-  label: string;
+  title: string;
   initiallyOpened?: boolean;
-  links?: { label: string; link: string }[];
+  posts?: { title: string; slug: string }[];
 }
 
-export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksGroupProps) {
+export function LinksGroup({ title, initiallyOpened = true, posts }: LinksGroupProps) {
+  const { dispatch } = useContext();
   const { classes, theme } = useStyles();
-  const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(initiallyOpened || false);
+
+  const hasPosts = Array.isArray(posts);
   const ChevronIcon = theme.dir === 'ltr' ? IconChevronRight : IconChevronLeft;
-  const items = (hasLinks ? links : []).map((link) => (
-    <Text<'a'>
-      component="a"
-      className={classes.link}
-      href={link.link}
-      key={link.label}
-      onClick={(event) => event.preventDefault()}
+
+  const items = (hasPosts ? posts : []).map((post) => (
+    <ActiveLink
+      href={`/posts/${post.slug}`}
+      passHref
+      key={post.title}
+      activeClassName={classes.activeSlug}
     >
-      {link.label}
-    </Text>
+      <Text<'a'>
+        component="a"
+        className={classes.slug}
+        onClick={() => dispatch({ type: 'toggle' })}
+      >
+        {post.title}
+      </Text>
+    </ActiveLink>
   ));
 
   return (
@@ -71,11 +103,11 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksG
         <Group position="apart" spacing={0}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <ThemeIcon variant="light" size={30}>
-              <Icon size={18} />
+              <IconNotes size={18} />
             </ThemeIcon>
-            <Box ml="md">{label}</Box>
+            <Box ml="md">{title}</Box>
           </Box>
-          {hasLinks && (
+          {hasPosts && (
             <ChevronIcon
               className={classes.chevron}
               size={14}
@@ -87,7 +119,7 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksG
           )}
         </Group>
       </UnstyledButton>
-      {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
+      {hasPosts ? <Collapse in={opened}>{items}</Collapse> : null}
     </>
   );
 }

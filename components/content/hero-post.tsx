@@ -36,7 +36,7 @@ export default function HeroPost({
       <SimpleGrid mb={112} breakpoints={[{ minWidth: 'sm', cols: 2, spacing: 128 }]}>
         <Box>
           <Title order={3} size="2.75rem" weight="normal" mb="md" sx={{ lineHeight: '1.25' }}>
-            <Link href={`/posts/${slug}`}>
+            <Link href={`/posts/${slug}`} passHref>
               <Anchor
                 color="dark.9"
                 sx={{

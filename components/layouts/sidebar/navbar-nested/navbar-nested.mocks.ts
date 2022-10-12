@@ -1,48 +1,35 @@
-import {
-  IconAdjustments,
-  IconCalendarStats,
-  IconFileAnalytics,
-  IconGauge,
-  IconLock,
-  IconNotes,
-  IconPresentationAnalytics,
-} from '@tabler/icons';
-
 import { NavbarNestedProps } from './navbar-nested';
 
 const base: NavbarNestedProps = {
   linksData: [
-    { label: 'Dashboard', icon: IconGauge },
+    { title: 'Dashboard' },
     {
-      label: 'Market news',
-      icon: IconNotes,
+      title: 'Market news',
       initiallyOpened: true,
-      links: [
-        { label: 'Overview', link: '/' },
-        { label: 'Forecasts', link: '/' },
-        { label: 'Outlook', link: '/' },
-        { label: 'Real time', link: '/' },
+      posts: [
+        { title: 'Overview', slug: '/' },
+        { title: 'Forecasts', slug: '/' },
+        { title: 'Outlook', slug: '/' },
+        { title: 'Real time', slug: '/' },
       ],
     },
     {
-      label: 'Releases',
-      icon: IconCalendarStats,
-      links: [
-        { label: 'Upcoming releases', link: '/' },
-        { label: 'Previous releases', link: '/' },
-        { label: 'Releases schedule', link: '/' },
+      title: 'Releases',
+      posts: [
+        { title: 'Upcoming releases', slug: '/' },
+        { title: 'Previous releases', slug: '/' },
+        { title: 'Releases schedule', slug: '/' },
       ],
     },
-    { label: 'Analytics', icon: IconPresentationAnalytics },
-    { label: 'Contracts', icon: IconFileAnalytics },
-    { label: 'Settings', icon: IconAdjustments },
+    { title: 'Analytics' },
+    { title: 'Contracts' },
+    { title: 'Settings' },
     {
-      label: 'Security',
-      icon: IconLock,
-      links: [
-        { label: 'Enable 2FA', link: '/' },
-        { label: 'Change password', link: '/' },
-        { label: 'Recovery codes', link: '/' },
+      title: 'Security',
+      posts: [
+        { title: 'Enable 2FA', slug: '/' },
+        { title: 'Change password', slug: '/' },
+        { title: 'Recovery codes', slug: '/' },
       ],
     },
   ],

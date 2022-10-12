@@ -41,7 +41,7 @@ export default function HeroImage({ title, slug, image: source, priority }: Hero
   return (
     <>
       {slug ? (
-        <Link href={`/posts/${slug}`}>
+        <Link href={`/posts/${slug}`} passHref>
           <Anchor aria-label={title}>{image}</Anchor>
         </Link>
       ) : (

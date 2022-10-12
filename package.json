@@ -34,7 +34,8 @@
     "next-sanity": "^0.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sanity-typed-schema-builder": "^1.15.11"
+    "sanity-typed-schema-builder": "^1.15.11",
+    "swr": "^1.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
