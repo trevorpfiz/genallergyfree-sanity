@@ -1,7 +1,11 @@
+import React from 'react';
 import { s } from 'sanity-typed-schema-builder';
 
 import authorTyped from './authorTyped';
 import sectionTyped from './sectionTyped';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type _react = typeof React;
 
 const post = s.document({
   name: 'post',
@@ -27,6 +31,22 @@ const post = s.document({
         of: [
           s.block({
             marks: {
+              decorators: [
+                { title: 'Strong', value: 'strong' },
+                { title: 'Emphasis', value: 'em' },
+                {
+                  title: 'Sup',
+                  value: 'sup',
+                  blockEditor: {
+                    icon: () => (
+                      <div>
+                        x<sup>2</sup>
+                      </div>
+                    ),
+                    render: ({ children }: any) => <sup>{children}</sup>,
+                  },
+                },
+              ],
               annotations: [
                 {
                   name: 'link',
@@ -57,6 +77,9 @@ const post = s.document({
                       to: [{ type: 'post' }],
                     },
                   ],
+                  blockEditor: {
+                    icon: () => <div>in</div>,
+                  },
                 },
                 {
                   name: 'footnote',

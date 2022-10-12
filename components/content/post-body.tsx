@@ -41,6 +41,7 @@ const components: any = {
         </sup>
       );
     },
+    sup: ({ text }: any) => <sup>{text}</sup>,
   },
   types: {
     image: PostImage,
