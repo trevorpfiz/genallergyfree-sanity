@@ -1,15 +1,10 @@
 import { Box, Group, Text } from '@mantine/core';
+import { AuthorSanity } from 'additional';
 import Image from 'next/future/image';
-import { s } from 'sanity-typed-schema-builder';
-import author from 'studio/schemas/authorTyped';
 
 import { urlForImage } from '../../lib/sanity';
 
-export default function Avatar({
-  author: { name, portrait },
-}: {
-  author: s.resolved<typeof author>;
-}) {
+export default function Avatar({ author: { name, portrait } }: { author: AuthorSanity }) {
   return (
     <Group align="center">
       <Box sx={{ position: 'relative', width: '48px', height: '48px' }}>

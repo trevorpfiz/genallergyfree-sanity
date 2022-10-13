@@ -1,16 +1,15 @@
 import { Anchor, Container } from '@mantine/core';
 import { PortableText } from '@portabletext/react';
+import { PostSanity } from 'additional';
 import Link from 'next/link';
-import { s } from 'sanity-typed-schema-builder';
 
-import post from 'studio/schemas/postTyped';
 import PostImage from './post-image';
 
 const components: any = {
   marks: {
     internalLink: ({ value, children }: any) => {
-      const { slug = {} } = value;
-      const href = `/posts/${slug.current}`;
+      const { slug, section, course } = value;
+      const href = `/learn/${course}/${section}/${slug}`;
       return (
         <Link href={href} passHref>
           <Anchor>{children}</Anchor>
@@ -48,7 +47,7 @@ const components: any = {
   },
 };
 
-export default function PostBody({ post: { content } }: { post: s.resolved<typeof post> }) {
+export default function PostBody({ post: { content } }: { post: PostSanity }) {
   return (
     <Container size="sm" sx={{ fontSize: 18 }}>
       <PortableText value={content} components={components} />

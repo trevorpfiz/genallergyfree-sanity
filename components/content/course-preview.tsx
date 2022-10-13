@@ -1,16 +1,13 @@
 import { Anchor, Box, Paper, Text, Title } from '@mantine/core';
+import { CourseSanity } from 'additional';
 import Link from 'next/link';
-import { s } from 'sanity-typed-schema-builder';
-import post from 'studio/schemas/postTyped';
 
-import Date from '../utils/date';
-import Avatar from './avatar';
 import HeroImage, { useStyles } from './hero-image';
 
-export default function PostPreview({
-  post: { title, heroImage, publishedDate, excerpt, author, slug },
+export default function CoursePreview({
+  course: { title, thumbnail, description, slug },
 }: {
-  post: s.resolved<typeof post>;
+  course: CourseSanity;
 }) {
   const { classes } = useStyles();
 
@@ -27,10 +24,10 @@ export default function PostPreview({
           transition: 'box-shadow 200ms',
         })}
       >
-        <HeroImage slug={slug} title={title} image={heroImage} priority />
+        <HeroImage slug={slug} title={title} image={thumbnail} priority />
       </Paper>
       <Title order={3} size="h1" weight="normal" mb="sm" sx={{ lineHeight: '1.375' }}>
-        <Link href={`/posts/${slug}`} passHref>
+        <Link href={`/learn/${slug}`} passHref>
           <Anchor
             color="dark.9"
             sx={{
@@ -43,13 +40,9 @@ export default function PostPreview({
           </Anchor>
         </Link>
       </Title>
-      <Box mb="lg" sx={{ fontSize: 18 }}>
-        <Date dateCreated={publishedDate} />
-      </Box>
       <Text mb="lg" size={18} sx={{ lineHeight: '1.625' }}>
-        {excerpt}
+        {description}
       </Text>
-      {author && <Avatar author={author} />}
     </Box>
   );
 }

@@ -8,18 +8,90 @@ export const config = {
   },
 };
 
+const POST_UPDATED_QUERY = /* groq */ `
+*[_type == "post" && _id == $id] {
+  "slug": slug.current,
+  sections[]->{
+    "slug": slug.current,
+    courses[]->{
+      "slug": slug.current
+    }
+  }
+}
+`;
+
+const SECTION_UPDATED_QUERY = /* groq */ `
+*[_type == "section" && _id == $id] {
+  "slug": slug.current,
+  courses[]->{
+    "slug": slug.current
+  }
+}
+`;
+
+const COURSE_UPDATED_QUERY = /* groq */ `
+*[_type == "course" && _id == $id].slug.current
+`;
+
 const AUTHOR_UPDATED_QUERY = /* groq */ `
-  *[_type == "author" && _id == $id] {
-    "slug": *[_type == "post" && references(^._id)].slug.current
-  }["slug"][]`;
-const POST_UPDATED_QUERY = /* groq */ '*[_type == "post" && _id == $id].slug.current';
+*[_type == "author" && _id == $id] {
+  "posts": *[_type == "post" && references(^._id)] {
+    "slug": slug.current,
+    sections[]->{
+      "slug": slug.current,
+      courses[]->{
+        "slug": slug.current
+      }
+    },
+  },
+}
+`;
 
 const getQueryForType = (type) => {
   switch (type) {
-    case 'author':
-      return AUTHOR_UPDATED_QUERY;
     case 'post':
       return POST_UPDATED_QUERY;
+    case 'section':
+      return SECTION_UPDATED_QUERY;
+    case 'course':
+      return COURSE_UPDATED_QUERY;
+    case 'author':
+      return AUTHOR_UPDATED_QUERY;
+    default:
+      throw new TypeError(`Unknown type: ${type}`);
+  }
+};
+
+const getSlugsForType = (type, slug) => {
+  switch (type) {
+    case 'post':
+      return (Array.isArray(slug) ? slug : [slug]).flatMap((post) =>
+        post.sections.flatMap((section) =>
+          section.courses.flatMap((course) => [
+            `/learn/${course.slug}/${section.slug}`,
+            `/learn/${course.slug}/${section.slug}/${post.slug}`,
+          ])
+        )
+      );
+    case 'section':
+      return (Array.isArray(slug) ? slug : [slug]).flatMap((section) =>
+        section.courses.flatMap((course) => [
+          `/learn/${course.slug}`,
+          `/learn/${course.slug}/${section.slug}`,
+        ])
+      );
+    case 'course':
+      return (Array.isArray(slug) ? slug : [slug]).map((_slug) => `/learn/${_slug}`);
+    case 'author':
+      return (Array.isArray(slug) ? slug : [slug]).flatMap((author) =>
+        author.posts.flatMap((post) =>
+          post.sections.flatMap((section) =>
+            section.courses.flatMap((course) => [
+              `/learn/${course.slug}/${section.slug}/${post.slug}`,
+            ])
+          )
+        )
+      );
     default:
       throw new TypeError(`Unknown type: ${type}`);
   }
@@ -56,7 +128,7 @@ export default async function revalidate(req, res) {
 
   log(`Querying post slug for _id '${id}', type '${_type}' ..`);
   const slug = await sanityClient.fetch(getQueryForType(_type), { id });
-  const slugs = (Array.isArray(slug) ? slug : [slug]).map((_slug) => `/posts/${_slug}`);
+  const slugs = getSlugsForType(_type, slug);
   const staleRoutes = ['/', ...slugs];
 
   try {

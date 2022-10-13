@@ -1,7 +1,8 @@
 import { AppShell, Container } from '@mantine/core';
+import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
-import { sectionQuery } from '../../../lib/queries';
+import { courseQuery } from '../../../lib/queries';
 import { sanityClient } from '../../../lib/sanity.server';
 import Meta from '../../meta';
 import BurgerHeader from './burger-header/burger-header';
@@ -15,7 +16,14 @@ export default function SidebarLayout({
   preview: boolean;
   children: React.ReactNode;
 }) {
-  const { data, error } = useSWR(sectionQuery, (query) => sanityClient.fetch(query));
+  const router = useRouter();
+  const { course } = router.query;
+
+  const { data, error } = useSWR(courseQuery, (query) =>
+    sanityClient.fetch(query, {
+      slug: course,
+    })
+  );
 
   if (error) return <div>Failed to load</div>;
   if (!data) {
@@ -39,7 +47,7 @@ export default function SidebarLayout({
       <Meta />
       <AppShell
         padding={0}
-        navbar={<NavbarNested linksData={data} />}
+        navbar={<NavbarNested linksData={data.sections} />}
         header={<BurgerHeader preview={preview} />}
         sx={{ minHeight: '100vh' }}
       >

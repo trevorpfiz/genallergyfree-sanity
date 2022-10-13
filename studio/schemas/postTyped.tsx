@@ -131,17 +131,25 @@ const post = s.document({
       type: s.datetime(),
     },
     {
-      name: 'author',
-      title: 'Author',
-      type: s.reference({
-        to: [authorTyped],
+      name: 'authors',
+      title: 'Authors',
+      type: s.array({
+        of: [
+          s.reference({
+            to: [authorTyped],
+          }),
+        ],
       }),
     },
     {
-      name: 'section',
-      title: 'Section',
-      type: s.reference({
-        to: [sectionTyped],
+      name: 'sections',
+      title: 'Sections',
+      type: s.array({
+        of: [
+          s.reference({
+            to: [sectionTyped],
+          }),
+        ],
       }),
     },
     {

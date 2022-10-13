@@ -1,5 +1,6 @@
 import { Box, Collapse, createStyles, Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
 import { IconChevronLeft, IconChevronRight, IconNotes } from '@tabler/icons';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import ActiveLink from 'components/utils/active-link';
@@ -68,11 +69,20 @@ const useStyles = createStyles((theme) => ({
 
 export interface LinksGroupProps {
   title: string;
+  slug: string;
   initiallyOpened?: boolean;
   posts?: { title: string; slug: string }[];
 }
 
-export function LinksGroup({ title, initiallyOpened = true, posts }: LinksGroupProps) {
+export function LinksGroup({
+  title,
+  slug: section,
+  initiallyOpened = true,
+  posts,
+}: LinksGroupProps) {
+  const router = useRouter();
+  const { course } = router.query;
+
   const { dispatch } = useContext();
   const { classes, theme } = useStyles();
   const [opened, setOpened] = useState(initiallyOpened || false);
@@ -82,7 +92,7 @@ export function LinksGroup({ title, initiallyOpened = true, posts }: LinksGroupP
 
   const items = (hasPosts ? posts : []).map((post) => (
     <ActiveLink
-      href={`/posts/${post.slug}`}
+      href={`/learn/${course}/${section}/${post.slug}`}
       passHref
       key={post.title}
       activeClassName={classes.activeSlug}

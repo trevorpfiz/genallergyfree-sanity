@@ -36,7 +36,10 @@ export default async function preview(req, res) {
 
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-  redirectToPreview(res, `/posts/${post.slug}`);
+  redirectToPreview(
+    res,
+    `/learn/${post.sections[0].courses[0].slug}/${post.sections[0].slug}/${post.slug}`
+  );
 
   return res.status(200); // expected return
 }

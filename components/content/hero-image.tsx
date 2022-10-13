@@ -1,7 +1,7 @@
 import { Anchor, Box, createStyles } from '@mantine/core';
+import { ImageSanity } from 'additional';
 import Image from 'next/future/image';
 import Link from 'next/link';
-import { s } from 'sanity-typed-schema-builder';
 
 import { urlForImage } from '../../lib/sanity';
 
@@ -14,12 +14,10 @@ export const useStyles = createStyles((theme) => ({
   },
 }));
 
-const type = s.image();
-
 interface HeroImageProps {
   title: string;
   slug?: string;
-  image: s.infer<typeof type>;
+  image: ImageSanity;
   priority: boolean;
 }
 
@@ -41,7 +39,7 @@ export default function HeroImage({ title, slug, image: source, priority }: Hero
   return (
     <>
       {slug ? (
-        <Link href={`/posts/${slug}`} passHref>
+        <Link href={`/learn/${slug}`} passHref>
           <Anchor aria-label={title}>{image}</Anchor>
         </Link>
       ) : (

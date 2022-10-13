@@ -1,9 +1,7 @@
 import { s } from 'sanity-typed-schema-builder';
 
-import courseTyped from './courseTyped';
-
-const section = s.document({
-  name: 'section',
+const course = s.document({
+  name: 'course',
   fields: [
     {
       name: 'title',
@@ -20,21 +18,15 @@ const section = s.document({
       type: s.slug(),
     },
     {
+      name: 'description',
+      title: 'Description',
+      type: s.text(),
+    },
+    {
       name: 'thumbnail',
       title: 'Thumbnail',
       type: s.image({
         hotspot: true,
-      }),
-    },
-    {
-      name: 'courses',
-      title: 'Courses',
-      type: s.array({
-        of: [
-          s.reference({
-            to: [courseTyped],
-          }),
-        ],
       }),
     },
     {
@@ -54,4 +46,4 @@ const section = s.document({
   ],
 });
 
-export default section;
+export default course;

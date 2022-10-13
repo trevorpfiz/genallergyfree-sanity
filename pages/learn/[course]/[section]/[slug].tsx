@@ -1,24 +1,22 @@
 import { Container } from '@mantine/core';
+import { PostSanity } from 'additional';
 import SidebarLayout from 'components/layouts/sidebar/sidebar-layout';
 import { GetStaticProps } from 'next';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import type { ReactElement } from 'react';
-import { s } from 'sanity-typed-schema-builder';
-import postTyped from 'studio/schemas/postTyped';
 
-import MoreStories from '../../components/content/more-stories';
-import PostBody from '../../components/content/post-body';
-import PostHeader from '../../components/content/post-header';
-import PostTitle from '../../components/content/post-title';
-import Header from '../../components/navigation/header';
-import SectionSeparator from '../../components/utils/section-separator';
-import { WEBSITE_NAME } from '../../lib/constants';
-import { postQuery, postSlugsQuery } from '../../lib/queries';
-import { urlForImage, usePreviewSubscription } from '../../lib/sanity';
-import { getClient, overlayDrafts, sanityClient } from '../../lib/sanity.server';
-import type { NextPageWithLayout } from '../_app';
+import PostBody from '../../../../components/content/post-body';
+import PostHeader from '../../../../components/content/post-header';
+import PostTitle from '../../../../components/content/post-title';
+import Header from '../../../../components/navigation/header';
+import SectionSeparator from '../../../../components/utils/section-separator';
+import { WEBSITE_NAME } from '../../../../lib/constants';
+import { postQuery, postSlugsQuery } from '../../../../lib/queries';
+import { urlForImage, usePreviewSubscription } from '../../../../lib/sanity';
+import { getClient, overlayDrafts, sanityClient } from '../../../../lib/sanity.server';
+import type { NextPageWithLayout } from '../../../_app';
 
 interface PostProps {
   data: DataProps;
@@ -26,8 +24,8 @@ interface PostProps {
 }
 
 interface DataProps {
-  post?: s.resolved<typeof postTyped>;
-  morePosts?: s.resolved<typeof postTyped>[];
+  post?: PostSanity;
+  morePosts?: PostSanity[];
 }
 
 const Post: NextPageWithLayout<PostProps> = ({ data = {}, preview }) => {
@@ -35,7 +33,7 @@ const Post: NextPageWithLayout<PostProps> = ({ data = {}, preview }) => {
 
   const slug = data?.post?.slug;
   const {
-    data: { post, morePosts },
+    data: { post },
   } = usePreviewSubscription(postQuery, {
     params: { slug },
     initialData: data,
@@ -69,7 +67,6 @@ const Post: NextPageWithLayout<PostProps> = ({ data = {}, preview }) => {
             {post && <PostBody post={post || null} />}
           </article>
           <SectionSeparator />
-          {morePosts && <MoreStories posts={morePosts} />}
         </>
       )}
     </Container>
@@ -95,9 +92,20 @@ export const getStaticProps: GetStaticProps = async ({ params, preview = false }
 };
 
 export async function getStaticPaths() {
-  const paths = await sanityClient.fetch(postSlugsQuery);
+  const paths: PostSanity[] = await sanityClient.fetch(postSlugsQuery);
+
+  function loopParams(posts: PostSanity[]) {
+    return posts.flatMap((post) =>
+      post.sections.flatMap((section) =>
+        section.courses.flatMap((course) => ({
+          params: { course: course.slug, section: section.slug, slug: post.slug },
+        }))
+      )
+    );
+  }
+
   return {
-    paths: paths.map((slug: string) => ({ params: { slug } })),
+    paths: loopParams(paths),
     fallback: true,
   };
 }

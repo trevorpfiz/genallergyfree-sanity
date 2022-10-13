@@ -1,10 +1,9 @@
 import { Box, SimpleGrid, Title } from '@mantine/core';
-import { s } from 'sanity-typed-schema-builder';
-import postTyped from 'studio/schemas/postTyped';
+import { CourseSanity } from 'additional';
 
-import PostPreview from './post-preview';
+import CoursePreview from './course-preview';
 
-export default function MoreStories({ posts }: { posts: s.resolved<typeof postTyped>[] }) {
+export default function MoreCourses({ courses }: { courses: CourseSanity[] }) {
   return (
     <Box component="section">
       <Title
@@ -19,11 +18,11 @@ export default function MoreStories({ posts }: { posts: s.resolved<typeof postTy
           [theme.fn.largerThan('sm')]: { fontSize: '4.5rem' },
         })}
       >
-        More Stories
+        More Courses
       </Title>
       <SimpleGrid mb={112} breakpoints={[{ minWidth: 'sm', cols: 2, spacing: 128 }]}>
-        {posts.map((post, index) => (
-          <PostPreview key={index} post={post} />
+        {courses.map((course, index) => (
+          <CoursePreview key={index} course={course} />
         ))}
       </SimpleGrid>
     </Box>

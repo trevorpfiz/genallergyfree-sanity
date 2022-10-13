@@ -2,6 +2,7 @@ let productionUrl;
 try {
   productionUrl = new URL(process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000');
 } catch (err) {
+  // eslint-disable-next-line no-console
   console.error('Invalid productionUrl', err);
 }
 

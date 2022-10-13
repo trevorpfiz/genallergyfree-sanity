@@ -68,7 +68,7 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
     >
       <Navbar.Section className={classes.header}>
         <Group position="apart">
-          <Image src={logo} alt="Logo" width={250} height={21} />
+          <Image src={logo} alt="Logo" width={250} height={21} priority />
         </Group>
       </Navbar.Section>
 

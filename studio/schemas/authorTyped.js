@@ -9,6 +9,15 @@ const author = s.document({
       type: s.string(),
     },
     {
+      name: 'slug',
+      title: 'Slug',
+      options: {
+        source: 'name',
+        maxLength: 96,
+      },
+      type: s.slug(),
+    },
+    {
       name: 'portrait',
       title: 'Portrait',
       type: s.image({
