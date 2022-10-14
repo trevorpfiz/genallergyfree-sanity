@@ -1,5 +1,5 @@
 import { Anchor, Box, createStyles } from '@mantine/core';
-import { ImageSanity } from 'additional';
+import { ImageWithAltSanity } from 'additional';
 import Image from 'next/future/image';
 import Link from 'next/link';
 
@@ -17,7 +17,7 @@ export const useStyles = createStyles((theme) => ({
 interface HeroImageProps {
   title: string;
   slug?: string;
-  image: ImageSanity;
+  image: ImageWithAltSanity;
   priority: boolean;
 }
 
@@ -27,7 +27,7 @@ export default function HeroImage({ title, slug, image: source, priority }: Hero
       style={{ maxWidth: '100%', height: 'auto' }}
       width={2000}
       height={1000}
-      alt={`Hero image for ${title}`}
+      alt={source?.altText ? `${source?.altText}` : 'Hero image'}
       src={urlForImage(source).height(1000).width(2000).url()}
       sizes="100vw"
       priority={priority}

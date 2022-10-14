@@ -15,3 +15,4 @@ type AuthorSanity = s.resolved<typeof authorTyped>;
 
 const sanityImage = s.image();
 type ImageSanity = s.infer<typeof sanityImage>;
+type ImageWithAltSanity = ImageSanity & { altText: string };
