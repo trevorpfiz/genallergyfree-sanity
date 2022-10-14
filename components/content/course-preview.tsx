@@ -2,7 +2,7 @@ import { Anchor, Box, Paper, Text, Title } from '@mantine/core';
 import { CourseSanity } from 'additional';
 import Link from 'next/link';
 
-import HeroImage, { useStyles } from './hero-image';
+import CardImage, { useStyles } from './card-image';
 
 export default function CoursePreview({
   course: { title, thumbnail, description, slug },
@@ -24,7 +24,7 @@ export default function CoursePreview({
           transition: 'box-shadow 200ms',
         })}
       >
-        <HeroImage slug={slug} title={title} image={thumbnail} priority />
+        <CardImage slug={slug} title={title} image={thumbnail} priority />
       </Paper>
       <Title order={3} size="h1" weight="normal" mb="sm" sx={{ lineHeight: '1.375' }}>
         <Link href={`/learn/${slug}`} passHref>

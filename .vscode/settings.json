@@ -5,6 +5,11 @@
     "source.fixAll": true,
     "source.organizeImports": true
   },
+  "search.exclude": {
+    "**/package-lock.json": true,
+    "**/public": true,
+    "**/yarn.lock": true
+  },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.tsdk": "node_modules\\typescript\\lib"

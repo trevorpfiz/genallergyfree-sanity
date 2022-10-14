@@ -14,21 +14,21 @@ export const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface HeroImageProps {
+interface CardImageProps {
   title: string;
   slug?: string;
   image: ImageWithAltSanity;
   priority: boolean;
 }
 
-export default function HeroImage({ title, slug, image: source, priority = true }: HeroImageProps) {
+export default function CardImage({ title, slug, image: source, priority = true }: CardImageProps) {
   const image = source?.asset?._ref ? (
     <Image
-      style={{ maxWidth: '100%', height: 'auto', maxHeight: 400, objectFit: 'cover' }}
+      style={{ maxWidth: '100%', height: 'auto' }}
       width={2000}
       height={1000}
       alt={source?.altText ? `${source?.altText}` : 'Hero image'}
-      src={urlForImage(source).width(2000).url()}
+      src={urlForImage(source).height(1000).width(2000).url()}
       sizes="100vw"
       priority={priority}
     />

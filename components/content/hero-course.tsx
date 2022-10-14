@@ -2,7 +2,7 @@ import { Anchor, Box, Paper, SimpleGrid, Text, Title } from '@mantine/core';
 import { CourseSanity } from 'additional';
 import Link from 'next/link';
 
-import HeroImage, { useStyles } from './hero-image';
+import CardImage, { useStyles } from './card-image';
 
 export default function HeroCourse({
   course: { title, thumbnail, description, slug },
@@ -28,7 +28,7 @@ export default function HeroCourse({
           },
         })}
       >
-        <HeroImage slug={slug} title={title} image={thumbnail} priority />
+        <CardImage slug={slug} title={title} image={thumbnail} priority />
       </Paper>
       <SimpleGrid mb={112} breakpoints={[{ minWidth: 'sm', cols: 2, spacing: 128 }]}>
         <Box>

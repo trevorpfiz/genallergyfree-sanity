@@ -11,7 +11,7 @@ export default function PostImage({ value }: { value: ImageWithAltSanity }) {
       width={688}
       height={344}
       alt={value?.altText ? `${value?.altText}` : 'Post image'}
-      src={urlForImage(value).height(344).width(688).url()}
+      src={urlForImage(value).width(688).url()}
       sizes="100vw"
     />
   ) : (
