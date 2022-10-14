@@ -1,10 +1,10 @@
 import { Box, Group, Text } from '@mantine/core';
-import { AuthorSanity } from 'additional';
+import { BaseAuthorSanity } from 'additional';
 import Image from 'next/future/image';
 
 import { urlForImage } from '../../lib/sanity';
 
-export default function Avatar({ author: { name, portrait } }: { author: AuthorSanity }) {
+export default function Avatar({ author: { name, portrait } }: { author: BaseAuthorSanity }) {
   return (
     <Group align="center">
       <Box sx={{ position: 'relative', width: '48px', height: '48px' }}>
