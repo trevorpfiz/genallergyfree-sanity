@@ -5,13 +5,22 @@ import courseTyped from 'studio/schemas/courseTyped';
 import postTyped from 'studio/schemas/postTyped';
 import sectionTyped from 'studio/schemas/sectionTyped';
 
-type PostSanity = s.resolved<typeof postTyped>;
+type BasePostSanity = s.resolved<typeof postTyped>;
+interface PostSanity extends BasePostSanity {
+  heroImage: ImageWithAltSanity;
+}
 
-type SectionSanity = s.resolved<typeof sectionTyped>;
+type BaseSectionSanity = s.resolved<typeof sectionTyped>;
+interface SectionSanity extends BaseSectionSanity {
+  thumbnail: ImageWithAltSanity;
+}
 
-type CourseSanity = s.resolved<typeof courseTyped>;
+type BaseCourseSanity = s.resolved<typeof courseTyped>;
+interface CourseSanity extends BaseCourseSanity {
+  thumbnail: ImageWithAltSanity;
+}
 
-type AuthorSanity = s.resolved<typeof authorTyped>;
+type BaseAuthorSanity = s.resolved<typeof authorTyped>;
 
 const sanityImage = s.image();
 type ImageSanity = s.infer<typeof sanityImage>;
