@@ -20,6 +20,11 @@ const section = s.document({
       type: s.slug(),
     },
     {
+      name: 'chapter',
+      title: 'Chapter',
+      type: s.string(),
+    },
+    {
       name: 'thumbnail',
       title: 'Thumbnail',
       type: s.image({

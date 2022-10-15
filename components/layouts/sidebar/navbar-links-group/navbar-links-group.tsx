@@ -1,5 +1,5 @@
 import { Box, Collapse, createStyles, Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
-import { IconChevronLeft, IconChevronRight, IconNotes } from '@tabler/icons';
+import { IconChevronLeft, IconChevronRight, TablerIcon } from '@tabler/icons';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -70,8 +70,11 @@ const useStyles = createStyles((theme) => ({
 export interface LinksGroupProps {
   title: string;
   slug: string;
+  // eslint-disable-next-line react/no-unused-prop-types
+  chapter: string;
   initiallyOpened?: boolean;
   posts?: { title: string; slug: string }[];
+  icon: TablerIcon;
 }
 
 export function LinksGroup({
@@ -79,6 +82,7 @@ export function LinksGroup({
   slug: section,
   initiallyOpened = true,
   posts,
+  icon: Icon,
 }: LinksGroupProps) {
   const router = useRouter();
   const { course } = router.query;
@@ -109,7 +113,7 @@ export function LinksGroup({
         <Group position="apart" spacing={0}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <ThemeIcon variant="light" size={30}>
-              <IconNotes size={18} />
+              <Icon size={18} />
             </ThemeIcon>
             <Box ml="md">{title}</Box>
           </Box>

@@ -1,4 +1,19 @@
 import { createStyles, Group, Navbar, ScrollArea } from '@mantine/core';
+import {
+  IconBlockquote,
+  IconChecklist,
+  IconNotes,
+  IconNumber0,
+  IconNumber1,
+  IconNumber2,
+  IconNumber3,
+  IconNumber4,
+  IconNumber5,
+  IconNumber6,
+  IconNumber7,
+  IconNumber8,
+  IconNumber9,
+} from '@tabler/icons';
 import Image from 'next/future/image';
 
 import { useContext } from 'contexts/context';
@@ -50,6 +65,32 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+const chapterToIcon = {
+  disclaimer: IconNotes,
+  0: IconNumber0,
+  1: IconNumber1,
+  2: IconNumber2,
+  3: IconNumber3,
+  4: IconNumber4,
+  5: IconNumber5,
+  6: IconNumber6,
+  7: IconNumber7,
+  8: IconNumber8,
+  9: IconNumber9,
+  checklist: IconChecklist,
+  citations: IconBlockquote,
+};
+
+function addIcon(links: LinksGroupProps[]) {
+  return links.map((section) => {
+    const key = section.chapter as keyof typeof chapterToIcon;
+    if (key in chapterToIcon) {
+      return { ...section, icon: chapterToIcon[key] };
+    }
+    return { ...section, icon: IconNotes };
+  });
+}
+
 export interface NavbarNestedProps {
   linksData: LinksGroupProps[];
 }
@@ -58,7 +99,9 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
   const { state } = useContext();
   const { classes } = useStyles();
 
-  const links = linksData.map((section) => <LinksGroup {...section} key={section.title} />);
+  const links = addIcon(linksData).map((section) => (
+    <LinksGroup {...section} key={section.title} />
+  ));
 
   return (
     <Navbar
