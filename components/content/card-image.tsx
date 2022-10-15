@@ -1,6 +1,6 @@
 import { Anchor, Box, createStyles } from '@mantine/core';
 import { ImagePlusSanity } from 'additional';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { urlForImage } from '../../lib/sanity';
@@ -24,7 +24,7 @@ interface CardImageProps {
 export default function CardImage({ title, slug, image: source, priority = true }: CardImageProps) {
   const image = source?.asset?._ref ? (
     <Image
-      style={{ width: '100%', height: 'auto' }}
+      layout="responsive"
       width={2000}
       height={1000}
       alt={source?.altText ? `${source?.altText}` : 'Hero image'}

@@ -97,11 +97,7 @@ export function LinksGroup({
       key={post.title}
       activeClassName={classes.activeSlug}
     >
-      <Text<'a'>
-        component="a"
-        className={classes.slug}
-        onClick={() => dispatch({ type: 'toggle' })}
-      >
+      <Text component="a" className={classes.slug} onClick={() => dispatch({ type: 'toggle' })}>
         {post.title}
       </Text>
     </ActiveLink>
