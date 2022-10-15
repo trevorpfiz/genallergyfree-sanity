@@ -32,7 +32,7 @@ export default function HeroImage({ title, slug, image: source, priority = true 
       sizes="100vw"
       priority={priority}
       placeholder="blur"
-      blurDataURL={`${source?.lqip}`}
+      blurDataURL={urlForImage(source).width(10).url()}
     />
   ) : (
     <Box sx={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
