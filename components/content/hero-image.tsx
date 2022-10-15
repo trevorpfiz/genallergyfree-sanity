@@ -32,7 +32,7 @@ export default function HeroImage({ title, slug, image: source, priority = true 
       sizes="100vw"
       priority={priority}
       placeholder="blur"
-      blurDataURL="iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAH0lEQVR42mNk2Pq/noGKgHHUwFEDRw0cNXDUwJFqIADyPywRpEKbcwAAAABJRU5ErkJggg=="
+      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAH0lEQVR42mNk2Pq/noGKgHHUwFEDRw0cNXDUwJFqIADyPywRpEKbcwAAAABJRU5ErkJggg=="
     />
   ) : (
     <Box sx={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
