@@ -24,7 +24,7 @@ interface CardImageProps {
 export default function CardImage({ title, slug, image: source, priority = true }: CardImageProps) {
   const image = source?.asset?._ref ? (
     <Image
-      style={{ maxWidth: '100%', height: 'auto' }}
+      style={{ width: '100%', height: 'auto' }}
       width={2000}
       height={1000}
       alt={source?.altText ? `${source?.altText}` : 'Hero image'}

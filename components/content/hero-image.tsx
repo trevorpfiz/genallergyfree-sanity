@@ -24,7 +24,7 @@ interface HeroImageProps {
 export default function HeroImage({ title, slug, image: source, priority = true }: HeroImageProps) {
   const image = source?.asset?._ref ? (
     <Image
-      style={{ maxWidth: '100%', height: 'auto', maxHeight: 400, objectFit: 'cover' }}
+      style={{ width: '100%', height: 'auto', maxHeight: 400, objectFit: 'cover' }}
       width={2000}
       height={1000}
       alt={source?.altText ? `${source?.altText}` : 'Hero image'}
@@ -32,7 +32,7 @@ export default function HeroImage({ title, slug, image: source, priority = true 
       sizes="100vw"
       priority={priority}
       placeholder="blur"
-      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAH0lEQVR42mNk2Pq/noGKgHHUwFEDRw0cNXDUwJFqIADyPywRpEKbcwAAAABJRU5ErkJggg=="
+      blurDataURL={`${source?.lqip}`}
     />
   ) : (
     <Box sx={{ paddingTop: '50%', backgroundColor: '#ddd' }} />

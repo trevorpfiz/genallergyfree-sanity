@@ -15,10 +15,11 @@ export default function Avatar({ author: { name, portrait } }: { author: BaseAut
                 urlForImage(portrait).height(96).width(96).fit('crop').url()
               : 'https://source.unsplash.com/96x96/?face'
           }
-          style={{ borderRadius: '9999px', maxWidth: '100%', height: 'auto' }}
+          style={{ borderRadius: '9999px', width: '100%', height: 'auto' }}
           height={96}
           width={96}
           alt={`${name}`}
+          priority
         />
       </Box>
       <Text size="xl" weight={700}>
