@@ -34,6 +34,8 @@ const post = s.document({
               decorators: [
                 { title: 'Strong', value: 'strong' },
                 { title: 'Emphasis', value: 'em' },
+                { title: 'Underline', value: 'underline' },
+                { title: 'Strike', value: 'strike-through' },
                 {
                   title: 'Sup',
                   value: 'sup',

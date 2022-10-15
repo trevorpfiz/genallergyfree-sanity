@@ -7,21 +7,21 @@ import sectionTyped from 'studio/schemas/sectionTyped';
 
 type BasePostSanity = s.resolved<typeof postTyped>;
 interface PostSanity extends BasePostSanity {
-  heroImage: ImageWithAltSanity;
+  heroImage: ImagePlusSanity;
 }
 
 type BaseSectionSanity = s.resolved<typeof sectionTyped>;
 interface SectionSanity extends BaseSectionSanity {
-  thumbnail: ImageWithAltSanity;
+  thumbnail: ImagePlusSanity;
 }
 
 type BaseCourseSanity = s.resolved<typeof courseTyped>;
 interface CourseSanity extends BaseCourseSanity {
-  thumbnail: ImageWithAltSanity;
+  thumbnail: ImagePlusSanity;
 }
 
 type BaseAuthorSanity = s.resolved<typeof authorTyped>;
 
 const sanityImage = s.image();
 type ImageSanity = s.infer<typeof sanityImage>;
-type ImageWithAltSanity = ImageSanity & { altText: string };
+type ImagePlusSanity = ImageSanity & { altText: string, lqip: string };

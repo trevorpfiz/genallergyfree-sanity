@@ -19,24 +19,24 @@ const components: any = {
     link: ({ value, children }: any) => {
       const { blank, href } = value;
       return blank ? (
-        <a href={href} target="_blank" rel="noopener noreferrer">
+        <Anchor href={href} target="_blank" rel="noopener noreferrer">
           {children}
-        </a>
+        </Anchor>
       ) : (
-        <a href={href}>{children}</a>
+        <Anchor href={href}>{children}</Anchor>
       );
     },
     footnote: ({ value, children }: any) => {
       const { blank, href } = value;
       return blank ? (
         <sup>
-          <a href={href} target="_blank" rel="noopener noreferrer">
+          <Anchor href={href} target="_blank" rel="noopener noreferrer">
             {children}
-          </a>
+          </Anchor>
         </sup>
       ) : (
         <sup>
-          <a href={href}>{children}</a>
+          <Anchor href={href}>{children}</Anchor>
         </sup>
       );
     },
