@@ -14,7 +14,7 @@ export default function BurgerHeader({ preview }: { preview: boolean }) {
   const headerHeight = matches ? (preview ? 39 : 0) : preview ? 98 : 59;
 
   return (
-    <Header height={headerHeight}>
+    <Header height={headerHeight} sx={{ borderBottom: 'none' }}>
       <Stack spacing={0} sx={{ height: '100%' }}>
         <Alert preview={preview} />
         {!matches && (

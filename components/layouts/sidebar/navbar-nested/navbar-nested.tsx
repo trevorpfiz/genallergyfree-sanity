@@ -23,7 +23,7 @@ import UserButton from '../../../buttons/user/user-button';
 import { LinksGroup, LinksGroupProps } from '../navbar-links-group/navbar-links-group';
 
 const useStyles = createStyles((theme) => ({
-  navbar: {
+  navbarClosed: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
     paddingBottom: '0 !important',
 
@@ -107,15 +107,15 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
   ));
 
   useEffect(() => {
-    console.log(scrollRef.current?.innerText);
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollRef.current?.scrollIntoView();
   }, [state.opened]);
 
   return (
     <Navbar
+      height="auto"
       width={{ sm: 300 }}
       p="md"
-      className={state.opened ? classes.navbarOpened : classes.navbar}
+      className={state.opened ? classes.navbarOpened : classes.navbarClosed}
     >
       <Navbar.Section className={classes.header}>
         <Group position="apart">

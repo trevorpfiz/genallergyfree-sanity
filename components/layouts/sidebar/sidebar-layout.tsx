@@ -26,28 +26,13 @@ export default function SidebarLayout({
   );
 
   if (error) return <div>Failed to load</div>;
-  if (!data) {
-    return (
-      <>
-        <Meta />
-        <AppShell
-          padding={0}
-          navbar={<NavbarNestedOptimistic />}
-          header={<BurgerHeader preview={preview} />}
-          sx={{ minHeight: '100vh' }}
-        >
-          <Container size="xl">{children}</Container>
-        </AppShell>
-      </>
-    );
-  }
 
   return (
     <>
       <Meta />
       <AppShell
         padding={0}
-        navbar={<NavbarNested linksData={data.sections} />}
+        navbar={!data ? <NavbarNestedOptimistic /> : <NavbarNested linksData={data.sections} />}
         header={<BurgerHeader preview={preview} />}
         sx={{ minHeight: '100vh' }}
       >
