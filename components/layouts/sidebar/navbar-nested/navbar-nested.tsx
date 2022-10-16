@@ -15,6 +15,7 @@ import {
   IconNumber9,
 } from '@tabler/icons';
 import Image from 'next/future/image';
+import { useEffect, useRef } from 'react';
 
 import { useContext } from 'contexts/context';
 import logo from '../../../../public/genallergyfree-upscaled.svg';
@@ -99,9 +100,16 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
   const { state } = useContext();
   const { classes } = useStyles();
 
+  const scrollRef = useRef<HTMLAnchorElement>(null);
+
   const links = addIcon(linksData).map((section) => (
-    <LinksGroup {...section} key={section.title} />
+    <LinksGroup {...section} ref={scrollRef} key={section.title} />
   ));
+
+  useEffect(() => {
+    console.log(scrollRef.current?.innerText);
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [state.opened]);
 
   return (
     <Navbar

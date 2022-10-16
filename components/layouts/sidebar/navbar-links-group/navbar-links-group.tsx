@@ -1,8 +1,9 @@
 import { Box, Collapse, createStyles, Group, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
 import { IconChevronLeft, IconChevronRight, TablerIcon } from '@tabler/icons';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 
+import { useMediaQuery } from '@mantine/hooks';
 import ActiveLink from 'components/utils/active-link';
 import { useContext } from 'contexts/context';
 
@@ -28,11 +29,12 @@ const useStyles = createStyles((theme) => ({
     padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
     paddingLeft: 31,
     marginLeft: 30,
-    fontSize: theme.fontSizes.sm,
+    fontSize: theme.fontSizes.xs + 1,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
     borderLeft: `1px solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
     }`,
+    scrollMarginTop: 300,
 
     '&:hover': {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
@@ -48,7 +50,7 @@ const useStyles = createStyles((theme) => ({
     padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
     paddingLeft: 31,
     marginLeft: 30,
-    fontSize: theme.fontSizes.sm,
+    fontSize: theme.fontSizes.xs + 1,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.blue[7],
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.blue[0],
     borderLeft: `1px solid ${
@@ -72,36 +74,38 @@ export interface LinksGroupProps {
   slug: string;
   // eslint-disable-next-line react/no-unused-prop-types
   chapter: string;
-  initiallyOpened?: boolean;
   posts?: { title: string; slug: string }[];
   icon: TablerIcon;
 }
 
-export function LinksGroup({
-  title,
-  slug: section,
-  initiallyOpened = true,
-  posts,
-  icon: Icon,
-}: LinksGroupProps) {
+export const LinksGroup = forwardRef<HTMLAnchorElement, LinksGroupProps>((props, ref) => {
+  const { title, slug: sectionSlug, posts, icon: Icon }: LinksGroupProps = props;
+
   const router = useRouter();
-  const { course } = router.query;
+  const { course, section, slug } = router.query;
 
   const { dispatch } = useContext();
   const { classes, theme } = useStyles();
-  const [opened, setOpened] = useState(initiallyOpened || false);
+  const [opened, setOpened] = useState(section === sectionSlug || false);
 
+  const matches = useMediaQuery('(max-width: 767px)');
   const hasPosts = Array.isArray(posts);
   const ChevronIcon = theme.dir === 'ltr' ? IconChevronRight : IconChevronLeft;
 
   const items = (hasPosts ? posts : []).map((post) => (
     <ActiveLink
-      href={`/learn/${course}/${section}/${post.slug}`}
+      href={`/learn/${course}/${sectionSlug}/${post.slug}`}
       passHref
       key={post.title}
       activeClassName={classes.activeSlug}
     >
-      <Text component="a" className={classes.slug} onClick={() => dispatch({ type: 'toggle' })}>
+      <Text
+        component="a"
+        size={13}
+        className={classes.slug}
+        ref={slug === post.slug ? ref : null}
+        onClick={matches ? () => dispatch({ type: 'toggle' }) : undefined}
+      >
         {post.title}
       </Text>
     </ActiveLink>
@@ -115,7 +119,9 @@ export function LinksGroup({
             <ThemeIcon variant="light" size={30}>
               <Icon size={18} />
             </ThemeIcon>
-            <Box ml="md">{title}</Box>
+            <Text size={13} ml="md">
+              {title}
+            </Text>
           </Box>
           {hasPosts && (
             <ChevronIcon
@@ -132,4 +138,4 @@ export function LinksGroup({
       {hasPosts ? <Collapse in={opened}>{items}</Collapse> : null}
     </>
   );
-}
+});
