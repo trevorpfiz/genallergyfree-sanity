@@ -9,7 +9,6 @@ const base: NavbarNestedProps = {
       slug: '/',
       chapter: '1',
       icon: IconNotes,
-      initiallyOpened: true,
       posts: [
         { title: 'Overview', slug: '/' },
         { title: 'Forecasts', slug: '/' },
