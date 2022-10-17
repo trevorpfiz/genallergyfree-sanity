@@ -8,8 +8,8 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import type { ReactElement } from 'react';
 
+import Header from '../../../../components/content/dashboard-title';
 import PostTitle from '../../../../components/content/post-title';
-import Header from '../../../../components/navigation/header';
 import SectionSeparator from '../../../../components/utils/section-separator';
 import { WEBSITE_NAME } from '../../../../lib/constants';
 import { sectionQuery, sectionSlugsQuery } from '../../../../lib/queries';
@@ -44,7 +44,7 @@ const Section: NextPageWithLayout<SectionProps> = ({ data = {}, preview }) => {
 
   return (
     <Container fluid px="0">
-      <Header />
+      <Header title={section?.title || 'Generation Allergy Free'} />
       {router.isFallback ? (
         <PostTitle>Loading…</PostTitle>
       ) : (

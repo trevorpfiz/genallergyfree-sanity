@@ -123,7 +123,7 @@ function smartBack(router: any) {
   if (slug) return `/learn/${course}/${section}`;
   if (section) return `/learn/${course}`;
 
-  return '/';
+  return '/courses';
 }
 
 export interface NavbarNestedProps {

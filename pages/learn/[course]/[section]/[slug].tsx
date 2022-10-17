@@ -10,7 +10,6 @@ import type { ReactElement } from 'react';
 import PostBody from '../../../../components/content/post-body';
 import PostHeader from '../../../../components/content/post-header';
 import PostTitle from '../../../../components/content/post-title';
-import Header from '../../../../components/navigation/header';
 import SectionSeparator from '../../../../components/utils/section-separator';
 import { WEBSITE_NAME } from '../../../../lib/constants';
 import { postQuery, postSlugsQuery } from '../../../../lib/queries';
@@ -46,7 +45,6 @@ const Post: NextPageWithLayout<PostProps> = ({ data = {}, preview }) => {
 
   return (
     <Container fluid px="0">
-      <Header />
       {router.isFallback ? (
         <PostTitle>Loading…</PostTitle>
       ) : (

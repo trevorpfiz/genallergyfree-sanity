@@ -1,6 +1,15 @@
-import { Title } from '@mantine/core';
+import { createStyles, Title } from '@mantine/core';
 
-import { useStyles } from '../intro';
+export const useStyles = createStyles((theme) => ({
+  myResponsiveTitle: {
+    fontSize: '4rem',
+
+    [theme.fn.smallerThan('sm')]: {
+      fontSize: '2.75rem',
+      textAlign: 'center',
+    },
+  },
+}));
 
 export default function PostTitle(props: { children: React.ReactNode }) {
   const { classes } = useStyles();
@@ -9,6 +18,7 @@ export default function PostTitle(props: { children: React.ReactNode }) {
     <Title
       order={1}
       weight="bold"
+      mt="3rem"
       mb="3rem"
       className={classes.myResponsiveTitle}
       sx={{ lineHeight: '1.25', letterSpacing: '-0.025em' }}

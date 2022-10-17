@@ -13,15 +13,43 @@ const useStyles = createStyles((theme) => ({
       transform: 'scale(1.01)',
       boxShadow: theme.shadows.md,
     },
+
+    [theme.fn.smallerThan('lg')]: {},
   },
 
   title: {
     fontSize: theme.fontSizes.xl,
     overflowWrap: 'break-word',
     wordWrap: 'break-word',
+    margin: 0,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    '-webkit-line-clamp': '2',
+    '-webkit-box-orient': 'vertical',
 
     [theme.fn.smallerThan('lg')]: {
       fontSize: theme.fontSizes.xs,
+    },
+  },
+  excerpt: {
+    fontSize: theme.fontSizes.xl,
+    overflowWrap: 'break-word',
+    wordWrap: 'break-word',
+    margin: 0,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    '-webkit-line-clamp': '2',
+    '-webkit-box-orient': 'vertical',
+
+    [theme.fn.smallerThan('lg')]: {
+      fontSize: theme.fontSizes.xs,
+    },
+  },
+  stack: {
+    [theme.fn.smallerThan('lg')]: {
+      gap: 4,
     },
   },
 
@@ -59,9 +87,14 @@ export default function SectionDashboard({ sectionData }: { sectionData: Section
                   <FillImage image={post.heroImage} priority width={640} height={360} />
                 </AspectRatio>
               </Card.Section>
-              <Text component="h3" weight={600} className={classes.title}>
-                {post.title}
-              </Text>
+              <Stack className={classes.stack}>
+                <Text component="h3" weight={600} className={classes.title}>
+                  {post.title}
+                </Text>
+                <Text component="h4" weight={400} className={classes.excerpt}>
+                  {post.excerpt}
+                </Text>
+              </Stack>
             </Group>
           </Card>
         </Link>
