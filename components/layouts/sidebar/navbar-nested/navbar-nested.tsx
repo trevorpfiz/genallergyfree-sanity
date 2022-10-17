@@ -1,7 +1,8 @@
-import { createStyles, Group, Navbar, ScrollArea } from '@mantine/core';
+import { Button, createStyles, Group, MediaQuery, Navbar, ScrollArea } from '@mantine/core';
 import {
   IconBlockquote,
   IconChecklist,
+  IconChevronLeft,
   IconNotes,
   IconNumber0,
   IconNumber1,
@@ -13,11 +14,14 @@ import {
   IconNumber7,
   IconNumber8,
   IconNumber9,
+  IconSearch,
 } from '@tabler/icons';
 import Image from 'next/future/image';
 import { useEffect, useRef } from 'react';
 
 import { useContext } from 'contexts/context';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import logo from '../../../../public/genallergyfree-upscaled.svg';
 import UserButton from '../../../buttons/user/user-button';
 import { LinksGroup, LinksGroupProps } from '../navbar-links-group/navbar-links-group';
@@ -65,7 +69,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   linksInner: {
-    paddingTop: theme.spacing.xl,
+    paddingTop: theme.spacing.md,
     paddingBottom: theme.spacing.xl,
   },
 
@@ -104,6 +108,15 @@ function addIcon(links: LinksGroupProps[]) {
   });
 }
 
+function smartBack(router: any) {
+  const { course, section, slug } = router.query;
+
+  if (slug) return `/learn/${course}/${section}`;
+  if (section) return `/learn/${course}`;
+
+  return '/';
+}
+
 export interface NavbarNestedProps {
   linksData: LinksGroupProps[];
 }
@@ -111,6 +124,7 @@ export interface NavbarNestedProps {
 export default function NavbarNested({ linksData }: NavbarNestedProps) {
   const { state } = useContext();
   const { classes } = useStyles();
+  const router = useRouter();
 
   const firstUpdate = useRef(true);
   const scrollRef = useRef<HTMLAnchorElement>(null);
@@ -139,9 +153,27 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
       className={state.opened ? classes.navbarOpened : classes.navbarClosed}
     >
       <Navbar.Section className={classes.header}>
-        <Group position="apart">
+        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+          <Group position="apart">
+            <Link href={smartBack(router)} passHref>
+              <Button
+                component="a"
+                variant="light"
+                color="pink"
+                size="xs"
+                radius="xl"
+                sx={{ paddingLeft: 12, paddingRight: 12 }}
+              >
+                <IconChevronLeft />
+              </Button>
+            </Link>
+            <Image src={logo} alt="Logo" width={160} height={21} priority />
+            <IconSearch />
+          </Group>
+        </MediaQuery>
+        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
           <Image src={logo} alt="Logo" width={250} height={21} priority />
-        </Group>
+        </MediaQuery>
       </Navbar.Section>
 
       <Navbar.Section grow className={classes.links} component={ScrollArea}>
