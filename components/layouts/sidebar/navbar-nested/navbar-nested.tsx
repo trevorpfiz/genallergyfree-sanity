@@ -26,6 +26,7 @@ const useStyles = createStyles((theme) => ({
   navbarClosed: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
     paddingBottom: '0 !important',
+    overflow: 'hidden',
 
     [theme.fn.smallerThan('sm')]: {
       display: 'none',
@@ -34,6 +35,17 @@ const useStyles = createStyles((theme) => ({
   navbarOpened: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
     paddingBottom: '0 !important',
+    overflow: 'hidden',
+
+    [theme.fn.smallerThan('sm')]: {
+      touchAction: 'none',
+    },
+  },
+  bodyOpened: {
+    [theme.fn.smallerThan('sm')]: {
+      overflow: 'hidden',
+      height: '100%',
+    },
   },
 
   header: {
@@ -100,6 +112,7 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
   const { state } = useContext();
   const { classes } = useStyles();
 
+  const firstUpdate = useRef(true);
   const scrollRef = useRef<HTMLAnchorElement>(null);
 
   const links = addIcon(linksData).map((section) => (
@@ -107,8 +120,16 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
   ));
 
   useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+
     scrollRef.current?.scrollIntoView();
-  }, [state.opened]);
+
+    const body = document.getElementById('body');
+    body?.classList.toggle(classes.bodyOpened);
+  }, [state.opened, classes.bodyOpened]);
 
   return (
     <Navbar
