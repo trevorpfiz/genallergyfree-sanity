@@ -1,4 +1,13 @@
-import { Button, createStyles, Group, MediaQuery, Navbar, ScrollArea } from '@mantine/core';
+import {
+  Anchor,
+  Box,
+  Button,
+  createStyles,
+  Group,
+  MediaQuery,
+  Navbar,
+  ScrollArea,
+} from '@mantine/core';
 import {
   IconBlockquote,
   IconChecklist,
@@ -153,27 +162,39 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
       className={state.opened ? classes.navbarOpened : classes.navbarClosed}
     >
       <Navbar.Section className={classes.header}>
-        <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-          <Group position="apart">
-            <Link href={smartBack(router)} passHref>
-              <Button
-                component="a"
-                variant="light"
-                color="pink"
-                size="xs"
-                radius="xl"
-                sx={{ paddingLeft: 12, paddingRight: 12 }}
-              >
-                <IconChevronLeft />
-              </Button>
-            </Link>
-            <Image src={logo} alt="Logo" width={160} height={21} priority />
-            <IconSearch />
-          </Group>
-        </MediaQuery>
-        <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-          <Image src={logo} alt="Logo" width={250} height={21} priority />
-        </MediaQuery>
+        <>
+          <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+            <Group position="apart">
+              <Link href={smartBack(router)} passHref>
+                <Button
+                  component="a"
+                  variant="light"
+                  color="pink"
+                  size="xs"
+                  radius="xl"
+                  sx={{ paddingLeft: 12, paddingRight: 12 }}
+                >
+                  <IconChevronLeft />
+                </Button>
+              </Link>
+              <Link href="/" passHref>
+                <Anchor>
+                  <Image src={logo} alt="Logo" width={160} height={21} priority />
+                </Anchor>
+              </Link>
+              <IconSearch />
+            </Group>
+          </MediaQuery>
+          <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+            <Box>
+              <Link href="/" passHref>
+                <Anchor>
+                  <Image src={logo} alt="Logo" width={250} height={21} priority />
+                </Anchor>
+              </Link>
+            </Box>
+          </MediaQuery>
+        </>
       </Navbar.Section>
 
       <Navbar.Section grow className={classes.links} component={ScrollArea}>

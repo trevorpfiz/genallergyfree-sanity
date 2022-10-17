@@ -26,8 +26,8 @@ export default function DashboardImage({
       src={urlForImage(source).width(width).height(height).url()}
       sizes="100vw"
       priority={priority}
-      // placeholder="blur"
-      // blurDataURL={`${source?.lqip}`}
+      placeholder="blur"
+      blurDataURL={`${source?.lqip}`}
     />
   ) : (
     <Box sx={{ paddingTop: '50%', backgroundColor: '#ddd' }} />

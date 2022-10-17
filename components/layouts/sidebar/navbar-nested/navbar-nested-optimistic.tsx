@@ -1,12 +1,14 @@
-import { createStyles, Group, Navbar } from '@mantine/core';
+import { Anchor, Box, Button, createStyles, Group, MediaQuery, Navbar } from '@mantine/core';
 import Image from 'next/future/image';
 
+import { IconChevronLeft, IconSearch } from '@tabler/icons';
 import { useContext } from 'contexts/context';
+import Link from 'next/link';
 import logo from '../../../../public/genallergyfree-upscaled.svg';
 import UserButton from '../../../buttons/user/user-button';
 
 const useStyles = createStyles((theme) => ({
-  navbar: {
+  navbarClosed: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
     paddingBottom: '0 !important',
 
@@ -55,14 +57,45 @@ export default function NavbarNestedOptimistic() {
 
   return (
     <Navbar
+      height="auto"
       width={{ sm: 300 }}
       p="md"
-      className={state.opened ? classes.navbarOpened : classes.navbar}
+      className={state.opened ? classes.navbarOpened : classes.navbarClosed}
     >
       <Navbar.Section className={classes.header}>
-        <Group position="apart">
-          <Image src={logo} alt="Logo" width={250} height={21} priority />
-        </Group>
+        <>
+          <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+            <Group position="apart">
+              <Link href="/" passHref>
+                <Button
+                  component="a"
+                  variant="light"
+                  color="pink"
+                  size="xs"
+                  radius="xl"
+                  sx={{ paddingLeft: 12, paddingRight: 12 }}
+                >
+                  <IconChevronLeft />
+                </Button>
+              </Link>
+              <Link href="/" passHref>
+                <Anchor>
+                  <Image src={logo} alt="Logo" width={160} height={21} priority />
+                </Anchor>
+              </Link>
+              <IconSearch />
+            </Group>
+          </MediaQuery>
+          <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+            <Box>
+              <Link href="/" passHref>
+                <Anchor>
+                  <Image src={logo} alt="Logo" width={250} height={21} priority />
+                </Anchor>
+              </Link>
+            </Box>
+          </MediaQuery>
+        </>
       </Navbar.Section>
 
       <Navbar.Section grow className={classes.links}>
