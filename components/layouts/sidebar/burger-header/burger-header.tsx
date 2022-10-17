@@ -3,7 +3,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { IconSearch } from '@tabler/icons';
 import { useContext } from 'contexts/context';
 
-import Alert from '../../../alert';
+import Alert from '../../../navigation/alert';
 
 export default function BurgerHeader({ preview }: { preview: boolean }) {
   const { dispatch, state } = useContext();

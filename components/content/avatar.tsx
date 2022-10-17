@@ -12,7 +12,7 @@ export default function Avatar({ author: { name, portrait } }: { author: BaseAut
           src={
             portrait?.asset?._ref
               ? // eslint-disable-next-line newline-per-chained-call
-                urlForImage(portrait).height(96).width(96).fit('crop').url()
+                urlForImage(portrait).width(96).height(96).fit('crop').url()
               : 'https://source.unsplash.com/96x96/?face'
           }
           style={{ borderRadius: '9999px', width: '100%', height: 'auto' }}

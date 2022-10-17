@@ -1,5 +1,6 @@
 import { Container } from '@mantine/core';
 import { SectionSanity } from 'additional';
+import SectionDashboard from 'components/content/section-dashboard';
 import SidebarLayout from 'components/layouts/sidebar/sidebar-layout';
 import { GetStaticProps } from 'next';
 import ErrorPage from 'next/error';
@@ -48,19 +49,26 @@ const Section: NextPageWithLayout<SectionProps> = ({ data = {}, preview }) => {
         <PostTitle>Loading…</PostTitle>
       ) : (
         <>
-          <article>
-            <Head>
-              <title>{`${section?.title} | ${WEBSITE_NAME}`}</title>
-              {section?.thumbnail?.asset?._ref && (
-                <meta
-                  key="ogImage"
-                  property="og:image"
-                  // eslint-disable-next-line newline-per-chained-call
-                  content={urlForImage(section.thumbnail).width(1200).height(627).fit('crop').url()}
-                />
-              )}
-            </Head>
-          </article>
+          <section>
+            <>
+              <Head>
+                <title>{`${section?.title} | ${WEBSITE_NAME}`}</title>
+                {section?.thumbnail?.asset?._ref && (
+                  <meta
+                    key="ogImage"
+                    property="og:image"
+                    // eslint-disable-next-line newline-per-chained-call
+                    content={urlForImage(section.thumbnail)
+                      .width(1200)
+                      .height(627)
+                      .fit('crop')
+                      .url()}
+                  />
+                )}
+              </Head>
+              {section && <SectionDashboard sectionData={section || null} />}
+            </>
+          </section>
           <SectionSeparator />
         </>
       )}

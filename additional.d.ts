@@ -13,11 +13,13 @@ interface PostSanity extends BasePostSanity {
 type BaseSectionSanity = s.resolved<typeof sectionTyped>;
 interface SectionSanity extends BaseSectionSanity {
   thumbnail: ImagePlusSanity;
+  posts: PostSanity[]
 }
 
 type BaseCourseSanity = s.resolved<typeof courseTyped>;
 interface CourseSanity extends BaseCourseSanity {
   thumbnail: ImagePlusSanity;
+  sections: SectionSanity[]
 }
 
 type BaseAuthorSanity = s.resolved<typeof authorTyped>;

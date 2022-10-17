@@ -1,5 +1,6 @@
 import { Container } from '@mantine/core';
 import { CourseSanity } from 'additional';
+import CourseDashboard from 'components/content/course-dashboard';
 import SidebarLayout from 'components/layouts/sidebar/sidebar-layout';
 import { GetStaticProps } from 'next';
 import ErrorPage from 'next/error';
@@ -48,19 +49,26 @@ const Course: NextPageWithLayout<CourseProps> = ({ data = {}, preview }) => {
         <PostTitle>Loading…</PostTitle>
       ) : (
         <>
-          <article>
-            <Head>
-              <title>{`${course?.title} | ${WEBSITE_NAME}`}</title>
-              {course?.thumbnail?.asset?._ref && (
-                <meta
-                  key="ogImage"
-                  property="og:image"
-                  // eslint-disable-next-line newline-per-chained-call
-                  content={urlForImage(course.thumbnail).width(1200).height(627).fit('crop').url()}
-                />
-              )}
-            </Head>
-          </article>
+          <section>
+            <>
+              <Head>
+                <title>{`${course?.title} | ${WEBSITE_NAME}`}</title>
+                {course?.thumbnail?.asset?._ref && (
+                  <meta
+                    key="ogImage"
+                    property="og:image"
+                    // eslint-disable-next-line newline-per-chained-call
+                    content={urlForImage(course.thumbnail)
+                      .width(1200)
+                      .height(627)
+                      .fit('crop')
+                      .url()}
+                  />
+                )}
+              </Head>
+              {course && <CourseDashboard courseData={course || null} />}
+            </>
+          </section>
           <SectionSeparator />
         </>
       )}
