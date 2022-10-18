@@ -7,7 +7,7 @@ import Layout from '../../components/layouts/primary/layout';
 import { WEBSITE_NAME } from '../../lib/constants';
 import type { NextPageWithLayout } from '../_app';
 
-const About: NextPageWithLayout = () => (
+const Contact: NextPageWithLayout = () => (
   <>
     <Head>
       <title>{WEBSITE_NAME}</title>
@@ -18,8 +18,8 @@ const About: NextPageWithLayout = () => (
   </>
 );
 
-About.getLayout = function getLayout(page: ReactElement, pageProps) {
+Contact.getLayout = function getLayout(page: ReactElement, pageProps) {
   return <Layout preview={pageProps.preview}>{page}</Layout>;
 };
 
-export default About;
+export default Contact;

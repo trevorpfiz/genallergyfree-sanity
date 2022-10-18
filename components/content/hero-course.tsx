@@ -28,7 +28,14 @@ export default function HeroCourse({
           },
         })}
       >
-        <CardImage slug={slug} title={title} image={thumbnail} priority />
+        <CardImage
+          slug={slug}
+          title={title}
+          image={thumbnail}
+          priority
+          width={2000}
+          height={1000}
+        />
       </Paper>
       <SimpleGrid mb={112} breakpoints={[{ minWidth: 'sm', cols: 2, spacing: 128 }]}>
         <Box>

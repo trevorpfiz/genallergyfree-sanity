@@ -23,6 +23,16 @@ const course = s.document({
       type: s.text(),
     },
     {
+      name: 'heroDescription',
+      title: 'Hero Description',
+      type: s.text(),
+    },
+    {
+      name: 'targetAudience',
+      title: 'Target Audience',
+      type: s.string(),
+    },
+    {
       name: 'thumbnail',
       title: 'Thumbnail',
       type: s.image({

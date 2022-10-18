@@ -5,10 +5,10 @@ import type { ReactElement } from 'react';
 
 import Layout from '../../components/layouts/primary/layout';
 import { WEBSITE_NAME } from '../../lib/constants';
-import rawHTML from '../../lib/terms-html';
+import rawHTML from '../../lib/cookie-html';
 import type { NextPageWithLayout } from '../_app';
 
-const TermsOfService: NextPageWithLayout = () => (
+const CookiePolicy: NextPageWithLayout = () => (
   <>
     <Head>
       <title>{WEBSITE_NAME}</title>
@@ -21,8 +21,8 @@ const TermsOfService: NextPageWithLayout = () => (
   </>
 );
 
-TermsOfService.getLayout = function getLayout(page: ReactElement, pageProps) {
+CookiePolicy.getLayout = function getLayout(page: ReactElement, pageProps) {
   return <Layout preview={pageProps.preview}>{page}</Layout>;
 };
 
-export default TermsOfService;
+export default CookiePolicy;

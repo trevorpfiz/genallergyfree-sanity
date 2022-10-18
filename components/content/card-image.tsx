@@ -19,16 +19,25 @@ interface CardImageProps {
   slug?: string;
   image: ImagePlusSanity;
   priority: boolean;
+  width: number;
+  height: number;
 }
 
-export default function CardImage({ title, slug, image: source, priority = true }: CardImageProps) {
+export default function CardImage({
+  title,
+  slug,
+  image: source,
+  priority = true,
+  width,
+  height,
+}: CardImageProps) {
   const image = source?.asset?._ref ? (
     <Image
       layout="responsive"
-      width={2000}
-      height={1000}
-      alt={source?.altText ? `${source?.altText}` : 'Hero image'}
-      src={urlForImage(source).width(2000).height(1000).url()}
+      width={width}
+      height={height}
+      alt={source?.altText ? `${source?.altText}` : 'Card image'}
+      src={urlForImage(source).width(width).height(height).url()}
       sizes="100vw"
       priority={priority}
       placeholder="blur"

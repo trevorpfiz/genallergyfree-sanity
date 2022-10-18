@@ -35,9 +35,9 @@ const useStyles = createStyles((theme) => ({
       width: '100%',
     },
 
-    ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-    }),
+    // ...theme.fn.hover({
+    //   backgroundColor: '#FF65BE',
+    // }),
   },
 
   subLink: {
@@ -76,13 +76,23 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function HeaderNav() {
+interface HeaderProps {
+  color?: string;
+}
+
+export function HeaderNav({ color = 'white' }: HeaderProps) {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const { classes, theme } = useStyles();
 
   return (
-    <Box>
-      <Header height={86} px="md" py="xl" mx="auto" sx={{ maxWidth: 1288, border: 'none' }}>
+    <Box sx={{ backgroundColor: color }}>
+      <Header
+        height={86}
+        px="md"
+        py="xl"
+        mx="auto"
+        sx={{ maxWidth: 1288, border: 'none', backgroundColor: color }}
+      >
         <Group position="apart" sx={{ height: '100%' }}>
           <Link href="/" passHref>
             <Anchor>

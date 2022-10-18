@@ -24,7 +24,14 @@ export default function CoursePreview({
           transition: 'box-shadow 200ms',
         })}
       >
-        <CardImage slug={slug} title={title} image={thumbnail} priority />
+        <CardImage
+          slug={slug}
+          title={title}
+          image={thumbnail}
+          priority
+          width={2000}
+          height={1000}
+        />
       </Paper>
       <Title order={3} size="h1" weight="normal" mb="sm" sx={{ lineHeight: '1.375' }}>
         <Link href={`/learn/${slug}`} passHref>

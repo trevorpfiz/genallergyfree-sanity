@@ -4,25 +4,23 @@ import Image from 'next/future/image';
 
 import { urlForImage } from '../../lib/sanity';
 
-interface DashboardImageProps {
+interface FillImageProps {
   image: ImagePlusSanity;
   priority: boolean;
   width: number;
   height: number;
 }
 
-// const css = { width: '100%', height: 'auto' };
-
-export default function DashboardImage({
+export default function FillImage({
   image: source,
   priority = true,
   width,
   height,
-}: DashboardImageProps) {
+}: FillImageProps) {
   const image = source?.asset?._ref ? (
     <Image
       fill
-      alt={source?.altText ? `${source?.altText}` : 'Hero image'}
+      alt={source?.altText ? `${source?.altText}` : 'Image'}
       src={urlForImage(source).width(width).height(height).url()}
       sizes="100vw"
       priority={priority}
