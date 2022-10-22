@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Card, createStyles, Stack, Text } from '@mantine/core';
+import { Badge, Box, Button, Card, createStyles, Stack, Title } from '@mantine/core';
 import { CourseSanity } from 'additional';
 import Link from 'next/link';
 import FillImage from './fill-image';
@@ -60,17 +60,25 @@ export function CourseCard({ course }: { course: CourseSanity }) {
 
         <Box sx={{ padding: 16 }}>
           <Stack mt="md" mb="xs" spacing="xs">
-            <Text weight={500} className={classes.title}>
+            <Title order={4} weight={500} className={classes.title}>
               {course.title}
-            </Text>
+            </Title>
             <Badge color="pink" variant="light">
               For: {course.targetAudience}
             </Badge>
           </Stack>
 
-          <Text size="sm" color="dimmed" mt="md" mb="xs" className={classes.description}>
+          <Title
+            order={5}
+            weight={400}
+            size="sm"
+            color="dimmed"
+            mt="md"
+            mb="xs"
+            className={classes.description}
+          >
             {course.heroDescription}
-          </Text>
+          </Title>
 
           <Button variant="light" color="grape" fullWidth mt="md" radius="md">
             Get Started

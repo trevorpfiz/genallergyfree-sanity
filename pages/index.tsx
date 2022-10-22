@@ -1,10 +1,10 @@
-import { Box, Container, createStyles, Group, Stack, Text } from '@mantine/core';
+import { Box, Container, createStyles, Stack, Title } from '@mantine/core';
 import Image from 'next/future/image';
 import Head from 'next/head';
 import type { ReactElement } from 'react';
 
 import { CourseSanity } from 'additional';
-import { CourseCard } from 'components/content/course-card';
+import { FeaturedCourse } from 'components/content/featured-course';
 import Layout from '../components/layouts/primary/layout';
 import { WEBSITE_NAME } from '../lib/constants';
 import { indexQuery } from '../lib/queries';
@@ -18,8 +18,6 @@ const useStyles = createStyles((theme) => ({
     fontSize: '3rem',
     textTransform: 'uppercase',
     textAlign: 'center',
-    marginTop: 0,
-    marginBottom: 0,
     lineHeight: 1,
 
     [theme.fn.largerThan('sm')]: {
@@ -51,6 +49,51 @@ const useStyles = createStyles((theme) => ({
     borderBottom: '5vw solid black',
     marginTop: '-5vw',
   },
+  separatorWhite: {
+    width: 0,
+    height: 0,
+    maxWidth: '100%',
+    borderLeft: '100vw solid transparent',
+    borderBottom: '5vw solid white',
+    marginTop: '-5vw',
+  },
+
+  triStack: {
+    paddingTop: 80,
+    paddingBottom: 40,
+
+    [theme.fn.largerThan('sm')]: {
+      paddingTop: 160,
+      paddingBottom: 160,
+    },
+  },
+  triTitle: {
+    fontSize: '1rem',
+    textTransform: 'uppercase',
+    color: 'white',
+
+    [theme.fn.largerThan('sm')]: {
+      fontSize: '1.5rem',
+    },
+  },
+  triText: {
+    fontSize: '1.5rem',
+    textTransform: 'uppercase',
+    lineHeight: 1,
+
+    [theme.fn.largerThan('sm')]: {
+      fontSize: '4rem',
+    },
+  },
+  triOne: {
+    color: '#FEED00',
+  },
+  triTwo: {
+    color: 'white',
+  },
+  triThree: {
+    color: '#FF65BE',
+  },
 }));
 
 interface IndexProps {
@@ -66,6 +109,9 @@ const Index: NextPageWithLayout<IndexProps> = ({ allCourses: initialAllCourses, 
 
   const { classes } = useStyles();
 
+  const courseColors = ['pink', 'blue', 'green'];
+  // const courseColors = ['#FF65BE', '#00E2FF', '#00F5B4'];
+
   return (
     <>
       <Head>
@@ -74,13 +120,13 @@ const Index: NextPageWithLayout<IndexProps> = ({ allCourses: initialAllCourses, 
       <Box component="section" sx={{ backgroundColor: '#FEED00' }}>
         <Container size="lg" pb={80}>
           <Stack align="center" pt={80} pb={80}>
-            <Text component="h1" className={classes.heroText}>
+            <Title order={1} className={classes.heroText}>
               Let&apos;s stop <span className={classes.allergy}>allergy</span>!
-            </Text>
-            <Text component="h2" className={classes.heroDescription}>
+            </Title>
+            <Title order={2} className={classes.heroDescription}>
               We believe that everyone should be allergy free. Our free research-focused courses
               make this a reality for the generations to come.
-            </Text>
+            </Title>
             <Image
               src={heroImage}
               alt="Young boy reaching for strawberry on countertop."
@@ -94,11 +140,31 @@ const Index: NextPageWithLayout<IndexProps> = ({ allCourses: initialAllCourses, 
       <div className={classes.separator} />
       <Box component="section" sx={{ backgroundColor: '#000' }}>
         <Container size="lg" pb={80}>
-          <Group position="center" spacing="xl">
-            {allCourses.map((course) => (
-              <CourseCard course={course} key={course._id} />
+          <Stack className={classes.triStack}>
+            <Title order={3} className={classes.triTitle}>
+              Pave the way for the next generation
+            </Title>
+            <Title order={2} className={classes.triText}>
+              <span className={classes.triOne}>Know the struggles of allergies?</span>{' '}
+              <span className={classes.triTwo}>Looking to avoid them with your child?</span>{' '}
+              <span className={classes.triThree}>We&apos;ve got the courses for you.</span>
+            </Title>
+          </Stack>
+        </Container>
+      </Box>
+      <div className={classes.separatorWhite} />
+      <Box component="section" sx={{ backgroundColor: '#fff' }}>
+        <Container size="lg" pb={80}>
+          <Stack>
+            {allCourses.map((course, index) => (
+              <FeaturedCourse
+                course={course}
+                index={index}
+                color={courseColors[index]}
+                key={course._id}
+              />
             ))}
-          </Group>
+          </Stack>
         </Container>
       </Box>
     </>

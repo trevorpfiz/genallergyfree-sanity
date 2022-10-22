@@ -26,6 +26,7 @@ export default function FillImage({
       priority={priority}
       placeholder="blur"
       blurDataURL={`${source?.lqip}`}
+      style={{ objectFit: 'cover' }}
     />
   ) : (
     <Box sx={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
