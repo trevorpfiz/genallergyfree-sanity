@@ -1,5 +1,4 @@
 import {
-  Anchor,
   Box,
   Burger,
   Button,
@@ -11,7 +10,7 @@ import {
   ScrollArea,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import logo from '../../public/genallergyfree-upscaled.svg';
@@ -94,18 +93,16 @@ export function HeaderNav({ color = 'white' }: HeaderProps) {
         sx={{ maxWidth: 1288, border: 'none', backgroundColor: color }}
       >
         <Group position="apart" sx={{ height: '100%' }}>
-          <Link href="/" passHref>
-            <Anchor>
-              <Image src={logo} alt="Logo" width={230} height={21} priority />
-            </Anchor>
+          <Link href="/">
+            <Image src={logo} alt="Logo" width={230} height={21} priority />
           </Link>
 
           <Group sx={{ height: '100%' }} spacing="sm" className={classes.hiddenMobile}>
-            <Link href="/about" passHref>
-              <Anchor className={classes.link}>About Us</Anchor>
+            <Link href="/about" className={classes.link}>
+              About Us
             </Link>
-            <Link href="/courses" passHref>
-              <Button component="a" radius="xl" color="pink">
+            <Link href="/courses">
+              <Button radius="xl" color="pink">
                 Courses
               </Button>
             </Link>
@@ -127,17 +124,17 @@ export function HeaderNav({ color = 'white' }: HeaderProps) {
         <ScrollArea sx={{ height: 'calc(100vh - 60px)' }} mx="-md">
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-          <Link href="/about" passHref>
-            <Anchor className={classes.link} onClick={closeDrawer}>
-              About Us
-            </Anchor>
+          <Link href="/about" className={classes.link} onClick={closeDrawer}>
+            About Us
           </Link>
 
           <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
           <Group position="center" grow pb="xl" px="md">
-            <Link href="/courses" passHref>
-              <Button component="a">Courses</Button>
+            <Link href="/courses">
+              <Button radius="xl" color="pink">
+                Courses
+              </Button>
             </Link>
           </Group>
         </ScrollArea>

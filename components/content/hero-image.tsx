@@ -1,6 +1,6 @@
-import { Anchor, Box, createStyles } from '@mantine/core';
+import { Box, createStyles } from '@mantine/core';
 import { ImagePlusSanity } from 'additional';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { urlForImage } from '../../lib/sanity';
@@ -31,8 +31,8 @@ export default function HeroImage({ title, slug, image: source, priority = true 
       src={urlForImage(source).width(2000).url()}
       sizes="100vw"
       priority={priority}
-      // placeholder="blur"
-      // blurDataURL={`${source?.lqip}`}
+      placeholder="blur"
+      blurDataURL={`${source?.lqip}`}
     />
   ) : (
     <Box sx={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
@@ -41,8 +41,8 @@ export default function HeroImage({ title, slug, image: source, priority = true 
   return (
     <>
       {slug ? (
-        <Link href={`/learn/${slug}`} passHref>
-          <Anchor aria-label={title}>{image}</Anchor>
+        <Link href={`/learn/${slug}`} aria-label={title}>
+          {image}
         </Link>
       ) : (
         image

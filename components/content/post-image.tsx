@@ -1,6 +1,6 @@
 import { Box } from '@mantine/core';
 import { ImagePlusSanity } from 'additional';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 import { urlForImage } from '../../lib/sanity';
 
@@ -13,8 +13,8 @@ export default function PostImage({ value }: { value: ImagePlusSanity }) {
       alt={value?.altText ? `${value?.altText}` : 'Post image'}
       src={urlForImage(value).width(720).url()}
       sizes="100vw"
-      // placeholder="blur"
-      // blurDataURL={`${value?.lqip}`}
+      placeholder="blur"
+      blurDataURL={`${value?.lqip}`}
     />
   ) : (
     <Box sx={{ paddingTop: '50%', backgroundColor: '#ddd' }} />

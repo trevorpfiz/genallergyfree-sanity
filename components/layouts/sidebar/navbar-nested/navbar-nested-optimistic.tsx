@@ -1,5 +1,5 @@
-import { Anchor, Box, Button, createStyles, Group, MediaQuery, Navbar } from '@mantine/core';
-import Image from 'next/future/image';
+import { Box, Button, createStyles, Group, MediaQuery, Navbar } from '@mantine/core';
+import Image from 'next/image';
 
 import { IconChevronLeft, IconSearch } from '@tabler/icons';
 import { useContext } from 'contexts/context';
@@ -66,9 +66,8 @@ export default function NavbarNestedOptimistic() {
         <>
           <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
             <Group position="apart">
-              <Link href="/" passHref>
+              <Link href="/">
                 <Button
-                  component="a"
                   variant="light"
                   color="pink"
                   size="xs"
@@ -78,20 +77,16 @@ export default function NavbarNestedOptimistic() {
                   <IconChevronLeft />
                 </Button>
               </Link>
-              <Link href="/" passHref>
-                <Anchor>
-                  <Image src={logo} alt="Logo" width={160} height={21} priority />
-                </Anchor>
+              <Link href="/">
+                <Image src={logo} alt="Logo" width={160} height={21} priority />
               </Link>
               <IconSearch />
             </Group>
           </MediaQuery>
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
             <Box>
-              <Link href="/" passHref>
-                <Anchor>
-                  <Image src={logo} alt="Logo" width={250} height={21} priority />
-                </Anchor>
+              <Link href="/">
+                <Image src={logo} alt="Logo" width={250} height={21} priority />
               </Link>
             </Box>
           </MediaQuery>

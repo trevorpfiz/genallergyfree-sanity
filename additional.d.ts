@@ -8,6 +8,7 @@ import sectionTyped from 'studio/schemas/sectionTyped';
 type BasePostSanity = s.resolved<typeof postTyped>;
 interface PostSanity extends BasePostSanity {
   heroImage: ImagePlusSanity;
+  section: string;
 }
 
 type BaseSectionSanity = s.resolved<typeof sectionTyped>;

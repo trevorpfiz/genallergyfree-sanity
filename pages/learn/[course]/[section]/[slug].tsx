@@ -1,5 +1,6 @@
 import { Container } from '@mantine/core';
 import { PostSanity } from 'additional';
+import { PrevNext } from 'components/content/prev-next';
 import SidebarLayout from 'components/layouts/sidebar/sidebar-layout';
 import { GetStaticProps } from 'next';
 import ErrorPage from 'next/error';
@@ -12,9 +13,9 @@ import PostHeader from '../../../../components/content/post-header';
 import PostTitle from '../../../../components/content/post-title';
 import SectionSeparator from '../../../../components/utils/section-separator';
 import { WEBSITE_NAME } from '../../../../lib/constants';
-import { postQuery, postSlugsQuery } from '../../../../lib/queries';
+import { postQuery, postSlugsQuery, prevNextPostQuery } from '../../../../lib/queries';
 import { urlForImage, usePreviewSubscription } from '../../../../lib/sanity';
-import { getClient, overlayDrafts, sanityClient } from '../../../../lib/sanity.server';
+import { getClient, sanityClient } from '../../../../lib/sanity.server';
 import type { NextPageWithLayout } from '../../../_app';
 
 interface PostProps {
@@ -24,11 +25,15 @@ interface PostProps {
 
 interface DataProps {
   post?: PostSanity;
-  morePosts?: PostSanity[];
+  prev?: PostSanity;
+  next?: PostSanity;
 }
 
 const Post: NextPageWithLayout<PostProps> = ({ data = {}, preview }) => {
   const router = useRouter();
+
+  const prev = data?.prev;
+  const next = data?.next;
 
   const slug = data?.post?.slug;
   const {
@@ -65,6 +70,7 @@ const Post: NextPageWithLayout<PostProps> = ({ data = {}, preview }) => {
             {post && <PostBody post={post || null} />}
           </article>
           <SectionSeparator />
+          <PrevNext prev={prev} next={next} />
         </>
       )}
     </Container>
@@ -72,8 +78,11 @@ const Post: NextPageWithLayout<PostProps> = ({ data = {}, preview }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
-  const { post, morePosts } = await getClient(preview).fetch(postQuery, {
+  const post = await getClient(preview).fetch(postQuery, {
     slug: params?.slug,
+  });
+  const { prev, next } = await getClient(preview).fetch(prevNextPostQuery, {
+    order: post?.order,
   });
 
   return {
@@ -81,7 +90,8 @@ export const getStaticProps: GetStaticProps = async ({ params, preview = false }
       preview,
       data: {
         post,
-        morePosts: overlayDrafts(morePosts),
+        next,
+        prev,
       },
     },
     // If webhooks isn't setup then attempt to re-generate in 1 minute intervals

@@ -1,4 +1,4 @@
-import { Anchor, Box, createStyles } from '@mantine/core';
+import { Box, createStyles } from '@mantine/core';
 import { ImagePlusSanity } from 'additional';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -33,7 +33,6 @@ export default function CardImage({
 }: CardImageProps) {
   const image = source?.asset?._ref ? (
     <Image
-      layout="responsive"
       width={width}
       height={height}
       alt={source?.altText ? `${source?.altText}` : 'Card image'}
@@ -42,6 +41,7 @@ export default function CardImage({
       priority={priority}
       placeholder="blur"
       blurDataURL={`${source?.lqip}`}
+      style={{ width: '100%', height: 'auto' }}
     />
   ) : (
     <Box sx={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
@@ -50,8 +50,8 @@ export default function CardImage({
   return (
     <>
       {slug ? (
-        <Link href={`/learn/${slug}`} passHref>
-          <Anchor aria-label={title}>{image}</Anchor>
+        <Link href={`/learn/${slug}`} aria-label={title}>
+          {image}
         </Link>
       ) : (
         image

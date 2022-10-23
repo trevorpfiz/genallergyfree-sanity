@@ -1,4 +1,4 @@
-import { Anchor, Box, Paper, SimpleGrid, Text, Title } from '@mantine/core';
+import { Box, Paper, SimpleGrid, Text, Title } from '@mantine/core';
 import { CourseSanity } from 'additional';
 import Link from 'next/link';
 
@@ -40,8 +40,8 @@ export default function HeroCourse({
       <SimpleGrid mb={112} breakpoints={[{ minWidth: 'sm', cols: 2, spacing: 128 }]}>
         <Box>
           <Title order={3} size="2.75rem" weight="normal" mb="md" sx={{ lineHeight: '1.25' }}>
-            <Link href={`/learn/${slug}`} passHref>
-              <Anchor
+            <Link href={`/learn/${slug}`} style={{ textDecoration: 'none' }}>
+              <Text
                 color="dark.9"
                 sx={{
                   '&:hover': {
@@ -50,7 +50,7 @@ export default function HeroCourse({
                 }}
               >
                 {title}
-              </Anchor>
+              </Text>
             </Link>
           </Title>
         </Box>

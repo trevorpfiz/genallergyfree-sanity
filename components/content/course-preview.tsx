@@ -1,4 +1,4 @@
-import { Anchor, Box, Paper, Text, Title } from '@mantine/core';
+import { Box, Paper, Text, Title } from '@mantine/core';
 import { CourseSanity } from 'additional';
 import Link from 'next/link';
 
@@ -34,8 +34,8 @@ export default function CoursePreview({
         />
       </Paper>
       <Title order={3} size="h1" weight="normal" mb="sm" sx={{ lineHeight: '1.375' }}>
-        <Link href={`/learn/${slug}`} passHref>
-          <Anchor
+        <Link href={`/learn/${slug}`} style={{ textDecoration: 'none' }}>
+          <Text
             color="dark.9"
             sx={{
               '&:hover': {
@@ -44,7 +44,7 @@ export default function CoursePreview({
             }}
           >
             {title}
-          </Anchor>
+          </Text>
         </Link>
       </Title>
       <Text mb="lg" size={18} sx={{ lineHeight: '1.625' }}>

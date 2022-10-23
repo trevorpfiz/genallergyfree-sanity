@@ -1,4 +1,4 @@
-import { Anchor, Container, Text } from '@mantine/core';
+import { Anchor, Container, Text, Title } from '@mantine/core';
 import { PortableText } from '@portabletext/react';
 import { PostSanity } from 'additional';
 import Link from 'next/link';
@@ -19,44 +19,44 @@ const components: any = {
       </Text>
     ),
     h1: ({ children }: any) => (
-      <Text component="h1" size={48} mt={48}>
+      <Title order={1} size={48} mt={48}>
         {children}
-      </Text>
+      </Title>
     ),
     h2: ({ children }: any) => (
-      <Text component="h2" size={36} mt={48}>
+      <Title order={2} size={36} mt={48}>
         {children}
-      </Text>
+      </Title>
     ),
     h3: ({ children }: any) => (
-      <Text component="h3" size={28} mt={48}>
+      <Title order={3} size={28} mt={48}>
         {children}
-      </Text>
+      </Title>
     ),
     h4: ({ children }: any) => (
-      <Text component="h4" mt={48}>
+      <Title order={4} mt={48}>
         {children}
-      </Text>
+      </Title>
     ),
     h5: ({ children }: any) => (
-      <Text component="h5" mt={48}>
+      <Title order={5} mt={48}>
         {children}
-      </Text>
+      </Title>
     ),
     h6: ({ children }: any) => (
-      <Text component="h6" size={16}>
+      <Title order={6} size={16}>
         {children}
-      </Text>
+      </Title>
     ),
     intro: ({ children }: any) => (
-      <Text component="h3" size={28} sx={{ fontWeight: 'normal' }}>
+      <Title order={3} size={28} sx={{ fontWeight: 'normal' }}>
         {children}
-      </Text>
+      </Title>
     ),
     summary: ({ children }: any) => (
-      <Text component="h4" size={24} mt={48} sx={{ fontWeight: 'normal' }}>
+      <Title order={4} size={24} mt={48} sx={{ fontWeight: 'normal' }}>
         {children}
-      </Text>
+      </Title>
     ),
   },
   marks: {
@@ -64,8 +64,8 @@ const components: any = {
       const { slug, section, course } = value;
       const href = `/learn/${course}/${section}/${slug}`;
       return (
-        <Link href={href} passHref>
-          <Anchor>{children}</Anchor>
+        <Link href={href} style={{ textDecoration: 'none' }}>
+          <Text>{children}</Text>
         </Link>
       );
     },

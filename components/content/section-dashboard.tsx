@@ -1,4 +1,4 @@
-import { AspectRatio, Card, createStyles, Group, Stack, Text } from '@mantine/core';
+import { AspectRatio, Card, createStyles, Group, Stack, Title } from '@mantine/core';
 import { SectionSanity } from 'additional';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -25,8 +25,8 @@ const useStyles = createStyles((theme) => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     display: '-webkit-box',
-    '-webkit-line-clamp': '2',
-    '-webkit-box-orient': 'vertical',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
 
     [theme.fn.smallerThan('lg')]: {
       fontSize: theme.fontSizes.xs,
@@ -40,8 +40,8 @@ const useStyles = createStyles((theme) => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     display: '-webkit-box',
-    '-webkit-line-clamp': '2',
-    '-webkit-box-orient': 'vertical',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
 
     [theme.fn.smallerThan('lg')]: {
       fontSize: theme.fontSizes.xs,
@@ -71,16 +71,12 @@ export default function SectionDashboard({ sectionData }: { sectionData: Section
   return (
     <Stack>
       {sectionData?.posts.map((post) => (
-        <Link href={`/learn/${course}/${sectionData.slug}/${post.slug}`} passHref key={post._id}>
-          <Card
-            component="a"
-            shadow="sm"
-            p={0}
-            pr="lg"
-            radius="md"
-            withBorder
-            className={classes.card}
-          >
+        <Link
+          href={`/learn/${course}/${sectionData.slug}/${post.slug}`}
+          key={post._id}
+          style={{ textDecoration: 'none' }}
+        >
+          <Card shadow="sm" p={0} pr="lg" radius="md" withBorder className={classes.card}>
             <Group position="left" spacing="xl" noWrap>
               <Card.Section>
                 <AspectRatio ratio={16 / 9} className={classes.image} sx={{ width: 300 }}>
@@ -88,12 +84,12 @@ export default function SectionDashboard({ sectionData }: { sectionData: Section
                 </AspectRatio>
               </Card.Section>
               <Stack className={classes.stack}>
-                <Text component="h3" weight={600} className={classes.title}>
+                <Title order={3} weight={600} className={classes.title}>
                   {post.title}
-                </Text>
-                <Text component="h4" weight={400} className={classes.excerpt}>
+                </Title>
+                <Title order={4} weight={400} className={classes.excerpt}>
                   {post.excerpt}
-                </Text>
+                </Title>
               </Stack>
             </Group>
           </Card>

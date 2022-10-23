@@ -78,7 +78,7 @@ export interface LinksGroupProps {
   icon: TablerIcon;
 }
 
-export const LinksGroup = forwardRef<HTMLAnchorElement, LinksGroupProps>((props, ref) => {
+export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, ref) => {
   const { title, slug: sectionSlug, posts, icon: Icon }: LinksGroupProps = props;
 
   const router = useRouter();
@@ -95,12 +95,10 @@ export const LinksGroup = forwardRef<HTMLAnchorElement, LinksGroupProps>((props,
   const items = (hasPosts ? posts : []).map((post) => (
     <ActiveLink
       href={`/learn/${course}/${sectionSlug}/${post.slug}`}
-      passHref
       key={post.title}
       activeClassName={classes.activeSlug}
     >
       <Text
-        component="a"
         size={13}
         className={classes.slug}
         ref={slug === post.slug ? ref : null}

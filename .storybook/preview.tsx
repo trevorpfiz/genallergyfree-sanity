@@ -1,12 +1,12 @@
 import { MantineProvider } from '@mantine/core';
-import * as _NextFutureImage from 'next/future/image';
-import { ImageProps } from 'next/future/image';
+import * as _NextFutureImage from 'next/image';
+import { ImageProps } from 'next/image';
 import React from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
 
 import { theme } from '../theme';
 
-const NextFutureImage = require('next/future/image') as typeof _NextFutureImage;
+const NextFutureImage = require('next/image') as typeof _NextFutureImage;
 
 const OriginalNextFutureImage = NextFutureImage.default;
 

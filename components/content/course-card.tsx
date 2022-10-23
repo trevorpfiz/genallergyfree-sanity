@@ -52,8 +52,8 @@ export function CourseCard({ course }: { course: CourseSanity }) {
   const { classes } = useStyles();
 
   return (
-    <Link href={`/learn/${course.title}`} passHref>
-      <Card component="a" shadow="sm" p={0} className={classes.card}>
+    <Link href={`/learn/${course.slug}`} style={{ textDecoration: 'none' }}>
+      <Card shadow="sm" p={0} className={classes.card}>
         <Box className={classes.image}>
           <FillImage image={course.thumbnail} priority width={300} height={169} />
         </Box>

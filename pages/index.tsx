@@ -1,6 +1,6 @@
 import { Box, Container, createStyles, Stack, Title } from '@mantine/core';
-import Image from 'next/future/image';
 import Head from 'next/head';
+import Image from 'next/image';
 import type { ReactElement } from 'react';
 
 import { CourseSanity } from 'additional';

@@ -95,14 +95,8 @@ export function FeaturedCourse({ course, index, color }: CourseProps) {
             <Title order={4} weight={400} className={classes.description}>
               {course.heroDescription}
             </Title>
-            <Link href={`/learn/${course.title}`} passHref>
-              <Button
-                component="a"
-                color="pink"
-                radius="xl"
-                size="lg"
-                className={classes.getStarted}
-              >
+            <Link href={`/learn/${course.slug}`}>
+              <Button color="pink" radius="xl" size="lg" className={classes.getStarted}>
                 Get Started
               </Button>
             </Link>
@@ -123,8 +117,8 @@ export function FeaturedCourse({ course, index, color }: CourseProps) {
             <Title order={4} weight={400} className={classes.description}>
               {course.heroDescription}
             </Title>
-            <Link href={`/learn/${course.title}`} passHref>
-              <Button component="a" radius="xl" size="lg" className={classes.getStarted}>
+            <Link href={`/learn/${course.slug}`}>
+              <Button radius="xl" size="lg" className={classes.getStarted}>
                 Get Started
               </Button>
             </Link>

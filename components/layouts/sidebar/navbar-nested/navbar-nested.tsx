@@ -1,13 +1,4 @@
-import {
-  Anchor,
-  Box,
-  Button,
-  createStyles,
-  Group,
-  MediaQuery,
-  Navbar,
-  ScrollArea,
-} from '@mantine/core';
+import { Box, Button, createStyles, Group, MediaQuery, Navbar, ScrollArea } from '@mantine/core';
 import {
   IconBlockquote,
   IconChecklist,
@@ -25,7 +16,7 @@ import {
   IconNumber9,
   IconSearch,
 } from '@tabler/icons';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
 import { useContext } from 'contexts/context';
@@ -136,7 +127,7 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
   const router = useRouter();
 
   const firstUpdate = useRef(true);
-  const scrollRef = useRef<HTMLAnchorElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const links = addIcon(linksData).map((section) => (
     <LinksGroup {...section} ref={scrollRef} key={section.title} />
@@ -165,9 +156,8 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
         <>
           <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
             <Group position="apart">
-              <Link href={smartBack(router)} passHref>
+              <Link href={smartBack(router)}>
                 <Button
-                  component="a"
                   variant="light"
                   color="pink"
                   size="xs"
@@ -177,20 +167,16 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
                   <IconChevronLeft />
                 </Button>
               </Link>
-              <Link href="/" passHref>
-                <Anchor>
-                  <Image src={logo} alt="Logo" width={160} height={21} priority />
-                </Anchor>
+              <Link href="/">
+                <Image src={logo} alt="Logo" width={160} height={21} priority />
               </Link>
               <IconSearch />
             </Group>
           </MediaQuery>
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
             <Box>
-              <Link href="/" passHref>
-                <Anchor>
-                  <Image src={logo} alt="Logo" width={250} height={21} priority />
-                </Anchor>
+              <Link href="/">
+                <Image src={logo} alt="Logo" width={250} height={21} priority />
               </Link>
             </Box>
           </MediaQuery>

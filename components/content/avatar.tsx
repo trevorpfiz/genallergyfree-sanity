@@ -1,6 +1,6 @@
 import { Box, Group, Text } from '@mantine/core';
 import { BaseAuthorSanity } from 'additional';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 import { urlForImage } from '../../lib/sanity';
 

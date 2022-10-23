@@ -1,6 +1,6 @@
 import { Box } from '@mantine/core';
 import { ImagePlusSanity } from 'additional';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 import { urlForImage } from '../../lib/sanity';
 

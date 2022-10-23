@@ -1,4 +1,4 @@
-import { Box, Container, createStyles, Group, Stack, Text } from '@mantine/core';
+import { Box, Container, createStyles, Group, Stack, Title } from '@mantine/core';
 import { CourseSanity } from 'additional';
 import { CourseCard } from 'components/content/course-card';
 import Head from 'next/head';
@@ -67,9 +67,9 @@ const Courses: NextPageWithLayout<CoursesProps> = ({ allCourses: initialAllCours
       <Box component="section" className={classes.titleSection}>
         <Container size="lg" pb={80}>
           <Stack align="center">
-            <Text component="h1" className={classes.title}>
+            <Title order={1} className={classes.title}>
               Our Courses
-            </Text>
+            </Title>
           </Stack>
         </Container>
       </Box>

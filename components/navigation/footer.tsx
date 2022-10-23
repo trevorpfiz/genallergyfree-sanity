@@ -1,6 +1,6 @@
 import { ActionIcon, Container, createStyles, Group, Text } from '@mantine/core';
 import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from '@tabler/icons';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import logo from '../../public/genallergyfree-upscaled.svg';
@@ -129,13 +129,13 @@ export default function Footer() {
         </Text>
 
         <Group spacing="md" position="right" noWrap>
-          <Link href="/legal/privacy-policy" passHref>
-            <Text component="a" size="xs" color="dimmed">
+          <Link href="/legal/privacy-policy" style={{ textDecoration: 'none' }}>
+            <Text component="p" size="xs" color="dimmed">
               Privacy Policy
             </Text>
           </Link>
-          <Link href="/legal/terms-of-service" passHref>
-            <Text component="a" size="xs" color="dimmed">
+          <Link href="/legal/terms-of-service" style={{ textDecoration: 'none' }}>
+            <Text component="p" size="xs" color="dimmed">
               Terms of Service
             </Text>
           </Link>
