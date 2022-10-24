@@ -1,7 +1,7 @@
 import { Badge, Box, Button, Card, createStyles, Stack, Title } from '@mantine/core';
 import { CourseSanity } from 'additional';
 import Link from 'next/link';
-import FillImage from './fill-image';
+import FillImage from '../content/fill-image';
 
 const useStyles = createStyles((theme) => ({
   card: {

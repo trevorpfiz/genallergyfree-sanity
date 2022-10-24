@@ -2,7 +2,7 @@ import { Box, Paper, SimpleGrid, Text, Title } from '@mantine/core';
 import { CourseSanity } from 'additional';
 import Link from 'next/link';
 
-import CardImage, { useStyles } from './card-image';
+import CardImage, { useStyles } from '../content/card-image';
 
 export default function HeroCourse({
   course: { title, thumbnail, description, slug },

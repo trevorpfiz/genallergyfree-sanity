@@ -5,15 +5,17 @@ import Link from 'next/link';
 
 import logo from '../../public/genallergyfree-upscaled.svg';
 
-const useStyles = createStyles((theme) => ({
+interface FooterProps {
+  color?: string;
+}
+
+const useStyles = createStyles((theme, { color = 'white' }: FooterProps) => ({
   footer: {
     marginTop: 0,
     paddingTop: theme.spacing.xl * 2,
     paddingBottom: theme.spacing.xl * 2,
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-    borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
-    }`,
+    backgroundColor: color === 'black' ? 'black' : theme.colors.gray[0],
+    borderTop: `1px solid ${color === 'black' ? 'black' : theme.colors.gray[2]}`,
   },
 
   logo: {
@@ -58,10 +60,14 @@ const useStyles = createStyles((theme) => ({
     width: 160,
   },
 
+  legalEntity: {
+    color: color === 'black' ? theme.white : theme.colors.gray[6],
+  },
+
   link: {
     display: 'block',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[6],
-    fontSize: theme.fontSizes.sm,
+    color: color === 'black' ? 'white' : theme.colors.gray[6],
+    fontSize: theme.fontSizes.xs,
     paddingTop: 3,
     paddingBottom: 3,
 
@@ -75,7 +81,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 700,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     marginBottom: theme.spacing.xs / 2,
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    color: color === 'black' ? theme.white : theme.black,
   },
 
   afterFooter: {
@@ -85,9 +91,7 @@ const useStyles = createStyles((theme) => ({
     marginTop: theme.spacing.xl,
     paddingTop: theme.spacing.xl,
     paddingBottom: theme.spacing.xl,
-    borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-    }`,
+    borderTop: `1px solid ${color === 'black' ? 'black' : theme.colors.gray[2]}`,
 
     [theme.fn.smallerThan('sm')]: {
       flexDirection: 'column',
@@ -99,10 +103,17 @@ const useStyles = createStyles((theme) => ({
       marginTop: theme.spacing.xs,
     },
   },
+  socialBtn: {
+    color: color === 'black' ? 'white' : theme.colors.gray[6],
+
+    '&:hover': {
+      backgroundColor: 'inherit',
+    },
+  },
 }));
 
-export default function Footer() {
-  const { classes } = useStyles();
+export default function Footer({ color = 'white' }: FooterProps) {
+  const { classes } = useStyles({ color });
 
   return (
     <footer className={classes.footer}>
@@ -112,30 +123,30 @@ export default function Footer() {
         </div>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>
-          <ActionIcon size="lg">
+          <ActionIcon size="lg" className={classes.socialBtn}>
             <IconBrandTwitter size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg">
+          <ActionIcon size="lg" className={classes.socialBtn}>
             <IconBrandYoutube size={18} stroke={1.5} />
           </ActionIcon>
-          <ActionIcon size="lg">
+          <ActionIcon size="lg" className={classes.socialBtn}>
             <IconBrandInstagram size={18} stroke={1.5} />
           </ActionIcon>
         </Group>
       </Container>
       <Container size="lg" className={classes.afterFooter}>
-        <Text color="dimmed" size="sm">
+        <Text color="dimmed" size="sm" className={classes.legalEntity}>
           © 2022 TwinZ LLC - All Rights Reserved
         </Text>
 
         <Group spacing="md" position="right" noWrap>
           <Link href="/legal/privacy-policy" style={{ textDecoration: 'none' }}>
-            <Text component="p" size="xs" color="dimmed">
+            <Text component="p" className={classes.link}>
               Privacy Policy
             </Text>
           </Link>
           <Link href="/legal/terms-of-service" style={{ textDecoration: 'none' }}>
-            <Text component="p" size="xs" color="dimmed">
+            <Text component="p" className={classes.link}>
               Terms of Service
             </Text>
           </Link>

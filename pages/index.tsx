@@ -4,7 +4,9 @@ import Image from 'next/image';
 import type { ReactElement } from 'react';
 
 import { CourseSanity } from 'additional';
-import { FeaturedCourse } from 'components/content/featured-course';
+import { CourseUpdates } from 'components/landing/course-updates';
+import { FeaturedCourse } from 'components/landing/featured-course';
+import { Quotes } from 'components/landing/quotes';
 import Layout from '../components/layouts/primary/layout';
 import { WEBSITE_NAME } from '../lib/constants';
 import { indexQuery } from '../lib/queries';
@@ -55,6 +57,14 @@ const useStyles = createStyles((theme) => ({
     maxWidth: '100%',
     borderLeft: '100vw solid transparent',
     borderBottom: '5vw solid white',
+    marginTop: '-5vw',
+  },
+  separatorYellow: {
+    width: 0,
+    height: 0,
+    maxWidth: '100%',
+    borderLeft: '100vw solid transparent',
+    borderBottom: '5vw solid #FEED00',
     marginTop: '-5vw',
   },
 
@@ -132,6 +142,7 @@ const Index: NextPageWithLayout<IndexProps> = ({ allCourses: initialAllCourses, 
               alt="Young boy reaching for strawberry on countertop."
               sizes="100vw"
               placeholder="blur"
+              priority
               style={{ width: '100%', height: 'auto', border: '8px solid black' }}
             />
           </Stack>
@@ -167,6 +178,18 @@ const Index: NextPageWithLayout<IndexProps> = ({ allCourses: initialAllCourses, 
           </Stack>
         </Container>
       </Box>
+      <div className={classes.separator} />
+      <Box component="section" sx={{ backgroundColor: '#000' }}>
+        <Container size="sm" pb={80}>
+          <CourseUpdates />
+        </Container>
+      </Box>
+      <div className={classes.separatorYellow} />
+      <Box component="section" sx={{ backgroundColor: '#FEED00' }}>
+        <Container size="md" pb={80} pt={80}>
+          <Quotes color="#FF65BE" />
+        </Container>
+      </Box>
     </>
   );
 };
@@ -182,7 +205,7 @@ export async function getStaticProps({ preview = false }) {
 
 Index.getLayout = function getLayout(page: ReactElement, pageProps) {
   return (
-    <Layout preview={pageProps.preview} color="#FEED00">
+    <Layout preview={pageProps.preview} headerColor="#FEED00" footerColor="black">
       {page}
     </Layout>
   );

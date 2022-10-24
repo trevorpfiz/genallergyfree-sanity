@@ -8,21 +8,23 @@ import Footer from '../../navigation/footer';
 export default function Layout({
   preview,
   children,
-  color,
+  headerColor,
+  footerColor,
 }: {
   preview: boolean;
   children: React.ReactNode;
-  color?: string;
+  headerColor?: string;
+  footerColor?: string;
 }) {
   return (
     <>
       <Meta />
       <Alert preview={preview} />
-      <HeaderNav color={color} />
+      <HeaderNav color={headerColor} />
       <Box component="main" sx={{ minHeight: '100vh' }}>
         {children}
       </Box>
-      <Footer />
+      <Footer color={footerColor} />
     </>
   );
 }

@@ -2,7 +2,7 @@ import { Box, Button, createStyles, Group, Stack, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { CourseSanity } from 'additional';
 import Link from 'next/link';
-import FillImage from './fill-image';
+import FillImage from '../content/fill-image';
 
 interface CourseProps {
   course: CourseSanity;
@@ -65,6 +65,10 @@ const useStyles = createStyles((theme, { color }: CourseProps) => ({
     border: '8px solid black',
 
     [theme.fn.largerThan('sm')]: {
+      width: 300,
+      height: 420,
+    },
+    [theme.fn.largerThan('md')]: {
       width: 400,
       height: 540,
     },

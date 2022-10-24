@@ -1,9 +1,9 @@
 import { Box, Container, createStyles, Group, Stack, Title } from '@mantine/core';
 import { CourseSanity } from 'additional';
-import { CourseCard } from 'components/content/course-card';
 import Head from 'next/head';
 import type { ReactElement } from 'react';
 
+import { CourseCard } from '../../components/landing/course-card';
 import Layout from '../../components/layouts/primary/layout';
 import { WEBSITE_NAME } from '../../lib/constants';
 import { indexQuery } from '../../lib/queries';
@@ -65,7 +65,7 @@ const Courses: NextPageWithLayout<CoursesProps> = ({ allCourses: initialAllCours
         <title>{`Courses | ${WEBSITE_NAME}`}</title>
       </Head>
       <Box component="section" className={classes.titleSection}>
-        <Container size="lg" pb={80}>
+        <Container size="lg" pt={80} pb={80}>
           <Stack align="center">
             <Title order={1} className={classes.title}>
               Our Courses
@@ -98,7 +98,7 @@ export async function getStaticProps({ preview = false }) {
 
 Courses.getLayout = function getLayout(page: ReactElement, pageProps) {
   return (
-    <Layout preview={pageProps.preview} color="#FEED00">
+    <Layout preview={pageProps.preview} headerColor="#FEED00" footerColor="black">
       {page}
     </Layout>
   );

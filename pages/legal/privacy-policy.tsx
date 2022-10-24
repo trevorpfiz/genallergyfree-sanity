@@ -13,7 +13,7 @@ const PrivacyPolicy: NextPageWithLayout = () => (
     <Head>
       <title>{WEBSITE_NAME}</title>
     </Head>
-    <Container size="md" px="0" mb={120}>
+    <Container size="md" mb={120}>
       <Box sx={{ overflowWrap: 'break-word', wordWrap: 'break-word' }}>
         <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(rawHTML) }} />
       </Box>
