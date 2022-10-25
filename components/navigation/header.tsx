@@ -1,19 +1,11 @@
-import {
-  Box,
-  Burger,
-  Button,
-  createStyles,
-  Divider,
-  Drawer,
-  Group,
-  Header,
-  ScrollArea,
-} from '@mantine/core';
+import { Box, Burger, Button, createStyles, Group, Header, Paper, Transition } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import logo from '../../public/genallergyfree-upscaled.svg';
+
+const HEADER_HEIGHT = 86;
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -38,28 +30,38 @@ const useStyles = createStyles((theme) => ({
     //   backgroundColor: '#FF65BE',
     // }),
   },
+  linkDropdown: {
+    display: 'block',
+    lineHeight: 1,
+    padding: '8px 12px',
+    textDecoration: 'none',
+    color: 'black',
+    backgroundColor: '#FF65BE',
+    fontSize: theme.fontSizes.sm,
+    fontWeight: 500,
 
-  subLink: {
-    width: '100%',
-    padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
-    borderRadius: theme.radius.md,
+    '&:hover': {
+      backgroundColor: '#ff53b6',
+    },
 
-    ...theme.fn.hover({
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
-    }),
-
-    '&:active': theme.activeStyles,
+    [theme.fn.smallerThan('sm')]: {
+      borderRadius: 0,
+      padding: theme.spacing.md,
+    },
   },
 
-  dropdownFooter: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
-    margin: -theme.spacing.md,
-    marginTop: theme.spacing.sm,
-    padding: `${theme.spacing.md}px ${theme.spacing.md * 2}px`,
-    paddingBottom: theme.spacing.xl,
-    borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
-    }`,
+  dropdown: {
+    position: 'absolute',
+    top: 64,
+    left: 0,
+    right: 0,
+    zIndex: 0,
+    border: 'none',
+    overflow: 'hidden',
+
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
+    },
   },
 
   hiddenMobile: {
@@ -80,13 +82,13 @@ interface HeaderProps {
 }
 
 export function HeaderNav({ color = 'white' }: HeaderProps) {
-  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-  const { classes, theme } = useStyles();
+  const [opened, { toggle, close }] = useDisclosure(false);
+  const { classes } = useStyles();
 
   return (
     <Box sx={{ backgroundColor: color }}>
       <Header
-        height={86}
+        height={HEADER_HEIGHT}
         px="md"
         py="xl"
         mx="auto"
@@ -108,37 +110,33 @@ export function HeaderNav({ color = 'white' }: HeaderProps) {
             </Link>
           </Group>
 
-          <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
+          <Burger opened={opened} onClick={toggle} className={classes.hiddenDesktop} />
         </Group>
-      </Header>
-
-      <Drawer
-        opened={drawerOpened}
-        onClose={closeDrawer}
-        size="100%"
-        padding="md"
-        title="Navigation"
-        className={classes.hiddenDesktop}
-        zIndex={1000000}
-      >
-        <ScrollArea sx={{ height: 'calc(100vh - 60px)' }} mx="-md">
-          <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
-
-          <Link href="/about" className={classes.link} onClick={closeDrawer}>
-            About Us
-          </Link>
-
-          <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
-
-          <Group position="center" grow pb="xl" px="md">
-            <Link href="/courses">
-              <Button radius="xl" color="pink">
+        <Transition transition="pop-top-right" duration={200} mounted={opened}>
+          {(styles) => (
+            <Paper className={classes.dropdown} withBorder style={styles}>
+              <Link
+                href="/about"
+                className={classes.linkDropdown}
+                onClick={() => {
+                  close();
+                }}
+              >
+                About Us
+              </Link>
+              <Link
+                href="/courses"
+                className={classes.linkDropdown}
+                onClick={() => {
+                  close();
+                }}
+              >
                 Courses
-              </Button>
-            </Link>
-          </Group>
-        </ScrollArea>
-      </Drawer>
+              </Link>
+            </Paper>
+          )}
+        </Transition>
+      </Header>
     </Box>
   );
 }
