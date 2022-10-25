@@ -3,6 +3,7 @@ import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from '@tabler/
 import Image from 'next/image';
 import Link from 'next/link';
 
+import logoWhite from '../../public/genallergyfree-black-upscaled-removebg-white.png';
 import logo from '../../public/genallergyfree-upscaled.svg';
 
 interface FooterProps {
@@ -119,7 +120,15 @@ export default function Footer({ color = 'white' }: FooterProps) {
     <footer className={classes.footer}>
       <Container size="lg" className={classes.inner}>
         <div className={classes.logo}>
-          <Image src={logo} alt="Logo" style={{ width: '100%', height: 'auto' }} />
+          {color === 'black' ? (
+            <Link href="/">
+              <Image src={logoWhite} alt="Logo" style={{ width: '100%', height: 'auto' }} />
+            </Link>
+          ) : (
+            <Link href="/">
+              <Image src={logo} alt="Logo" style={{ width: '100%', height: 'auto' }} />
+            </Link>
+          )}
         </div>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>
