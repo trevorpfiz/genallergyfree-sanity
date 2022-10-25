@@ -140,14 +140,29 @@ export default function Footer({ color = 'white' }: FooterProps) {
         </Text>
 
         <Group spacing="md" position="right" noWrap>
+          <Link href="/about" style={{ textDecoration: 'none' }}>
+            <Text component="p" className={classes.link}>
+              About
+            </Text>
+          </Link>
+          <Link href="/courses" style={{ textDecoration: 'none' }}>
+            <Text component="p" className={classes.link}>
+              Courses
+            </Text>
+          </Link>
+          <Link href="/contact" style={{ textDecoration: 'none' }}>
+            <Text component="p" className={classes.link}>
+              Contact
+            </Text>
+          </Link>
           <Link href="/legal/privacy-policy" style={{ textDecoration: 'none' }}>
             <Text component="p" className={classes.link}>
-              Privacy Policy
+              Privacy
             </Text>
           </Link>
           <Link href="/legal/terms-of-service" style={{ textDecoration: 'none' }}>
             <Text component="p" className={classes.link}>
-              Terms of Service
+              Terms
             </Text>
           </Link>
         </Group>

@@ -1,4 +1,5 @@
 import { MantineProvider } from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
 import { ContextProvider } from 'contexts/context';
 import type { NextPage } from 'next';
 import { AppProps } from 'next/app';
@@ -41,7 +42,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           },
         }}
       >
-        <ContextProvider>{getLayout(<Component {...pageProps} />, pageProps)}</ContextProvider>
+        <NotificationsProvider>
+          <ContextProvider>{getLayout(<Component {...pageProps} />, pageProps)}</ContextProvider>
+        </NotificationsProvider>
       </MantineProvider>
     </>
   );
