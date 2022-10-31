@@ -40,6 +40,8 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
             lg: 18,
             xl: 20,
           },
+          fontFamily: 'Inter, sans-serif',
+          headings: { fontFamily: 'Oswald, sans-serif' },
         }}
       >
         <NotificationsProvider>

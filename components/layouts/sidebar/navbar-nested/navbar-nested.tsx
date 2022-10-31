@@ -14,7 +14,6 @@ import {
   IconNumber7,
   IconNumber8,
   IconNumber9,
-  IconSearch,
 } from '@tabler/icons';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
@@ -23,7 +22,6 @@ import { useContext } from 'contexts/context';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import logo from '../../../../public/genallergyfree-upscaled.svg';
-import UserButton from '../../../buttons/user/user-button';
 import { LinksGroup, LinksGroupProps } from '../navbar-links-group/navbar-links-group';
 
 const useStyles = createStyles((theme) => ({
@@ -155,8 +153,8 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
       <Navbar.Section className={classes.header}>
         <>
           <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-            <Group position="apart">
-              <Link href={smartBack(router)}>
+            <Group>
+              <Link href={smartBack(router)} style={{ lineHeight: 1 }}>
                 <Button
                   variant="light"
                   color="pink"
@@ -167,10 +165,9 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
                   <IconChevronLeft />
                 </Button>
               </Link>
-              <Link href="/">
+              <Link href="/" style={{ lineHeight: 1 }}>
                 <Image src={logo} alt="Logo" width={160} height={21} priority />
               </Link>
-              <IconSearch />
             </Group>
           </MediaQuery>
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
@@ -185,14 +182,6 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
 
       <Navbar.Section grow className={classes.links} component={ScrollArea}>
         <div className={classes.linksInner}>{links}</div>
-      </Navbar.Section>
-
-      <Navbar.Section className={classes.footer}>
-        <UserButton
-          image="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=255&q=80"
-          name="Jane Doe"
-          email="janedoe@gmail.com"
-        />
       </Navbar.Section>
     </Navbar>
   );

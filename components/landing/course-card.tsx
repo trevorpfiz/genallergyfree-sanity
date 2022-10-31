@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Card, createStyles, Stack, Title } from '@mantine/core';
+import { Badge, Box, Button, Card, createStyles, Stack, Text, Title } from '@mantine/core';
 import { CourseSanity } from 'additional';
 import Link from 'next/link';
 import FillImage from '../content/fill-image';
@@ -17,13 +17,9 @@ const useStyles = createStyles((theme) => ({
   },
 
   title: {
-    fontSize: theme.fontSizes.xl,
+    fontSize: 24,
     overflowWrap: 'break-word',
     wordWrap: 'break-word',
-
-    [theme.fn.smallerThan('lg')]: {
-      fontSize: theme.fontSizes.xs,
-    },
   },
   description: {
     fontSize: theme.fontSizes.sm,
@@ -32,7 +28,7 @@ const useStyles = createStyles((theme) => ({
     height: 87,
 
     [theme.fn.smallerThan('lg')]: {
-      fontSize: theme.fontSizes.xs,
+      fontSize: theme.fontSizes.sm,
     },
   },
 
@@ -68,17 +64,9 @@ export function CourseCard({ course }: { course: CourseSanity }) {
             </Badge>
           </Stack>
 
-          <Title
-            order={5}
-            weight={400}
-            size="sm"
-            color="dimmed"
-            mt="md"
-            mb="xs"
-            className={classes.description}
-          >
+          <Text size="sm" color="dimmed" mt="md" mb="xs" className={classes.description}>
             {course.heroDescription}
-          </Title>
+          </Text>
 
           <Button variant="light" color="grape" fullWidth mt="md" radius="md">
             Get Started

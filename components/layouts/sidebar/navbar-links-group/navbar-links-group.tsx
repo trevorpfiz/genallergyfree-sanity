@@ -27,7 +27,7 @@ const useStyles = createStyles((theme) => ({
     display: 'block',
     textDecoration: 'none',
     padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
-    paddingLeft: 31,
+    paddingLeft: 27,
     marginLeft: 30,
     fontSize: theme.fontSizes.xs + 1,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
@@ -48,7 +48,7 @@ const useStyles = createStyles((theme) => ({
     display: 'block',
     textDecoration: 'none',
     padding: `${theme.spacing.xs}px ${theme.spacing.md}px`,
-    paddingLeft: 31,
+    paddingLeft: 27,
     marginLeft: 30,
     fontSize: theme.fontSizes.xs + 1,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.blue[7],
@@ -117,7 +117,7 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
             <ThemeIcon variant="light" size={30}>
               <Icon size={18} />
             </ThemeIcon>
-            <Text size={13} ml="md">
+            <Text size={13} ml="sm">
               {title}
             </Text>
           </Box>

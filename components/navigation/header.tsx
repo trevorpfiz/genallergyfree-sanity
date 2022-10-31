@@ -95,7 +95,7 @@ export function HeaderNav({ color = 'white' }: HeaderProps) {
         sx={{ maxWidth: 1288, border: 'none', backgroundColor: color }}
       >
         <Group position="apart" sx={{ height: '100%' }}>
-          <Link href="/">
+          <Link href="/" style={{ lineHeight: 1 }}>
             <Image src={logo} alt="Logo" width={230} height={21} priority />
           </Link>
 

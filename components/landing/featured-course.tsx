@@ -128,7 +128,7 @@ export function FeaturedCourse({ course, index, color }: CourseProps) {
             </Link>
           </Stack>
           <Box className={classes.image}>
-            <FillImage image={course.thumbnail} priority width={720} height={480} />
+            <FillImage image={course.thumbnail} priority width={400} height={540} />
           </Box>
         </>
       )}

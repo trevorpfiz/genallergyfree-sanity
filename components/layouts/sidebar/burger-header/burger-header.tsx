@@ -1,6 +1,5 @@
 import { Box, Burger, Group, Header, Stack } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { IconSearch } from '@tabler/icons';
 import { useContext } from 'contexts/context';
 
 import Alert from '../../../navigation/alert';
@@ -25,7 +24,6 @@ export default function BurgerHeader({ preview }: { preview: boolean }) {
                 onClick={() => dispatch({ type: 'toggle' })}
                 title={title}
               />
-              <IconSearch />
             </Group>
           </Box>
         )}
