@@ -16,8 +16,8 @@ export default function Meta() {
       <meta name="theme-color" content="#000" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta name="description" content={`${WEBSITE_NAME}`} />
-      <meta property="og:image" content={HOME_OG_IMAGE_URL} key="ogImage" />
       <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+      <meta property="og:image" content={HOME_OG_IMAGE_URL} key="ogImage" />
     </Head>
   );
 }
