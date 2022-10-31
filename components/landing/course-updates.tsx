@@ -1,4 +1,4 @@
-import { Button, createStyles, Stack, Title } from '@mantine/core';
+import { Button, createStyles, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
@@ -57,10 +57,10 @@ export function CourseUpdates() {
       <Title order={3} className={classes.title}>
         Course updates <span className={classes.highlight}>included</span>!
       </Title>
-      <Title order={4} className={classes.description}>
+      <Text component="h4" my={0} className={classes.description}>
         Continue to protect your child knowing you are getting access to the best cutting edge
         research with new course updates over time.
-      </Title>
+      </Text>
       <Link href="/courses">
         <Button radius="xl" size="lg" className={classes.button}>
           Go to courses

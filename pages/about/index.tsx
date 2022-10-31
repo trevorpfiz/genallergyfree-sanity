@@ -1,4 +1,4 @@
-import { Box, Container, createStyles, Stack, Title } from '@mantine/core';
+import { Box, Container, createStyles, Stack, Text, Title } from '@mantine/core';
 import { FeaturedAbout } from 'components/landing/featured-about';
 import { FeaturedTwins } from 'components/landing/featured-twins';
 import { Quotes } from 'components/landing/quotes';
@@ -81,10 +81,10 @@ const About: NextPageWithLayout = () => {
             <Title order={1} className={classes.title}>
               We&apos;re glad you&apos;re here
             </Title>
-            <Title order={4} weight={400}>
+            <Text component="h4" weight={400} my={0}>
               Knowing us on a deeper level will help you understand our passion to help people and
               curb this allergy epidemic.
-            </Title>
+            </Text>
             <Title order={3} className={classes.fight}>
               We can fight this together!
             </Title>

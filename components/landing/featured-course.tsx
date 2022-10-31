@@ -1,4 +1,4 @@
-import { Box, Button, createStyles, Group, Stack, Title } from '@mantine/core';
+import { Box, Button, createStyles, Group, Stack, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { CourseSanity } from 'additional';
 import Link from 'next/link';
@@ -96,9 +96,9 @@ export function FeaturedCourse({ course, index, color }: CourseProps) {
             <Title order={3} className={classes.target}>
               {`Perfect For ${course.targetAudience}`}
             </Title>
-            <Title order={4} weight={400} className={classes.description}>
+            <Text component="h4" weight={400} my={0} className={classes.description}>
               {course.heroDescription}
-            </Title>
+            </Text>
             <Link href={`/learn/${course.slug}`}>
               <Button color="pink" radius="xl" size="lg" className={classes.getStarted}>
                 Get Started
@@ -118,9 +118,9 @@ export function FeaturedCourse({ course, index, color }: CourseProps) {
             <Title order={3} className={classes.target}>
               {`Perfect For ${course.targetAudience}`}
             </Title>
-            <Title order={4} weight={400} className={classes.description}>
+            <Text component="h4" weight={400} my={0} className={classes.description}>
               {course.heroDescription}
-            </Title>
+            </Text>
             <Link href={`/learn/${course.slug}`}>
               <Button radius="xl" size="lg" className={classes.getStarted}>
                 Get Started

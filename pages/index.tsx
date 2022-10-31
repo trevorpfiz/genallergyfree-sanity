@@ -1,4 +1,4 @@
-import { Box, Container, createStyles, Stack, Title } from '@mantine/core';
+import { Box, Container, createStyles, Stack, Text, Title } from '@mantine/core';
 import Head from 'next/head';
 import Image from 'next/image';
 import type { ReactElement } from 'react';
@@ -133,10 +133,10 @@ const Index: NextPageWithLayout<IndexProps> = ({ allCourses: initialAllCourses, 
             <Title order={1} className={classes.heroText}>
               Let&apos;s stop <span className={classes.allergy}>allergy</span>!
             </Title>
-            <Title order={2} className={classes.heroDescription}>
+            <Text component="h2" className={classes.heroDescription}>
               We believe that everyone should be allergy free. Our free research-focused courses
               make this a reality for the generations to come.
-            </Title>
+            </Text>
             <Image
               src={heroImage}
               alt="Young boy reaching for strawberry on countertop."
