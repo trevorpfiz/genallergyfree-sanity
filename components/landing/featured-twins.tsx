@@ -2,7 +2,7 @@ import { Box, createStyles, Group, Stack, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import Image from 'next/image';
 
-import heroImage from '../../public/strawberry-kid.jpg';
+import twinsImage from '../../public/twins.jpg';
 
 const useStyles = createStyles((theme) => ({
   stack: {
@@ -70,8 +70,8 @@ export function FeaturedTwins() {
           <Box className={classes.image}>
             <Image
               fill
-              src={heroImage}
-              alt="Young boy reaching for strawberry on countertop."
+              src={twinsImage}
+              alt="Zachary and Trevor"
               sizes="100vw"
               placeholder="blur"
               style={{ objectFit: 'cover' }}
@@ -107,7 +107,7 @@ export function FeaturedTwins() {
           <Box className={classes.image}>
             <Image
               fill
-              src={heroImage}
+              src={twinsImage}
               alt="Young boy reaching for strawberry on countertop."
               sizes="100vw"
               placeholder="blur"

@@ -18,6 +18,7 @@ const useStyles = createStyles((theme) => ({
     fontSize: theme.fontSizes.xl,
     overflowWrap: 'break-word',
     wordWrap: 'break-word',
+    fontFamily: 'Inter',
 
     [theme.fn.smallerThan('lg')]: {
       fontSize: theme.fontSizes.xs,

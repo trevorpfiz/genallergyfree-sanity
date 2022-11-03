@@ -1,4 +1,4 @@
-import { AspectRatio, Card, createStyles, Group, Stack, Title } from '@mantine/core';
+import { AspectRatio, Card, createStyles, Group, Stack, Text, Title } from '@mantine/core';
 import { SectionSanity } from 'additional';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -19,6 +19,7 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     fontSize: theme.fontSizes.xl,
+    fontFamily: 'Inter',
     overflowWrap: 'break-word',
     wordWrap: 'break-word',
     margin: 0,
@@ -87,9 +88,9 @@ export default function SectionDashboard({ sectionData }: { sectionData: Section
                 <Title order={3} weight={600} className={classes.title}>
                   {post.title}
                 </Title>
-                <Title order={4} weight={400} className={classes.excerpt}>
+                <Text component="h4" weight={400} className={classes.excerpt}>
                   {post.excerpt}
-                </Title>
+                </Text>
               </Stack>
             </Group>
           </Card>

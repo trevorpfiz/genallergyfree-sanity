@@ -2,7 +2,9 @@ import { Box, createStyles, Group, Stack, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import Image from 'next/image';
 
-import heroImage from '../../public/strawberry-kid.jpg';
+import couchImage from '../../public/couch.jpg';
+import danceImage from '../../public/dance.jpg';
+import glassesImage from '../../public/glasses.jpg';
 
 const useStyles = createStyles((theme) => ({
   stack: {
@@ -89,8 +91,8 @@ export function FeaturedAbout() {
             <Box className={classes.image}>
               <Image
                 fill
-                src={heroImage}
-                alt="Young boy reaching for strawberry on countertop."
+                src={glassesImage}
+                alt="One short and one tall glass."
                 sizes="100vw"
                 placeholder="blur"
                 style={{ objectFit: 'cover' }}
@@ -101,8 +103,8 @@ export function FeaturedAbout() {
             <Box className={classes.image}>
               <Image
                 fill
-                src={heroImage}
-                alt="Young boy reaching for strawberry on countertop."
+                src={couchImage}
+                alt="Man and woman sitting on couch holding a laptop."
                 sizes="100vw"
                 placeholder="blur"
                 style={{ objectFit: 'cover' }}
@@ -143,8 +145,8 @@ export function FeaturedAbout() {
             <Box className={classes.image}>
               <Image
                 fill
-                src={heroImage}
-                alt="Young boy reaching for strawberry on countertop."
+                src={danceImage}
+                alt="Mother teaching daughter how to dance."
                 sizes="100vw"
                 placeholder="blur"
                 style={{ objectFit: 'cover' }}
@@ -177,8 +179,8 @@ export function FeaturedAbout() {
             <Box className={classes.image}>
               <Image
                 fill
-                src={heroImage}
-                alt="Young boy reaching for strawberry on countertop."
+                src={glassesImage}
+                alt="One short and one tall glass."
                 sizes="100vw"
                 placeholder="blur"
                 style={{ objectFit: 'cover' }}
@@ -202,8 +204,8 @@ export function FeaturedAbout() {
             <Box className={classes.image}>
               <Image
                 fill
-                src={heroImage}
-                alt="Young boy reaching for strawberry on countertop."
+                src={couchImage}
+                alt="Man and woman sitting on couch holding a laptop."
                 sizes="100vw"
                 placeholder="blur"
                 style={{ objectFit: 'cover' }}
@@ -231,8 +233,8 @@ export function FeaturedAbout() {
             <Box className={classes.image}>
               <Image
                 fill
-                src={heroImage}
-                alt="Young boy reaching for strawberry on countertop."
+                src={danceImage}
+                alt="Mother teaching daughter how to dance."
                 sizes="100vw"
                 placeholder="blur"
                 style={{ objectFit: 'cover' }}
