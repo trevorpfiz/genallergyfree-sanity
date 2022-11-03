@@ -120,7 +120,7 @@ export interface NavbarNestedProps {
 }
 
 export default function NavbarNested({ linksData }: NavbarNestedProps) {
-  const { state } = useContext();
+  const { state, dispatch } = useContext();
   const { classes } = useStyles();
   const router = useRouter();
 
@@ -172,7 +172,7 @@ export default function NavbarNested({ linksData }: NavbarNestedProps) {
           </MediaQuery>
           <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
             <Box>
-              <Link href="/">
+              <Link href="/" onClick={() => dispatch({ type: 'toggle' })}>
                 <Image src={logo} alt="Logo" width={250} height={21} priority />
               </Link>
             </Box>
