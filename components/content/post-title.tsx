@@ -2,7 +2,7 @@ import { createStyles, Title } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
   myResponsiveTitle: {
-    fontSize: '4rem',
+    fontSize: '3rem',
 
     [theme.fn.smallerThan('sm')]: {
       fontSize: '2.75rem',
