@@ -1,71 +1,23 @@
-import { Button, createStyles, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 
-const useStyles = createStyles((theme) => ({
-  stack: {
-    paddingTop: 80,
-    paddingBottom: 40,
-
-    [theme.fn.largerThan('sm')]: {
-      paddingTop: 80,
-      paddingBottom: 80,
-    },
-  },
-
-  title: {
-    fontSize: '1.5rem',
-    textTransform: 'uppercase',
-    color: '#FEED00',
-
-    [theme.fn.largerThan('sm')]: {
-      fontSize: '3rem',
-    },
-  },
-  highlight: {
-    color: 'white',
-  },
-  description: {
-    fontSize: 16,
-    color: 'white',
-    fontWeight: 400,
-    textAlign: 'center',
-
-    [theme.fn.largerThan('sm')]: {
-      fontSize: 18,
-    },
-  },
-
-  button: {
-    textTransform: 'uppercase',
-    color: 'black',
-    backgroundColor: '#feed00',
-    paddingLeft: 36,
-    paddingRight: 36,
-    marginTop: 32,
-
-    '&:hover': {
-      backgroundColor: '#f1e100',
-    },
-  },
-}));
-
 export function CourseUpdates() {
-  const { classes } = useStyles();
-
   return (
-    <Stack align="center" className={classes.stack}>
-      <Title order={3} className={classes.title}>
-        Course updates <span className={classes.highlight}>included</span>!
-      </Title>
-      <Text component="h4" my={0} className={classes.description}>
+    <div className="mx-auto flex max-w-2xl flex-col items-center justify-between px-4 pt-20 pb-28 sm:pb-40">
+      <h3 className="font-display text-2xl font-bold uppercase text-oldyellow sm:text-5xl">
+        Course updates <span className="text-white">included</span>!
+      </h3>
+      <h4 className="text-md mt-8 text-center text-white sm:text-lg">
         Continue to protect your child knowing you are getting access to the best cutting edge
         research with new course updates over time.
-      </Text>
+      </h4>
       <Link href="/courses">
-        <Button radius="xl" size="lg" className={classes.button}>
+        <button
+          type="button"
+          className="mt-8 rounded-full bg-oldyellow px-10 py-3 font-semibold uppercase text-black hover:bg-[#f1e100]"
+        >
           Go to courses
-        </Button>
+        </button>
       </Link>
-    </Stack>
+    </div>
   );
 }

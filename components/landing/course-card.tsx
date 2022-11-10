@@ -1,78 +1,34 @@
-import { Badge, Box, Button, Card, createStyles, Stack, Text, Title } from '@mantine/core';
-import { CourseSanity } from 'additional';
 import Link from 'next/link';
+
+import { CourseSanity } from 'additional';
 import FillImage from '../content/fill-image';
 
-const useStyles = createStyles((theme) => ({
-  card: {
-    transition: 'transform 150ms ease, box-shadow 150ms ease',
-    width: 300,
-    backgroundColor: 'white',
-    border: '8px solid #FF65BE',
-
-    '&:hover': {
-      transform: 'scale(1.01)',
-      boxShadow: theme.shadows.md,
-    },
-  },
-
-  title: {
-    fontSize: 24,
-    overflowWrap: 'break-word',
-    wordWrap: 'break-word',
-  },
-  description: {
-    fontSize: theme.fontSizes.sm,
-    overflowWrap: 'break-word',
-    wordWrap: 'break-word',
-    height: 87,
-
-    [theme.fn.smallerThan('lg')]: {
-      fontSize: theme.fontSizes.sm,
-    },
-  },
-
-  image: {
-    width: '100%',
-    position: 'relative',
-    maxWidth: 300,
-    height: 169,
-
-    [theme.fn.smallerThan('lg')]: {
-      width: '100%',
-    },
-  },
-}));
-
 export function CourseCard({ course }: { course: CourseSanity }) {
-  const { classes } = useStyles();
-
   return (
     <Link href={`/learn/${course.slug}`} style={{ textDecoration: 'none' }}>
-      <Card shadow="sm" p={0} className={classes.card}>
-        <Box className={classes.image}>
+      <div className="flex w-[300px] transform-gpu flex-col gap-4 border-8 border-oldpink bg-white transition-transform hover:scale-105">
+        <div className="relative h-[169px] w-full max-w-[300px]">
           <FillImage image={course.thumbnail} priority width={300} height={169} />
-        </Box>
+        </div>
 
-        <Box sx={{ padding: 16 }}>
-          <Stack mt="md" mb="xs" spacing="xs">
-            <Title order={4} weight={500} className={classes.title}>
-              {course.title}
-            </Title>
-            <Badge color="pink" variant="light">
+        <div className="flex flex-col gap-4 p-4">
+          <div className="flex flex-col gap-4">
+            <h4 className="font-display text-2xl font-medium">{course.title}</h4>
+            <div className="rounded-full bg-pink-100 py-[2px] text-center text-[11px] font-bold uppercase text-pink-500">
               For: {course.targetAudience}
-            </Badge>
-          </Stack>
+            </div>
+          </div>
 
-          <Text size="sm" color="dimmed" mt="md" mb="xs" className={classes.description}>
-            {course.heroDescription}
-          </Text>
+          <p className="h-[87] text-sm text-gray-400">{course.heroDescription}</p>
 
-          <Button variant="light" color="grape" fullWidth mt="md" radius="md">
+          <button
+            type="button"
+            className="mt-2 rounded-lg bg-purple-100 px-8 py-2 text-sm font-semibold text-purple-400 hover:bg-purple-200"
+          >
             Get Started
-          </Button>
-        </Box>
-      </Card>
+          </button>
+        </div>
+      </div>
     </Link>
   );
 }

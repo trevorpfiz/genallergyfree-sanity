@@ -1,4 +1,3 @@
-import { Box } from '@mantine/core';
 import { ImagePlusSanity } from 'additional';
 import Image from 'next/image';
 
@@ -29,7 +28,7 @@ export default function FillImage({
       style={{ objectFit: 'cover' }}
     />
   ) : (
-    <Box sx={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
+    <div className="bg-white pt-[50%]" />
   );
 
   return <>{image}</>;
