@@ -9,7 +9,7 @@ import logo from 'public/genallergyfree-upscaled-crop.jpg';
 
 export default function Header() {
   return (
-    <header className="absolute top-0 w-full bg-oldyellow">
+    <header className="absolute top-0 w-full bg-oldyellow pt-1 sm:pt-4">
       <Disclosure as="nav">
         {({ open }) => (
           <>
