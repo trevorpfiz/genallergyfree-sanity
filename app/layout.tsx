@@ -1,8 +1,9 @@
 import './globals.css';
 
 import { Inter, Oswald } from '@next/font/google';
-import Footer from 'components/navigation/footer';
-import { Header } from 'components/navigation/header';
+import Footer from 'app/Footer';
+import Header from 'app/Header';
+// import Header from 'components/navigation/header';
 
 const inter = Inter({
   variable: '--font-inter',

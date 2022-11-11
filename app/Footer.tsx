@@ -2,7 +2,7 @@ import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from '@tabler/
 import Image from 'next/image';
 import Link from 'next/link';
 
-import logoWhite from '../../public/genallergyfree-black-upscaled-removebg-white.png';
+import logoWhite from 'public/genallergyfree-black-upscaled-removebg-white.png';
 
 export default function Footer() {
   return (
