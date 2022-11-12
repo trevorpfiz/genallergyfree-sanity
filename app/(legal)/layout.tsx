@@ -1,9 +1,8 @@
-import './globals.css';
+import 'app/globals.css';
 
 import { Inter, Oswald } from '@next/font/google';
 import Footer from 'app/Footer';
 import Header from 'app/Header';
-// import Header from 'components/navigation/header';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -22,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="description" content="Generation Allergy Free" key="desc" />
       </head>
       <body className="overflow-x-hidden">
-        <Header />
+        <Header color="white" />
         <main className="min-h-screen">{children}</main>
         <Footer />
       </body>

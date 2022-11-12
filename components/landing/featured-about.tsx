@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import couchImage from '../../public/couch.jpg';
-import danceImage from '../../public/dance.jpg';
-import glassesImage from '../../public/glasses.jpg';
+import couchImage from 'public/couch.jpg';
+import danceImage from 'public/dance.jpg';
+import glassesImage from 'public/glasses.jpg';
 
 export function FeaturedAbout() {
   return (
@@ -32,7 +32,9 @@ export function FeaturedAbout() {
             fill
             src={glassesImage}
             alt="One short and one tall glass."
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
             placeholder="blur"
             style={{ objectFit: 'cover' }}
           />
@@ -57,7 +59,9 @@ export function FeaturedAbout() {
             fill
             src={couchImage}
             alt="Man and woman sitting on couch holding a laptop."
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
             placeholder="blur"
             style={{ objectFit: 'cover' }}
           />
@@ -83,7 +87,9 @@ export function FeaturedAbout() {
             fill
             src={danceImage}
             alt="Mother teaching daughter how to dance."
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
             placeholder="blur"
             style={{ objectFit: 'cover' }}
           />

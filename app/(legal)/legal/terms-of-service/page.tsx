@@ -1,6 +1,6 @@
 import sanitizeHtml from 'sanitize-html';
 
-import rawHTML from '../../../lib/terms-html';
+import rawHTML from '../../../../lib/terms-html';
 
 export default function TermsPage() {
   return (

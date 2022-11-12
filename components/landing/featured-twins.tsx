@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import twinsImage from '../../public/twins.jpg';
+import twinsImage from 'public/twins.jpg';
 
 export function FeaturedTwins() {
   return (
@@ -11,7 +11,9 @@ export function FeaturedTwins() {
             fill
             src={twinsImage}
             alt="Zachary and Trevor"
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
             placeholder="blur"
             style={{ objectFit: 'cover' }}
           />

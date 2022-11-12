@@ -4,9 +4,9 @@ import { FeaturedCourse } from 'components/landing/featured-course';
 import Quotes from 'components/landing/quotes';
 import Image from 'next/image';
 
-import { indexQuery } from '../lib/queries';
-import { getClient } from '../lib/sanity.server';
-import heroImage from '../public/strawberry-kid.jpg';
+import { indexQuery } from 'lib/queries';
+import { getClient } from 'lib/sanity.server';
+import heroImage from 'public/strawberry-kid.jpg';
 
 async function fetchCourses() {
   const res = await getClient(false).fetch(indexQuery);
@@ -34,7 +34,9 @@ export default async function Home() {
           <Image
             src={heroImage}
             alt="Young boy reaching for strawberry on countertop."
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
             placeholder="blur"
             priority
             style={{ width: '100%', height: 'auto', border: '8px solid black' }}

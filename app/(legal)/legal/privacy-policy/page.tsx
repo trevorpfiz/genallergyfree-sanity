@@ -1,8 +1,8 @@
 import sanitizeHtml from 'sanitize-html';
 
-import rawHTML from '../../../lib/cookie-html';
+import rawHTML from '../../../../lib/privacy-html';
 
-export default function CookiePage() {
+export default function PrivacyPage() {
   return (
     <div className="mx-auto mt-8 mb-32 max-w-4xl px-4 pt-[88px]">
       <div

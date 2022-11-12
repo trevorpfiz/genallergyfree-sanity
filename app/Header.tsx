@@ -2,14 +2,24 @@
 
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import cn from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import logo from 'public/genallergyfree-upscaled-crop.jpg';
 
-export default function Header() {
+interface HeaderProps {
+  color: string;
+}
+
+export default function Header({ color }: HeaderProps) {
   return (
-    <header className="absolute top-0 w-full bg-oldyellow pt-1 sm:pt-4">
+    <header
+      className={cn('absolute top-0 w-full pt-1 sm:pt-4', {
+        'bg-oldyellow': color === 'oldyellow',
+        'bg-white': color === 'white',
+      })}
+    >
       <Disclosure as="nav">
         {({ open }) => (
           <>

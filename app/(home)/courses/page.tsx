@@ -1,8 +1,8 @@
 import { CourseSanity } from 'additional';
 import { CourseCard } from 'components/landing/course-card';
 
-import { indexQuery } from '../../lib/queries';
-import { getClient } from '../../lib/sanity.server';
+import { indexQuery } from '../../../lib/queries';
+import { getClient } from '../../../lib/sanity.server';
 
 async function fetchCourses() {
   const res = await getClient(false).fetch(indexQuery);
