@@ -30,7 +30,7 @@ export default function Header({ color }: HeaderProps) {
                     <Link href="/">
                       <Image
                         src={logo}
-                        alt="Logo"
+                        alt="Generation Allergy Free Logo"
                         style={{ width: '230px', height: 'auto' }}
                         priority
                       />

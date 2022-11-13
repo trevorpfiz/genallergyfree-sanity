@@ -11,7 +11,11 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-y-4 md:flex-row">
           <div>
             <Link href="/">
-              <Image src={logoWhite} alt="Logo" style={{ width: '200px', height: 'auto' }} />
+              <Image
+                src={logoWhite}
+                alt="Generation Allergy Free Logo"
+                style={{ width: '200px', height: 'auto' }}
+              />
             </Link>
           </div>
 
