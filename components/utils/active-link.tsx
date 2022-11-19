@@ -1,57 +1,29 @@
-/* eslint-disable no-restricted-globals */
-import Link, { LinkProps } from 'next/link';
-import { useRouter } from 'next/router';
-import React, { Children, ReactElement, useEffect, useState } from 'react';
+'use client';
 
-type ActiveLinkProps = LinkProps & {
-  children: ReactElement;
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+interface ActiveLinkProps {
+  href: string;
+  slug: string;
+  children: React.ReactNode;
   activeClassName: string;
-};
+  defaultClassName: string;
+}
 
-const ActiveLink = ({ children, activeClassName, ...props }: ActiveLinkProps) => {
-  const { asPath, isReady } = useRouter();
-
-  const child = Children.only(children);
-  const childClassName = child.props.className || '';
-  const [className, setClassName] = useState(childClassName);
-
-  useEffect(() => {
-    // Check if the router fields are updated client-side
-    if (isReady) {
-      // Dynamic route will be matched via props.as
-      // Static route will be matched via props.href
-      const linkPathname = new URL((props.as || props.href) as string, location.href).pathname;
-
-      // Using URL().pathname to get rid of query and hash
-      const activePathname = new URL(asPath, location.href).pathname;
-
-      const newClassName =
-        linkPathname === activePathname
-          ? `${childClassName} ${activeClassName}`.trim()
-          : childClassName;
-
-      if (newClassName !== className) {
-        setClassName(newClassName);
-      }
-    }
-  }, [
-    asPath,
-    isReady,
-    props.as,
-    props.href,
-    childClassName,
-    activeClassName,
-    setClassName,
-    className,
-  ]);
+export default function ActiveLink({
+  href,
+  slug,
+  children,
+  activeClassName,
+  defaultClassName,
+}: ActiveLinkProps) {
+  const pathname = usePathname();
+  const isActive = pathname?.endsWith(slug);
 
   return (
-    <Link {...props} style={{ textDecoration: 'none' }}>
-      {React.cloneElement(child, {
-        className: className || null,
-      })}
+    <Link href={href} className={isActive ? activeClassName : defaultClassName}>
+      {children}
     </Link>
   );
-};
-
-export default ActiveLink;
+}

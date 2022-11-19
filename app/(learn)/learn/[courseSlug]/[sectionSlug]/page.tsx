@@ -2,24 +2,22 @@ import Link from 'next/link';
 
 import { SectionSanity } from 'additional';
 import FillImage from 'components/content/fill-image';
-import { sectionQuery, sectionSlugsQuery } from 'lib/queries';
-import { getClient, sanityClient } from 'lib/sanity.server';
+import { sectionQuery } from 'lib/queries';
+import { getClient } from 'lib/sanity.server';
 
-export async function generateStaticParams() {
-  const paths = await sanityClient.fetch(sectionSlugsQuery);
+// top-down
+// export async function generateStaticParams({ courseSlug }) {
+//   console.log(courseSlug);
+//   const paths = await sanityClient.fetch(sectionSlugsQuery, {
+//     courseSlug,
+//   });
 
-  function loopParams(sections: SectionSanity[]) {
-    return sections.flatMap((section) =>
-      section.courses.flatMap((course) => ({ course: course.slug, section: section.slug }))
-    );
-  }
+//   return paths.map((slug: string) => ({ sectionSlug: slug }));
+// }
 
-  return loopParams(paths);
-}
-
-async function fetchSection(params: { section: string }) {
+async function fetchSection(params: { sectionSlug: string }) {
   const res = await getClient(false).fetch(sectionQuery, {
-    slug: params?.section,
+    slug: params?.sectionSlug,
   });
 
   return res;
@@ -28,7 +26,7 @@ async function fetchSection(params: { section: string }) {
 export default async function SectionDashboard({
   params,
 }: {
-  params: { course: string; section: string };
+  params: { courseSlug: string; sectionSlug: string };
 }) {
   const section: SectionSanity = await fetchSection(params);
 
@@ -37,7 +35,7 @@ export default async function SectionDashboard({
       <h1 className="font-display text-4xl font-bold">{section.title}</h1>
       <div className="flex flex-col gap-4">
         {section?.posts.map((post) => (
-          <Link href={`/learn/${params.course}/${section.slug}/${post.slug}`} key={post._id}>
+          <Link href={`/learn/${params.courseSlug}/${section.slug}/${post.slug}`} key={post._id}>
             <div className="relative flex items-center space-x-4 overflow-hidden rounded-lg border border-gray-300 bg-white pr-1 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400">
               <div className="relative aspect-video w-[150px] flex-shrink-0 sm:w-[300px]">
                 <FillImage image={post.heroImage} priority width={640} height={360} />

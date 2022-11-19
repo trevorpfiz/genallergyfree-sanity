@@ -2,11 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  [data-nextjs-scroll-focus-boundary] {
+    display: contents;
+  }
+}
+
 @layer utilities {
   /* For Firefox Browser */
   .scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: #000 transparent;
+    scrollbar-color: #282b30 transparent;
   }
 
   /* For Chrome, EDGE, Opera, Others */

@@ -1,24 +1,25 @@
 import { CourseSanity } from 'additional';
 import FillImage from 'components/content/fill-image';
-import { courseQuery, courseSlugsQuery } from 'lib/queries';
-import { getClient, sanityClient } from 'lib/sanity.server';
+import { courseQuery } from 'lib/queries';
+import { getClient } from 'lib/sanity.server';
 import Link from 'next/link';
 
-export async function generateStaticParams() {
-  const paths = await sanityClient.fetch(courseSlugsQuery);
+// top-down
+// export async function generateStaticParams() {
+//   const paths = await sanityClient.fetch(courseSlugsQuery);
 
-  return paths.map((slug: string) => ({ course: slug }));
-}
+//   return paths.map((slug: string) => ({ courseSlug: slug }));
+// }
 
-async function fetchCourse(params: { course: string }) {
+async function fetchCourse(params: { courseSlug: string }) {
   const res = await getClient(false).fetch(courseQuery, {
-    slug: params?.course,
+    slug: params?.courseSlug,
   });
 
   return res;
 }
 
-export default async function CourseDashboard({ params }: { params: { course: string } }) {
+export default async function CourseDashboard({ params }: { params: { courseSlug: string } }) {
   const course: CourseSanity = await fetchCourse(params);
 
   return (

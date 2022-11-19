@@ -4,54 +4,15 @@
 
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
-import {
-  Bars3BottomLeftIcon,
-  BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
-  HomeIcon,
-  InboxIcon,
-  UsersIcon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline';
-import { Fragment, useState } from 'react';
+import { Bars3BottomLeftIcon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Fragment, useRef, useState } from 'react';
 
+import { SectionSanity } from 'additional';
 import Image from 'next/image';
+import Link from 'next/link';
 import logo from 'public/genallergyfree-upscaled-crop.jpg';
+import { LinksGroup } from './LinksGroup';
 
-const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-];
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
@@ -62,8 +23,28 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function SidebarLayout({ children }: { children: React.ReactNode }) {
+export default function SidebarLayout({
+  children,
+  linksData,
+  params,
+}: {
+  children: React.ReactNode;
+  linksData: SectionSanity[];
+  params: { courseSlug: string };
+}) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const links = linksData.map((section) => (
+    <LinksGroup
+      {...section}
+      ref={scrollRef}
+      key={section._id}
+      sidebarOpenState={[sidebarOpen, setSidebarOpen]}
+      params={params}
+    />
+  ));
 
   return (
     <>
@@ -114,34 +95,17 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
                     </div>
                   </Transition.Child>
                   <div className="flex flex-shrink-0 items-center px-4">
-                    <Image
-                      src={logo}
-                      alt="Generation Allergy Free Logo"
-                      style={{ width: '160px', height: 'auto' }}
-                      priority
-                    />
+                    <Link href="/">
+                      <Image
+                        src={logo}
+                        alt="Generation Allergy Free Logo"
+                        style={{ width: '180px', height: 'auto' }}
+                        priority
+                      />
+                    </Link>
                   </div>
                   <div className="mt-5 h-0 flex-1 overflow-y-auto">
-                    <nav className="space-y-1 px-2">
-                      {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'bg-indigo-800 text-white'
-                              : 'text-indigo-100 hover:bg-indigo-600',
-                            'group flex items-center rounded-md px-2 py-2 text-base font-medium'
-                          )}
-                        >
-                          <item.icon
-                            className="mr-4 h-6 w-6 flex-shrink-0 text-indigo-300"
-                            aria-hidden="true"
-                          />
-                          {item.name}
-                        </a>
-                      ))}
-                    </nav>
+                    <nav className="space-y-1 px-2">{links}</nav>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -157,34 +121,17 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex flex-grow flex-col bg-indigo-700 pt-5">
             <div className="flex flex-shrink-0 items-center px-4">
-              <Image
-                src={logo}
-                alt="Generation Allergy Free Logo"
-                style={{ width: '160px', height: 'auto' }}
-                priority
-              />
+              <Link href="/">
+                <Image
+                  src={logo}
+                  alt="Generation Allergy Free Logo"
+                  style={{ width: '180px', height: 'auto' }}
+                  priority
+                />
+              </Link>
             </div>
             <div className="scrollbar hover:scrollbar--color mt-5 h-0 flex-1 overflow-y-auto">
-              <nav className="space-y-1 px-2 pb-4">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      item.current
-                        ? 'bg-indigo-800 text-white'
-                        : 'text-indigo-100 hover:bg-indigo-600',
-                      'group flex items-center rounded-md px-2 py-2 text-sm font-medium'
-                    )}
-                  >
-                    <item.icon
-                      className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-300"
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </a>
-                ))}
-              </nav>
+              <nav className="space-y-1 px-2 pb-4">{links}</nav>
             </div>
           </div>
         </div>

@@ -82,6 +82,15 @@ const components: any = {
   },
 };
 
+// top-down
+// export async function generateStaticParams({ sectionSlug }) {
+//   const paths = await sanityClient.fetch(postSlugsQuery, {
+//     sectionSlug,
+//   });
+
+//   return paths.map((slug: string) => ({ postSlug: slug }));
+// }
+
 export async function generateStaticParams() {
   const paths = await sanityClient.fetch(postSlugsQuery);
 
@@ -89,9 +98,9 @@ export async function generateStaticParams() {
     return posts.flatMap((post) =>
       post.sections.flatMap((section) =>
         section.courses.flatMap((course) => ({
-          course: course.slug,
-          section: section.slug,
-          slug: post.slug,
+          courseSlug: course.slug,
+          sectionSlug: section.slug,
+          postSlug: post.slug,
         }))
       )
     );
@@ -100,15 +109,15 @@ export async function generateStaticParams() {
   return loopParams(paths);
 }
 
-async function fetchPost(params: { slug: string }) {
+async function fetchPost(params: { postSlug: string }) {
   const res = await getClient(false).fetch(postQuery, {
-    slug: params?.slug,
+    slug: params?.postSlug,
   });
 
   return res;
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
+export default async function Post({ params }: { params: { postSlug: string } }) {
   const post: PostSanity = await fetchPost(params);
 
   return (
