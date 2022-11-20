@@ -5,6 +5,21 @@
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Bars3BottomLeftIcon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import {
+  IconBlockquote,
+  IconChecklist,
+  IconNotes,
+  IconNumber0,
+  IconNumber1,
+  IconNumber2,
+  IconNumber3,
+  IconNumber4,
+  IconNumber5,
+  IconNumber6,
+  IconNumber7,
+  IconNumber8,
+  IconNumber9,
+} from '@tabler/icons';
 import { Fragment, useRef, useState } from 'react';
 
 import { SectionSanity } from 'additional';
@@ -23,6 +38,32 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
+const chapterToIcon = {
+  disclaimer: IconNotes,
+  0: IconNumber0,
+  1: IconNumber1,
+  2: IconNumber2,
+  3: IconNumber3,
+  4: IconNumber4,
+  5: IconNumber5,
+  6: IconNumber6,
+  7: IconNumber7,
+  8: IconNumber8,
+  9: IconNumber9,
+  checklist: IconChecklist,
+  citations: IconBlockquote,
+};
+
+function addIcon(links: SectionSanity[]) {
+  return links.map((section) => {
+    const key = section.chapter as keyof typeof chapterToIcon;
+    if (key in chapterToIcon) {
+      return { ...section, icon: chapterToIcon[key] };
+    }
+    return { ...section, icon: IconNotes };
+  });
+}
+
 export default function SidebarLayout({
   children,
   linksData,
@@ -36,7 +77,7 @@ export default function SidebarLayout({
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const links = linksData.map((section) => (
+  const links = addIcon(linksData).map((section) => (
     <LinksGroup
       {...section}
       ref={scrollRef}
@@ -117,10 +158,10 @@ export default function SidebarLayout({
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64">
+        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-72">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex flex-grow flex-col bg-indigo-700 pt-5">
-            <div className="flex flex-shrink-0 items-center px-4">
+            <div className="flex flex-shrink-0 items-center border-b border-b-gray-500 px-4 pb-7">
               <Link href="/">
                 <Image
                   src={logo}
@@ -130,12 +171,12 @@ export default function SidebarLayout({
                 />
               </Link>
             </div>
-            <div className="scrollbar hover:scrollbar--color mt-5 h-0 flex-1 overflow-y-auto">
-              <nav className="space-y-1 px-2 pb-4">{links}</nav>
+            <div className="scrollbar hover:scrollbar--color mt-4 h-0 flex-1 overflow-y-scroll">
+              <nav className="space-y-1 pb-4">{links}</nav>
             </div>
           </div>
         </div>
-        <div className="flex h-full flex-1 flex-col md:pl-64">
+        <div className="flex h-full flex-1 flex-col md:pl-72">
           <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
             <button
               type="button"

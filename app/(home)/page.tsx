@@ -4,6 +4,7 @@ import { FeaturedCourse } from 'components/landing/featured-course';
 import Quotes from 'components/landing/quotes';
 import Image from 'next/image';
 
+import { Intent } from '#/ui/LinkButton';
 import { indexQuery } from 'lib/queries';
 import { getClient } from 'lib/sanity.server';
 import heroImage from 'public/strawberry-kid.jpg';
@@ -17,7 +18,7 @@ async function fetchCourses() {
 export default async function Home() {
   const data: CourseSanity[] = await fetchCourses();
 
-  const courseColors = ['pink', 'blue', 'green'];
+  const courseIntents: Intent[] = ['primary', 'secondary', 'tertiary'];
 
   return (
     <>
@@ -60,7 +61,7 @@ export default async function Home() {
       <section className="bg-white">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between px-4 pb-20">
           {data.map((course, index) => (
-            <FeaturedCourse course={course} key={course._id} color={courseColors[index]} />
+            <FeaturedCourse course={course} key={course._id} intent={courseIntents[index]} />
           ))}
         </div>
       </section>

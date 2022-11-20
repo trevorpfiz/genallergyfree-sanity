@@ -3,7 +3,7 @@ import 'app/globals.css';
 import { CourseSanity } from 'additional';
 import { courseQuery } from 'lib/queries';
 import { getClient } from 'lib/sanity.server';
-import SidebarLayout from './SidebarLayout';
+import SidebarLayout from '../../../../ui/SidebarLayout';
 
 async function fetchCourse(params: { courseSlug: string }) {
   const res = await getClient(false).fetch(courseQuery, {

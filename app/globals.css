@@ -41,4 +41,12 @@
     border-radius: 100vh;
     border: 3px solid #4338ca;
   }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
 }

@@ -1,4 +1,4 @@
-import cn from 'classnames';
+import clsx from 'clsx';
 
 interface QuotesProps {
   color: string;
@@ -7,19 +7,11 @@ interface QuotesProps {
 export default function Quotes({ color = 'oldyellow' }: QuotesProps) {
   return (
     <div className="mx-auto max-w-7xl md:grid md:grid-cols-2 md:px-6 lg:px-8">
-      <div
-        className={cn(
-          'border-black py-12 px-4 sm:px-6 md:flex md:flex-col md:border-r md:py-16 md:pl-0 md:pr-10 lg:pr-16'
-          // {
-          //   'border-oldyellow': color === 'oldyellow',
-          //   'border-oldpink': color === 'oldpink',
-          // }
-        )}
-      >
+      <div className="border-black py-12 px-4 sm:px-6 md:flex md:flex-col md:border-r md:py-16 md:pl-0 md:pr-10 lg:pr-16">
         <blockquote className="mt-6 md:flex md:flex-grow md:flex-col">
           <div className="relative text-lg font-medium md:flex-grow">
             <svg
-              className={cn('absolute top-0 left-0 h-8 w-8 -translate-y-9', {
+              className={clsx('absolute top-0 left-0 h-8 w-8 -translate-y-9', {
                 'text-yellow-300': color === 'oldyellow',
                 'text-pink-300': color === 'oldpink',
               })}
@@ -32,7 +24,7 @@ export default function Quotes({ color = 'oldyellow' }: QuotesProps) {
             <p className="relative font-bold italic md:h-32">
               This{' '}
               <span
-                className={cn({
+                className={clsx({
                   'text-oldyellow': color === 'oldyellow',
                   'text-oldpink': color === 'oldpink',
                 })}
@@ -42,7 +34,7 @@ export default function Quotes({ color = 'oldyellow' }: QuotesProps) {
               allergy prevention course combines current research with practical strategies and is
               an{' '}
               <span
-                className={cn({
+                className={clsx({
                   'text-oldyellow': color === 'oldyellow',
                   'text-oldpink': color === 'oldpink',
                 })}
@@ -51,7 +43,7 @@ export default function Quotes({ color = 'oldyellow' }: QuotesProps) {
               </span>{' '}
               for parents who want to help their children{' '}
               <span
-                className={cn({
+                className={clsx({
                   'text-oldyellow': color === 'oldyellow',
                   'text-oldpink': color === 'oldpink',
                 })}
@@ -69,7 +61,7 @@ export default function Quotes({ color = 'oldyellow' }: QuotesProps) {
         </blockquote>
       </div>
       <div
-        className={cn(
+        className={clsx(
           'border-t-2 border-black py-12 px-4 sm:px-6 md:border-t-0 md:border-l md:py-16 md:pr-0 md:pl-10 lg:pl-16'
           // {
           //   'border-oldyellow': color === 'oldyellow',
@@ -80,7 +72,7 @@ export default function Quotes({ color = 'oldyellow' }: QuotesProps) {
         <blockquote className="mt-6 md:flex md:flex-grow md:flex-col">
           <div className="relative text-lg md:flex-grow">
             <svg
-              className={cn('absolute top-0 left-0 h-8 w-8 -translate-y-9', {
+              className={clsx('absolute top-0 left-0 h-8 w-8 -translate-y-9', {
                 'text-yellow-300': color === 'oldyellow',
                 'text-pink-300': color === 'oldpink',
               })}
@@ -92,7 +84,7 @@ export default function Quotes({ color = 'oldyellow' }: QuotesProps) {
             <p className="relative font-bold italic md:h-32">
               This is <span className="">wonderful</span>. My son{' '}
               <span
-                className={cn({
+                className={clsx({
                   'text-oldyellow': color === 'oldyellow',
                   'text-oldpink': color === 'oldpink',
                 })}
@@ -102,7 +94,7 @@ export default function Quotes({ color = 'oldyellow' }: QuotesProps) {
               and after reading through these courses, I&apos;ve learned concepts that will help
               many new families{' '}
               <span
-                className={cn({
+                className={clsx({
                   'text-oldyellow': color === 'oldyellow',
                   'text-oldpink': color === 'oldpink',
                 })}

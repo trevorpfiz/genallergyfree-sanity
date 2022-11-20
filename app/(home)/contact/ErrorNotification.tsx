@@ -1,10 +1,10 @@
 import { Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
-import { Fragment } from 'react';
+import { Dispatch, Fragment, SetStateAction } from 'react';
 
 interface ErrorProps {
-  errorState: [boolean, React.Dispatch<boolean>];
+  errorState: [boolean, Dispatch<SetStateAction<boolean>>];
 }
 
 export default function ErrorNotification({ errorState: [error, setError] }: ErrorProps) {

@@ -1,10 +1,10 @@
 import { Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
-import { Fragment } from 'react';
+import { Dispatch, Fragment, SetStateAction } from 'react';
 
 interface SuccessProps {
-  successState: [boolean, React.Dispatch<boolean>];
+  successState: [boolean, Dispatch<SetStateAction<boolean>>];
 }
 
 export default function SuccessNotification({ successState: [success, setSuccess] }: SuccessProps) {

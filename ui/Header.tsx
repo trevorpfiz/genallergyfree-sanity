@@ -2,28 +2,35 @@
 
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import cn from 'classnames';
+import type { VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import logo from 'public/genallergyfree-upscaled-crop.jpg';
+import logo from '#/public/genallergyfree-upscaled-crop.jpg';
+import LinkButton from '#/ui/LinkButton';
 
-interface HeaderProps {
-  color: string;
-}
+const headerStyles = cva('', {
+  variants: {
+    intent: {
+      primary: 'bg-oldyellow',
+      secondary: 'bg-white',
+    },
+  },
+  defaultVariants: {
+    intent: 'primary',
+  },
+});
 
-export default function Header({ color }: HeaderProps) {
+export type HeaderProps = VariantProps<typeof headerStyles>;
+
+export default function Header({ intent }: HeaderProps) {
   return (
-    <header
-      className={cn('absolute top-0 w-full pt-1 sm:pt-4', {
-        'bg-oldyellow': color === 'oldyellow',
-        'bg-white': color === 'white',
-      })}
-    >
+    <header className={headerStyles({ intent })}>
       <Disclosure as="nav">
         {({ open }) => (
           <>
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl py-2 px-4 sm:px-6 lg:px-8">
               <div className="flex h-16 justify-between">
                 <div className="flex">
                   <div className="flex flex-shrink-0 items-center">
@@ -41,14 +48,9 @@ export default function Header({ color }: HeaderProps) {
                   <Link href="/about" className="font-medium hover:underline">
                     About Us
                   </Link>
-                  <Link href="/courses">
-                    <button
-                      className="rounded-full bg-pink-400 py-2 px-4 font-semibold text-white hover:bg-pink-500"
-                      type="button"
-                    >
-                      Courses
-                    </button>
-                  </Link>
+                  <LinkButton href="/courses" intent="primary" className="px-4 py-2">
+                    Courses
+                  </LinkButton>
                 </div>
                 <div className="-mr-2 flex items-center sm:hidden">
                   {/* Mobile menu button */}

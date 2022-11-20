@@ -1,10 +1,11 @@
 'use client';
 
-import { IconChevronRight } from '@tabler/icons';
-import { forwardRef, useState } from 'react';
-
 import { Transition } from '@headlessui/react';
-import ActiveLink from 'components/utils/active-link';
+import { IconChevronRight, TablerIcon } from '@tabler/icons';
+import { usePathname } from 'next/navigation';
+import { Dispatch, forwardRef, SetStateAction, useState } from 'react';
+
+import ActiveLink from '#/ui/ActiveLink';
 
 export interface LinksGroupProps {
   title: string;
@@ -12,8 +13,9 @@ export interface LinksGroupProps {
   // eslint-disable-next-line react/no-unused-prop-types
   chapter: string;
   posts?: { title: string; slug: string }[];
-  sidebarOpenState: [boolean, React.Dispatch<boolean>];
-  params: { courseSlug: string };
+  sidebarOpenState: [boolean, Dispatch<SetStateAction<boolean>>];
+  params?: { courseSlug: string };
+  icon?: TablerIcon;
 }
 
 export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, ref) => {
@@ -23,22 +25,26 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
     posts,
     sidebarOpenState: [sidebarOpen, setSidebarOpen],
     params,
+    icon: Icon,
   }: LinksGroupProps = props;
   const [opened, setOpened] = useState(false);
+  const pathname = usePathname();
 
   const hasPosts = Array.isArray(posts);
   const ChevronIcon = IconChevronRight;
 
   const items = (hasPosts ? posts : []).map((post) => (
     <ActiveLink
-      key={post.title}
-      href={`/learn/${params.courseSlug}/${sectionSlug}/${post.slug}`}
-      slug={post.slug}
-      activeClassName="ml-[22px] block border-l border-l-red-700 pl-[27px] font-medium"
-      defaultClassName="ml-[22px] block border-l border-l-gray-900 pl-[27px] font-medium"
+      key={post.slug}
+      href={`/learn/${params?.courseSlug}/${sectionSlug}/${post.slug}`}
+      intent={pathname?.endsWith(post.slug) ? 'active' : 'inactive'}
     >
-      <button type="button" onClick={sidebarOpen ? () => setSidebarOpen((o) => !o) : undefined}>
-        <p className="text-[13px]">{post.title}</p>
+      <button
+        type="button"
+        className="text-left"
+        onClick={sidebarOpen ? () => setSidebarOpen((o) => !o) : undefined}
+      >
+        <p>{post.title}</p>
       </button>
     </ActiveLink>
   ));
@@ -48,11 +54,14 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
       <button
         type="button"
         onClick={() => setOpened((o) => !o)}
-        className="block w-full font-medium"
+        className="block w-full py-3 pl-4 pr-0 font-medium"
       >
-        <div className="flex">
+        <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <p className="text-[13px]">{title}</p>
+            <div className="flex min-h-[30px] min-w-[30px] items-center justify-center bg-blue-100">
+              {Icon && <Icon size={18} stroke={1.5} color="rgb(34, 139, 230)" />}
+            </div>
+            <p className="ml-3 text-left text-[13px]">{title}</p>
           </div>
           {hasPosts && (
             <ChevronIcon

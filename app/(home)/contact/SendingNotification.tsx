@@ -1,9 +1,9 @@
 import { Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/20/solid';
-import { Fragment } from 'react';
+import { Dispatch, Fragment, SetStateAction } from 'react';
 
 interface SendingProps {
-  sendingState: [boolean, React.Dispatch<boolean>];
+  sendingState: [boolean, Dispatch<SetStateAction<boolean>>];
 }
 
 export default function SendingNotification({ sendingState: [sending, setSending] }: SendingProps) {
