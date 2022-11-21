@@ -21,13 +21,13 @@ const linkButtonStyles = cva(
   }
 );
 
-export type Intent = 'primary' | 'secondary' | 'tertiary' | null | undefined;
-
 export interface LinkButtonProps extends VariantProps<typeof linkButtonStyles> {
   href: string;
   children: React.ReactNode;
   className: string;
 }
+
+export type LinkButtonIntent = LinkButtonProps['intent'];
 
 export default function LinkButton({
   href,

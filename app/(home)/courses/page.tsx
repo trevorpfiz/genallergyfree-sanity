@@ -15,7 +15,7 @@ export default async function Courses() {
 
   return (
     <>
-      <section className="bg-oldyellow pt-[88px]">
+      <section className="bg-oldyellow">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between px-4 py-20 md:pb-32">
           <h1 className="font-display text-5xl font-bold uppercase leading-none md:text-8xl">
             Our Courses

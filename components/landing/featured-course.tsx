@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 
-import LinkButton, { Intent } from '#/ui/LinkButton';
+import LinkButton, { LinkButtonIntent } from '#/ui/LinkButton';
 import { CourseSanity } from 'additional';
 import FillImage from '../content/fill-image';
 
 interface FeaturedCourseProps {
   course: CourseSanity;
-  intent: Intent;
+  intent: LinkButtonIntent;
 }
 
 export function FeaturedCourse({ course, intent = 'primary' }: FeaturedCourseProps) {

@@ -4,7 +4,7 @@ import { FeaturedCourse } from 'components/landing/featured-course';
 import Quotes from 'components/landing/quotes';
 import Image from 'next/image';
 
-import { Intent } from '#/ui/LinkButton';
+import { LinkButtonIntent } from '#/ui/LinkButton';
 import { indexQuery } from 'lib/queries';
 import { getClient } from 'lib/sanity.server';
 import heroImage from 'public/strawberry-kid.jpg';
@@ -18,11 +18,11 @@ async function fetchCourses() {
 export default async function Home() {
   const data: CourseSanity[] = await fetchCourses();
 
-  const courseIntents: Intent[] = ['primary', 'secondary', 'tertiary'];
+  const courseIntents: LinkButtonIntent[] = ['primary', 'secondary', 'tertiary'];
 
   return (
     <>
-      <section className="bg-oldyellow pt-[88px]">
+      <section className="bg-oldyellow">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between px-4 pt-20 pb-40">
           <h1 className="text-center font-display text-5xl font-bold uppercase leading-none md:text-8xl">
             Let&apos;s stop{' '}

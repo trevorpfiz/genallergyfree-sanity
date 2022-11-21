@@ -54,12 +54,12 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
       <button
         type="button"
         onClick={() => setOpened((o) => !o)}
-        className="block w-full py-3 pl-4 pr-0 font-medium"
+        className="block w-full py-3 pl-4 pr-0 font-medium hover:bg-gray-50"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <div className="flex min-h-[30px] min-w-[30px] items-center justify-center bg-blue-100">
-              {Icon && <Icon size={18} stroke={1.5} color="rgb(34, 139, 230)" />}
+            <div className="flex min-h-[30px] min-w-[30px] items-center justify-center rounded bg-blue-100">
+              {Icon && <Icon size={18} color="rgb(34, 139, 230)" />}
             </div>
             <p className="ml-3 text-left text-[13px]">{title}</p>
           </div>

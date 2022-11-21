@@ -114,7 +114,7 @@ export default function SidebarLayout({
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-indigo-700 pt-5 pb-4">
+                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white pt-5">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"
@@ -135,7 +135,7 @@ export default function SidebarLayout({
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex flex-shrink-0 items-center px-4">
+                  <div className="flex flex-shrink-0 items-center px-4 pb-7 shadow">
                     <Link href="/">
                       <Image
                         src={logo}
@@ -145,8 +145,8 @@ export default function SidebarLayout({
                       />
                     </Link>
                   </div>
-                  <div className="mt-5 h-0 flex-1 overflow-y-auto">
-                    <nav className="space-y-1 px-2">{links}</nav>
+                  <div className="h-0 flex-1 overflow-y-auto">
+                    <nav className="pr-2 pt-1 pb-6">{links}</nav>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -158,25 +158,25 @@ export default function SidebarLayout({
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-72">
+        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-80">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-grow flex-col bg-indigo-700 pt-5">
-            <div className="flex flex-shrink-0 items-center border-b border-b-gray-500 px-4 pb-7">
+          <div className="flex flex-grow flex-col border-r border-r-gray-200 bg-white pt-5">
+            <div className="flex flex-shrink-0 items-center px-4 pb-7 shadow">
               <Link href="/">
                 <Image
                   src={logo}
                   alt="Generation Allergy Free Logo"
-                  style={{ width: '180px', height: 'auto' }}
+                  style={{ width: '180px', height: '16px' }}
                   priority
                 />
               </Link>
             </div>
-            <div className="scrollbar hover:scrollbar--color mt-4 h-0 flex-1 overflow-y-scroll">
-              <nav className="space-y-1 pb-4">{links}</nav>
+            <div className="scrollbar hover:scrollbar--color h-0 flex-1 overflow-y-scroll">
+              <nav className="pt-1 pb-6">{links}</nav>
             </div>
           </div>
         </div>
-        <div className="flex h-full flex-1 flex-col md:pl-72">
+        <div className="flex h-full flex-1 flex-col md:pl-80">
           <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
             <button
               type="button"
