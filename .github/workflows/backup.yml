@@ -1,0 +1,22 @@
+name: Backup Sanity Dataset
+on:
+  schedule:
+    - cron: '0 10 */5 * *'
+  workflow_dispatch:
+defaults:
+  run:
+    working-directory: studio
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npx @sanity/cli dataset export production backup.tar.gz
+        env:
+          SANITY_STUDIO_API_PROJECT_ID: ${{ secrets.SANITY_STUDIO_API_PROJECT_ID }}
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_BACKUP_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: production
+          path: studio/backup.tar.gz
+          retention-days: 30
