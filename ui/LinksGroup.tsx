@@ -7,6 +7,15 @@ import { Dispatch, forwardRef, SetStateAction, useState } from 'react';
 
 import ActiveLink from '#/ui/ActiveLink';
 
+export const transitionClasses = {
+  enter: 'transition ease duration-500 transform',
+  enterFrom: 'opacity-0 -translate-y-6',
+  enterTo: 'opacity-100 translate-y-0',
+  leave: 'transition ease duration-300 transform',
+  leaveFrom: 'opacity-100 translate-y-0',
+  leaveTo: 'opacity-0 -translate-y-6',
+};
+
 export interface LinksGroupProps {
   title: string;
   slug: string;
@@ -67,6 +76,7 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
             <ChevronIcon
               size={14}
               stroke={1.5}
+              className="transition-all duration-200"
               style={{
                 transform: opened ? 'rotate(90deg)' : 'none',
               }}
@@ -77,10 +87,10 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
       {hasPosts ? (
         <Transition
           show={opened}
-          enter="transition-opacity duration-200"
+          enter="transition-opacity duration-200 ease"
           enterFrom="opacity-0"
           enterTo="opacity-100"
-          leave="transition-opacity duration-200"
+          leave="transition-opacity duration-100 ease"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >

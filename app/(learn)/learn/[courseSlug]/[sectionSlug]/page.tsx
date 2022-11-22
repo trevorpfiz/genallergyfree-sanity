@@ -42,7 +42,7 @@ export default async function SectionDashboard({
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold sm:text-xl">{post.title}</p>
-                <p className="text-sm sm:text-xl">{post.excerpt}</p>
+                <p className="truncate text-sm sm:text-xl">{post.excerpt}</p>
               </div>
             </div>
           </Link>
