@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /**
  * This plugin sets up the "Open preview (CTRL + ALT + O)" in the dropdown menu that hosts
  * other actions like "Review changes" and "Inspect"

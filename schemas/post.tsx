@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DocumentIcon } from '@sanity/icons';
 import { orderRankField } from '@sanity/orderable-document-list';
 import { defineType } from 'sanity';
@@ -73,14 +74,6 @@ export default defineType({
               {
                 title: 'Sup',
                 value: 'sup',
-                blockEditor: {
-                  icon: () => (
-                    <div>
-                      x<sup>2</sup>
-                    </div>
-                  ),
-                  render: ({ children }: any) => <sup>{children}</sup>,
-                },
               },
             ],
             annotations: [
@@ -113,9 +106,6 @@ export default defineType({
                     to: [{ type: 'post' }],
                   },
                 ],
-                blockEditor: {
-                  icon: () => <div>in</div>,
-                },
               },
               {
                 name: 'footnote',
@@ -133,14 +123,6 @@ export default defineType({
                     type: 'boolean',
                   },
                 ],
-                blockEditor: {
-                  icon: () => (
-                    <div>
-                      x<sup>2</sup>
-                    </div>
-                  ),
-                  render: ({ children }: { children: any }) => <sup>{children}</sup>,
-                },
               },
             ],
           },

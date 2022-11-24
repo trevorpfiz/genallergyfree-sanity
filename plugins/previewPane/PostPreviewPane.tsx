@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /**
  * This component is responsible for rendering a preview of a post inside the Studio.
  */

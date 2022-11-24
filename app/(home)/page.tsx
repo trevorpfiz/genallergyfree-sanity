@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import IndexPage from '#/components/landing/IndexPage';
 import { getAllCourses } from 'lib/sanity.client';
 import { lazy } from 'react';
