@@ -1,8 +1,12 @@
 import { Card, Flex } from '@sanity/ui';
 import AuthorAvatar from 'components/AuthorAvatar';
-import type { Author } from 'lib/sanity.queries';
 
-export default function AuthorAvatarPreviewPane(props: Author) {
+interface Props {
+  name: any;
+  portrait: any;
+}
+
+export default function AuthorAvatarPreviewPane(props: Props) {
   const { name, portrait } = props;
   return (
     <Card padding={6}>
