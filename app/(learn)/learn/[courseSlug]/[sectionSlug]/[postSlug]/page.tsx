@@ -94,14 +94,18 @@ export async function generateStaticParams() {
   const paths = await getAllPostsSlugs();
 
   function loopParams(posts: Post[]) {
-    return posts.flatMap((post) =>
-      post?.sections.flatMap((section) =>
-        section?.courses.flatMap((course) => ({
-          courseSlug: course.slug,
-          sectionSlug: section.slug,
-          postSlug: post.slug,
-        }))
-      )
+    return posts.flatMap(
+      (post) =>
+        post?.sections &&
+        post?.sections.flatMap(
+          (section) =>
+            section?.courses &&
+            section?.courses.flatMap((course) => ({
+              courseSlug: course.slug,
+              sectionSlug: section.slug,
+              postSlug: post.slug,
+            }))
+        )
     );
   }
 

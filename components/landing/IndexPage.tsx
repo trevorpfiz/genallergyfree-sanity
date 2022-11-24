@@ -19,7 +19,7 @@ export default function IndexPage(props: {
 
   return (
     <>
-      <PreviewLayout preview={preview} loading={loading}>
+      <PreviewLayout preview={preview || false} loading={loading}>
         <section className="bg-oldyellow">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between px-4 pt-20 pb-40">
             <h1 className="text-center font-display text-5xl font-bold uppercase leading-none md:text-8xl">
