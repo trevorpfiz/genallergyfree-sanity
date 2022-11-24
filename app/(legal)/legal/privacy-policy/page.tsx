@@ -1,6 +1,6 @@
 import sanitizeHtml from 'sanitize-html';
 
-import rawHTML from '../../../../lib/privacy-html';
+import rawHTML from '../../../../lib/legal/privacy-html';
 
 export default function PrivacyPage() {
   return (

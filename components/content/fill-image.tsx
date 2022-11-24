@@ -1,10 +1,9 @@
-import { ImagePlusSanity } from 'additional';
 import Image from 'next/image';
 
-import { urlForImage } from '../../lib/sanity';
+import { urlForImage } from '../../lib/sanity.image';
 
 interface FillImageProps {
-  image: ImagePlusSanity;
+  image: any;
   priority: boolean;
   width: number;
   height: number;

@@ -1,11 +1,10 @@
 import { PortableText } from '@portabletext/react';
 import Link from 'next/link';
 
-import { PostSanity } from 'additional';
+import { getAllPostsSlugs, getPost } from '#/lib/sanity.client';
+import { Post } from '#/lib/sanity.queries';
 import HeroImage from 'components/content/hero-image';
 import PostImage from 'components/content/post-image';
-import { postQuery, postSlugsQuery } from 'lib/queries';
-import { getClient, sanityClient } from 'lib/sanity.server';
 
 const components: any = {
   block: {
@@ -92,12 +91,12 @@ const components: any = {
 // }
 
 export async function generateStaticParams() {
-  const paths = await sanityClient.fetch(postSlugsQuery);
+  const paths = await getAllPostsSlugs();
 
-  function loopParams(posts: PostSanity[]) {
+  function loopParams(posts: Post[]) {
     return posts.flatMap((post) =>
-      post.sections.flatMap((section) =>
-        section.courses.flatMap((course) => ({
+      post?.sections.flatMap((section) =>
+        section?.courses.flatMap((course) => ({
           courseSlug: course.slug,
           sectionSlug: section.slug,
           postSlug: post.slug,
@@ -109,16 +108,8 @@ export async function generateStaticParams() {
   return loopParams(paths);
 }
 
-async function fetchPost(params: { postSlug: string }) {
-  const res = await getClient(false).fetch(postQuery, {
-    slug: params?.postSlug,
-  });
-
-  return res;
-}
-
-export default async function Post({ params }: { params: { postSlug: string } }) {
-  const post: PostSanity = await fetchPost(params);
+export default async function PostPage({ params }: { params: { postSlug: string } }) {
+  const post = await getPost(params.postSlug);
 
   return (
     <div>

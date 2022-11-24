@@ -1,10 +1,9 @@
-import { ImagePlusSanity } from 'additional';
 import Image from 'next/image';
 
-import { urlForImage } from 'lib/sanity';
+import { urlForImage } from '#/lib/sanity.image';
 
 interface HeroImageProps {
-  image: ImagePlusSanity;
+  image: any;
   priority: boolean;
 }
 

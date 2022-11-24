@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
-import { CourseSanity } from 'additional';
+import { Course } from '#/lib/sanity.queries';
 import FillImage from '../content/fill-image';
 
-export function CourseCard({ course }: { course: CourseSanity }) {
+export function CourseCard({ course }: { course: Course }) {
   return (
     <Link href={`/learn/${course.slug}`} style={{ textDecoration: 'none' }}>
       <div className="flex w-[300px] transform-gpu flex-col gap-4 border-8 border-oldpink bg-white transition-transform hover:scale-105">

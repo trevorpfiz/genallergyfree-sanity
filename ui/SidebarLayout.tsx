@@ -20,12 +20,12 @@ import {
   IconNumber8,
   IconNumber9,
 } from '@tabler/icons';
-import { Fragment, useRef, useState } from 'react';
-
-import { SectionSanity } from 'additional';
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from 'public/genallergyfree-upscaled-crop.jpg';
+import { Fragment, useRef, useState } from 'react';
+
+import { Section } from '#/lib/sanity.queries';
+import logo from '#/public/genallergyfree-upscaled-crop.jpg';
 import { LinksGroup } from './LinksGroup';
 
 const userNavigation = [
@@ -54,7 +54,7 @@ const chapterToIcon = {
   citations: IconBlockquote,
 };
 
-function addIcon(links: SectionSanity[]) {
+function addIcon(links: Section[]) {
   return links.map((section) => {
     const key = section.chapter as keyof typeof chapterToIcon;
     if (key in chapterToIcon) {
@@ -70,7 +70,7 @@ export default function SidebarLayout({
   params,
 }: {
   children: React.ReactNode;
-  linksData: SectionSanity[];
+  linksData: Section[];
   params: { courseSlug: string };
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);

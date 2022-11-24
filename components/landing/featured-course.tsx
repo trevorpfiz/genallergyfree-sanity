@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 
+import type { Course } from '#/lib/sanity.queries';
 import LinkButton, { LinkButtonIntent } from '#/ui/LinkButton';
-import { CourseSanity } from 'additional';
 import FillImage from '../content/fill-image';
 
 interface FeaturedCourseProps {
-  course: CourseSanity;
+  course: Course;
   intent: LinkButtonIntent;
 }
 

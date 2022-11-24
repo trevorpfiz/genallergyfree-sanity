@@ -1,9 +1,8 @@
-import { ImagePlusSanity } from 'additional';
 import Image from 'next/image';
 
-import { urlForImage } from '../../lib/sanity';
+import { urlForImage } from '../../lib/sanity.image';
 
-export default function PostImage({ value }: { value: ImagePlusSanity }) {
+export default function PostImage({ value }: any) {
   const image = value?.asset?._ref ? (
     <Image
       style={{ width: '100%', height: 'auto' }}
