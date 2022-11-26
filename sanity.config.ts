@@ -1,22 +1,24 @@
 /**
- * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
+ * This config is used to set up Sanity Studio that's mounted on the `/app/(studio)/studio/[[...index]]/page.tsx` route
  */
 
-import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
+import { settingsStructure } from '#/plugins/settings';
 import { visionTool } from '@sanity/vision';
 import { apiVersion, dataset, previewSecretId, projectId } from 'lib/sanity.api';
 import { previewDocumentNode } from 'plugins/previewPane';
 import { productionUrl } from 'plugins/productionUrl';
 import { defineConfig } from 'sanity';
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash';
+import { media, mediaAssetSource } from 'sanity-plugin-media';
 import { deskTool } from 'sanity/desk';
 
 import authorType from 'schemas/author';
 import courseType from 'schemas/course';
 import postType from 'schemas/post';
 import sectionType from 'schemas/section';
+import settingsType from 'schemas/settings';
 
-const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io';
+const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Generation Allergy Free';
 
 export default defineConfig({
   basePath: '/studio',
@@ -25,20 +27,11 @@ export default defineConfig({
   title,
   schema: {
     // If you want more content types, you can add them to this array
-    types: [postType, sectionType, courseType, authorType],
+    types: [postType, sectionType, courseType, authorType, settingsType],
   },
   plugins: [
     deskTool({
-      structure: (S, context) =>
-        S.list()
-          .title('Content')
-          .items([
-            // Minimum required configuration
-            orderableDocumentListDeskItem({ type: courseType.name, S, context }),
-            orderableDocumentListDeskItem({ type: sectionType.name, S, context }),
-            orderableDocumentListDeskItem({ type: postType.name, S, context }),
-            orderableDocumentListDeskItem({ type: authorType.name, S, context }),
-          ]),
+      structure: settingsStructure(settingsType),
       // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
       defaultDocumentNode: previewDocumentNode({ apiVersion, previewSecretId }),
     }),
@@ -46,12 +39,21 @@ export default defineConfig({
     productionUrl({
       apiVersion,
       previewSecretId,
-      types: [postType.name, sectionType.name, courseType.name],
+      types: [postType.name, settingsType.name],
     }),
     // Add an image asset source for Unsplash
     unsplashImageAsset(),
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
+    // Media browser plugin
+    media(),
   ],
+  form: {
+    // Don't use this plugin when selecting files only (but allow all other enabled asset sources)
+    file: {
+      assetSources: (previousAssetSources) =>
+        previousAssetSources.filter((assetSource) => assetSource !== mediaAssetSource),
+    },
+  },
 });

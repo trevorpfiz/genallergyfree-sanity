@@ -1,5 +1,7 @@
+import { groq } from 'next-sanity';
+
 // fields
-const postFields = /* groq */ `
+const postFields = groq`
   _id,
   title,
   publishedDate,
@@ -14,7 +16,7 @@ const postFields = /* groq */ `
   "slug": slug.current,
 `;
 
-const sectionFields = /* groq */ `
+const sectionFields = groq`
   _id,
   title,
   chapter,
@@ -26,7 +28,7 @@ const sectionFields = /* groq */ `
   },
 `;
 
-const courseFields = /* groq */ `
+const courseFields = groq`
   _id,
   title,
   "slug": slug.current,
@@ -40,14 +42,17 @@ const courseFields = /* groq */ `
   },
 `;
 
+// settings
+export const settingsQuery = groq`*[_type == "settings"][0]`;
+
 // index
-export const indexQuery = /* groq */ `
+export const indexQuery = groq`
 *[_type == "course"] | order(orderRank) {
   ${courseFields}
 }`;
 
 // post
-export const postQuery = /* groq */ `
+export const postQuery = groq`
 *[_type == "post" && slug.current == $slug][0] {
     ${postFields}
     content[]{
@@ -69,7 +74,7 @@ export const postQuery = /* groq */ `
   }
   `;
 
-export const prevNextPostQuery = /* groq */ `
+export const prevNextPostQuery = groq`
  {
   "prev": *[_type == "post" && orderRank == $order - 1] | order(orderRank) [0] {
     "slug": slug.current,
@@ -82,11 +87,11 @@ export const prevNextPostQuery = /* groq */ `
 }
 `;
 
-// export const postSlugsQuery = /* groq */ `
+// export const postSlugsQuery = groq`
 // *[_type == "post" && references(*[_type == "section" && slug.current == $sectionSlug]._id)][].slug.current
 // `;
 
-export const postSlugsQuery = /* groq */ `
+export const postSlugsQuery = groq`
 *[_type == "post" && defined(slug.current)] {
   "slug": slug.current,
   sections[]->{
@@ -98,7 +103,7 @@ export const postSlugsQuery = /* groq */ `
 }
 `;
 
-export const postBySlugQuery = /* groq */ `
+export const postBySlugQuery = groq`
 *[_type == "post" && slug.current == $slug][0] {
   ${postFields}
   "slug": slug.current,
@@ -112,7 +117,7 @@ export const postBySlugQuery = /* groq */ `
 `;
 
 // section
-export const sectionQuery = /* groq */ `
+export const sectionQuery = groq`
 *[_type == "section" && slug.current == $slug] | order(orderRank) [0] {
   ${sectionFields}
   "posts": *[_type == "post" && references(^._id)] | order(orderRank) {
@@ -121,11 +126,11 @@ export const sectionQuery = /* groq */ `
   }
 `;
 
-// export const sectionSlugsQuery = /* groq */ `
+// export const sectionSlugsQuery = groq`
 // *[_type == "section" && references(*[_type == "course" && slug.current == $courseSlug]._id)][].slug.current
 // `;
 
-export const sectionSlugsQuery = /* groq */ `
+export const sectionSlugsQuery = groq`
 *[_type == "section" && defined(slug.current)] {
   "slug": slug.current,
   courses[]->{
@@ -135,7 +140,7 @@ export const sectionSlugsQuery = /* groq */ `
 `;
 
 // course
-export const courseQuery = /* groq */ `
+export const courseQuery = groq`
 *[_type == "course" && slug.current == $slug] | order(order) [0] {
   ${courseFields}
   "sections": *[_type == "section" && references(^._id)] | order(orderRank) {
@@ -148,11 +153,19 @@ export const courseQuery = /* groq */ `
   }
 `;
 
-export const courseSlugsQuery = /* groq */ `
+export const courseSlugsQuery = groq`
 *[_type == "course" && defined(slug.current)][].slug.current
 `;
 
 // types
+export interface Settings {
+  title: string;
+  description: string;
+  ogImage?: {
+    title?: string;
+  };
+}
+
 export interface Post {
   _id: string;
   title: string;

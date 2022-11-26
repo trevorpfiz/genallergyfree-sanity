@@ -1,8 +1,10 @@
+import '#/styles/globals.css';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head />
-      <body>{children}</body>
+      <body className="bg-white text-black">{children}</body>
     </html>
   );
 }
