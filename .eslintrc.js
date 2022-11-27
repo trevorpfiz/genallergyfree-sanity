@@ -73,8 +73,6 @@ module.exports = {
         argsIgnorePattern: '^_',
       },
     ],
-
-    'import/no-unresolved': [2, { ignore: ['^(all|part):'] }],
   },
   overrides: [
     {
