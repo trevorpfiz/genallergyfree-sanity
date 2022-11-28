@@ -4,7 +4,7 @@
 
 import useWeb3Forms from '@web3forms/react';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form-latest';
 import ErrorNotification from './ErrorNotification';
 import SendingNotification from './SendingNotification';
 import SuccessNotification from './SuccessNotification';
