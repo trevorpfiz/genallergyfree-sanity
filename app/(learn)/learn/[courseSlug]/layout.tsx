@@ -1,4 +1,6 @@
 import '#/styles/globals.css';
+import 'overlayscrollbars/overlayscrollbars.css';
+import 'simplebar-react/dist/simplebar.min.css';
 
 import { getCourse } from '#/lib/sanity.client';
 import SidebarLayout from '../../../../ui/SidebarLayout';

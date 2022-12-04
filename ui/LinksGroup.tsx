@@ -38,8 +38,9 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
     params,
     icon: Icon,
   }: LinksGroupProps = props;
-  const [opened, setOpened] = useState(false);
   const pathname = usePathname();
+
+  const [opened, setOpened] = useState(pathname?.split('/').slice(2)[1] === sectionSlug || false);
 
   const hasPosts = Array.isArray(posts);
   const ChevronIcon = IconChevronRight;
@@ -48,14 +49,19 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
     <ActiveLink
       key={post.slug}
       href={`/learn/${params?.courseSlug}/${sectionSlug}/${post.slug}`}
-      intent={pathname?.endsWith(post.slug) ? 'active' : 'inactive'}
+      intent={pathname?.split('/').slice(2)[2] === post.slug ? 'active' : 'inactive'}
     >
       <button
         type="button"
         className="text-left"
         onClick={sidebarOpen ? () => setSidebarOpen((o) => !o) : undefined}
       >
-        <p>{post.title}</p>
+        <p
+          className="scroll-mt-72"
+          ref={pathname?.split('/').slice(2)[2] === post.slug ? ref : null}
+        >
+          {post.title}
+        </p>
       </button>
     </ActiveLink>
   ));
@@ -65,7 +71,7 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
       <button
         type="button"
         onClick={() => setOpened((o) => !o)}
-        className="block w-full py-3 pl-4 pr-0 font-medium hover:bg-gray-50"
+        className="block w-full py-3 pl-4 pr-4 font-medium hover:bg-gray-50"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center">

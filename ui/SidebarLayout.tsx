@@ -22,7 +22,8 @@ import {
 } from '@tabler/icons';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Fragment, useRef, useState } from 'react';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 
 import { Section } from '#/lib/sanity.queries';
 import logo from '#/public/genallergyfree-upscaled-crop.jpg';
@@ -87,6 +88,17 @@ export default function SidebarLayout({
     />
   ));
 
+  useEffect(() => {
+    if (sidebarOpen) {
+      const timer = setTimeout(() => {
+        scrollRef.current?.scrollIntoView();
+      }, 1);
+      return () => clearTimeout(timer);
+    }
+
+    return undefined;
+  }, [sidebarOpen]);
+
   return (
     <>
       <div className="h-full">
@@ -146,7 +158,7 @@ export default function SidebarLayout({
                     </Link>
                   </div>
                   <div className="h-0 flex-1 overflow-y-auto">
-                    <nav className="pr-2 pt-1 pb-6">{links}</nav>
+                    <nav className="pt-1 pb-6">{links}</nav>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -158,9 +170,9 @@ export default function SidebarLayout({
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-80">
+        <div className="hidden h-full md:fixed md:inset-y-0 md:flex md:w-80">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-grow flex-col border-r border-r-gray-200 bg-white pt-5">
+          <div className="flex h-full flex-grow flex-col border-r border-r-gray-200 bg-white pt-5">
             <div className="flex flex-shrink-0 items-center px-4 pb-7 shadow">
               <Link href="/">
                 <Image
@@ -171,8 +183,18 @@ export default function SidebarLayout({
                 />
               </Link>
             </div>
-            <div className="scrollbar hover:scrollbar--color h-0 flex-1 overflow-y-scroll">
-              <nav className="pt-1 pb-6">{links}</nav>
+            <div className="flex h-0 flex-1 flex-col">
+              <OverlayScrollbarsComponent
+                options={{
+                  overflow: {
+                    x: 'hidden',
+                    y: 'scroll',
+                  },
+                  scrollbars: { autoHide: 'leave', autoHideDelay: 0 },
+                }}
+              >
+                <nav className="flex-1 pt-1 pb-6">{links}</nav>
+              </OverlayScrollbarsComponent>
             </div>
           </div>
         </div>
