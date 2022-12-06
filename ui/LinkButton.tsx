@@ -8,6 +8,7 @@ const linkButtonStyles = cva(
     variants: {
       intent: {
         primary: 'bg-pink-400 text-white hover:bg-pink-500',
+        primaryInverse: 'bg-pink-50 text-pink-500 hover:bg-pink-100',
         secondary: 'bg-blue-400 text-white hover:bg-blue-500',
         tertiary: 'bg-green-400 text-white hover:bg-green-500',
       },

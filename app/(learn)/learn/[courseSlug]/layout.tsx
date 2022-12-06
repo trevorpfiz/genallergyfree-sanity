@@ -2,7 +2,7 @@ import '#/styles/globals.css';
 import 'overlayscrollbars/overlayscrollbars.css';
 
 import { getCourse } from '#/lib/sanity.client';
-import SidebarLayout from '../../../../ui/SidebarLayout';
+import SidebarLayout from '#/ui/SidebarLayout';
 
 export default async function CourseLayout({
   children,

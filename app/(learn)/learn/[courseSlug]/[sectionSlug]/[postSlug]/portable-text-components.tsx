@@ -1,5 +1,6 @@
-import PostImage from '#/components/content/post-image';
 import Link from 'next/link';
+
+import PostImage from '#/components/content/post-image';
 
 export const components: any = {
   block: {
