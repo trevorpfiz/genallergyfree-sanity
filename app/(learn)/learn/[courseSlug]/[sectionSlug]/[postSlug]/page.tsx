@@ -58,7 +58,7 @@ export default async function PostPage({
           </div>
         </div>
 
-        <div className="mx-auto mb-12 max-w-3xl">
+        <div className="mx-auto mb-24 max-w-3xl">
           <PortableText value={post.content} components={components} />
         </div>
       </article>

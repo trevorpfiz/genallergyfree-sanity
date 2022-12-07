@@ -62,22 +62,22 @@ export default function NextPrev({
 
   return (
     <div className="mx-auto mt-12 mb-16 max-w-4xl">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between space-x-2">
         <LinkButton
           href={`/learn/${courseSlug}${prev.path}`}
           intent="primaryInverse"
-          className="py-3 pl-4 pr-6 text-lg"
+          className="flex py-3 pl-4 pr-6 text-center text-sm md:text-base"
         >
-          <ChevronLeftIcon className="h-6 w-6" aria-hidden="true" />
+          <ChevronLeftIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
           {prev.title}
         </LinkButton>
         <LinkButton
           href={`/learn/${courseSlug}${next.path}`}
           intent="primaryInverse"
-          className="py-3 pl-6 pr-4 text-lg"
+          className="flex py-3 pl-6 pr-4 text-center text-sm md:text-base"
         >
           {next.title}
-          <ChevronRightIcon className="h-6 w-6" aria-hidden="true" />
+          <ChevronRightIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
         </LinkButton>
       </div>
     </div>

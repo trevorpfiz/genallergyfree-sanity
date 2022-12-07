@@ -7,7 +7,8 @@ import { IconChevronRight, TablerIcon } from '@tabler/icons';
 import { usePathname } from 'next/navigation';
 import { Dispatch, forwardRef, SetStateAction, useState } from 'react';
 
-import ActiveLink from '#/ui/ActiveLink';
+import ActivePost from '#/ui/ActivePost';
+import ActiveSection from './ActiveSection';
 
 export const transitionClasses = {
   enter: 'transition ease duration-500 transform',
@@ -45,33 +46,46 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
   const hasPosts = Array.isArray(posts);
   const ChevronIcon = IconChevronRight;
 
+  function openClose() {
+    // close sidebar on mobile
+    sidebarOpen ? setSidebarOpen((o) => !o) : undefined;
+
+    // set opened to true
+    setOpened(true);
+  }
+
+  function clickChevron(e: React.MouseEvent) {
+    // stop next/link
+    e.preventDefault();
+    e.stopPropagation();
+
+    // toggle opened
+    setOpened((o) => !o);
+  }
+
   const items = (hasPosts ? posts : []).map((post) => (
-    <ActiveLink
+    <ActivePost
       key={post.slug}
       href={`/learn/${params?.courseSlug}/${sectionSlug}/${post.slug}`}
       intent={pathname?.split('/').slice(2)[2] === post.slug ? 'active' : 'inactive'}
+      onClick={sidebarOpen ? () => setSidebarOpen((o) => !o) : undefined}
     >
-      <button
-        type="button"
-        className="text-left"
-        onClick={sidebarOpen ? () => setSidebarOpen((o) => !o) : undefined}
-      >
-        <p
-          className="scroll-mt-72"
-          ref={pathname?.split('/').slice(2)[2] === post.slug ? ref : null}
-        >
-          {post.title}
-        </p>
-      </button>
-    </ActiveLink>
+      <p className="scroll-mt-72" ref={pathname?.split('/').slice(2)[2] === post.slug ? ref : null}>
+        {post.title}
+      </p>
+    </ActivePost>
   ));
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpened((o) => !o)}
-        className="block w-full py-3 pl-4 pr-4 font-medium hover:bg-gray-50"
+      <ActiveSection
+        href={`/learn/${params?.courseSlug}/${sectionSlug}`}
+        intent={
+          pathname?.split('/').slice(2)[1] === sectionSlug && !pathname?.split('/').slice(2)[2]
+            ? 'active'
+            : 'inactive'
+        }
+        onClick={openClose}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center">
@@ -81,17 +95,23 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
             <p className="ml-3 text-left text-[13px]">{title}</p>
           </div>
           {hasPosts && (
-            <ChevronIcon
-              size={14}
-              stroke={1.5}
-              className="transition-all duration-200"
-              style={{
-                transform: opened ? 'rotate(90deg)' : 'none',
-              }}
-            />
+            <button
+              type="button"
+              className="p-1 hover:bg-gray-800/5"
+              onClick={(e) => clickChevron(e)}
+            >
+              <ChevronIcon
+                size={18}
+                stroke={1.5}
+                className="transition-transform duration-200"
+                style={{
+                  transform: opened ? 'rotate(90deg)' : 'none',
+                }}
+              />
+            </button>
           )}
         </div>
-      </button>
+      </ActiveSection>
       {hasPosts ? (
         <Transition
           show={opened}

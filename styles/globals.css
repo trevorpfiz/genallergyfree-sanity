@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+  ul,
+  ol {
+    list-style: revert;
+    margin-block-start: revert;
+    margin-block-end: revert;
+    padding-inline-start: revert;
+    font-size: 18px;
+  }
+
   [data-nextjs-scroll-focus-boundary] {
     display: contents;
   }

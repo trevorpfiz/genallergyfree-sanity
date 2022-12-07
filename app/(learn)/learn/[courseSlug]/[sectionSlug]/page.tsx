@@ -26,7 +26,7 @@ export default async function SectionDashboard({
 
   return (
     <div>
-      <div className="mx-auto mb-12 flex max-w-3xl flex-col gap-6">
+      <div className="mx-auto mb-24 flex max-w-3xl flex-col gap-6">
         <Breadcrumbs />
         <h1 className="font-display text-4xl font-bold">{section.title}</h1>
         <div className="flex flex-col gap-4">
