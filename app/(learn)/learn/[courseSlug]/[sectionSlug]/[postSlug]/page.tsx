@@ -17,6 +17,8 @@ import { components } from './portable-text-components';
 //   return paths.map((slug: string) => ({ postSlug: slug }));
 // }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const paths = await getAllPostsSlugs();
 

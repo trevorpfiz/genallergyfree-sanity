@@ -52,8 +52,16 @@ export default function NextPrev({
       const index = slugs.findIndex((item) => item.slug === slug);
 
       // nasty typescript error
-      const slugsPrev: SlugsList = slugs?.[index - 1] || { slug: '', path: '/', title: 'title' };
-      const slugsNext: SlugsList = slugs?.[index + 1] || { slug: '', path: '/', title: 'title' };
+      const slugsPrev: SlugsList = slugs?.[index - 1] || {
+        slug: '',
+        path: '/',
+        title: 'Dashboard',
+      };
+      const slugsNext: SlugsList = slugs?.[index + 1] || {
+        slug: '',
+        path: '/',
+        title: 'Dashboard',
+      };
 
       setPrev(slugsPrev);
       setNext(slugsNext);

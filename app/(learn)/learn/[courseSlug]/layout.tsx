@@ -1,4 +1,5 @@
 import '#/styles/globals.css';
+import '#/styles/style.css';
 import 'overlayscrollbars/overlayscrollbars.css';
 
 import { getCourse } from '#/lib/sanity.client';
