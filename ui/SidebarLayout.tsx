@@ -116,7 +116,7 @@ export default function SidebarLayout({
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white pt-5">
+                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"
@@ -137,7 +137,7 @@ export default function SidebarLayout({
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex flex-shrink-0 items-center px-4 pb-7 shadow">
+                  <div className="flex flex-shrink-0 items-center px-4 pt-6 pb-6 shadow">
                     <Link href="/">
                       <Image
                         src={logo}
@@ -162,8 +162,8 @@ export default function SidebarLayout({
         {/* Static sidebar for desktop */}
         <div className="hidden h-full md:fixed md:inset-y-0 md:flex md:w-80">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex h-full flex-grow flex-col border-r border-r-gray-200 bg-white pt-5">
-            <div className="flex flex-shrink-0 items-center px-4 pb-7 shadow">
+          <div className="flex h-full flex-grow flex-col border-r border-r-gray-200 bg-white">
+            <div className="flex flex-shrink-0 items-center px-4 pt-6 pb-6 shadow">
               <Link href="/">
                 <Image
                   src={logo}
