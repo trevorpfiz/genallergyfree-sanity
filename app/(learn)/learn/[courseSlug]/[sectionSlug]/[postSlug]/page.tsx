@@ -2,6 +2,7 @@ import { PortableText } from '@portabletext/react';
 
 import HeroImage from '#/components/content/hero-image';
 import NextPrev from '#/components/content/next-prev';
+import ScrollUpBody from '#/components/ScrollUpBody';
 import { getAllPostsSlugs, getCourse, getPost } from '#/lib/sanity.client';
 import { Post } from '#/lib/sanity.queries';
 import Breadcrumbs from '#/ui/Breadcrumbs';
@@ -50,27 +51,30 @@ export default async function PostPage({
   const course = await getCourse(params.courseSlug);
 
   return (
-    <div>
-      <article>
-        <div className="mx-auto max-w-3xl">
-          <Breadcrumbs />
-          <h1 className="mt-6 mb-12 font-display text-5xl font-bold">{post.title}</h1>
-          <div className="-mx-4 mb-12 sm:mx-0">
-            <HeroImage image={post.heroImage} priority />
+    <>
+      <ScrollUpBody />
+      <div>
+        <article>
+          <div className="mx-auto max-w-3xl">
+            <Breadcrumbs />
+            <h1 className="mt-6 mb-12 font-display text-5xl font-bold">{post.title}</h1>
+            <div className="-mx-4 mb-12 sm:mx-0">
+              <HeroImage image={post.heroImage} priority />
+            </div>
           </div>
-        </div>
 
-        <div className="mx-auto mb-24 max-w-3xl">
-          <PortableText value={post.content} components={components} />
-        </div>
-      </article>
-      <SectionSeparator />
-      <NextPrev
-        courseSlug={params.courseSlug}
-        slug={params.postSlug}
-        courseSections={course?.sections ? course?.sections : []}
-      />
-    </div>
+          <div className="mx-auto mb-24 max-w-3xl">
+            <PortableText value={post.content} components={components} />
+          </div>
+        </article>
+        <SectionSeparator />
+        <NextPrev
+          courseSlug={params.courseSlug}
+          slug={params.postSlug}
+          courseSections={course?.sections ? course?.sections : []}
+        />
+      </div>
+    </>
   );
 }
 

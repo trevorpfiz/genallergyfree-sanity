@@ -3,7 +3,7 @@
 'use client';
 
 import { Dialog, Transition } from '@headlessui/react';
-import { Bars3BottomLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3BottomLeftIcon, ChevronLeftIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import {
   IconBlockquote,
   IconChecklist,
@@ -26,6 +26,7 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 
 import { Section } from '#/lib/sanity.queries';
 import logo from '#/public/genallergyfree-upscaled-crop.jpg';
+import LinkButton from './LinkButton';
 import { LinksGroup } from './LinksGroup';
 import Search from './Search';
 
@@ -82,7 +83,7 @@ export default function SidebarLayout({
     if (sidebarOpen) {
       const timer = setTimeout(() => {
         scrollRef.current?.scrollIntoView();
-      }, 1);
+      }, 0);
       return () => clearTimeout(timer);
     }
 
@@ -137,8 +138,15 @@ export default function SidebarLayout({
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex flex-shrink-0 items-center px-4 pt-6 pb-6 shadow">
-                    <Link href="/">
+                  <div className="flex flex-shrink-0 items-center justify-between px-4 pt-4 pb-4 shadow">
+                    <LinkButton
+                      href="/courses"
+                      intent="primaryInverse"
+                      className="flex px-3 py-1 text-center"
+                    >
+                      <ChevronLeftIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+                    </LinkButton>
+                    <Link href="/" className="flex flex-1 justify-center">
                       <Image
                         src={logo}
                         alt="Generation Allergy Free Logo"
@@ -163,8 +171,15 @@ export default function SidebarLayout({
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-80">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex flex-grow flex-col border-r border-r-gray-200 bg-white">
-            <div className="flex flex-shrink-0 items-center px-4 pt-6 pb-6 shadow">
-              <Link href="/">
+            <div className="flex flex-shrink-0 items-center justify-between px-4 pt-4 pb-4 shadow ">
+              <LinkButton
+                href="/courses"
+                intent="primaryInverse"
+                className="flex px-4 py-1 text-center"
+              >
+                <ChevronLeftIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
+              </LinkButton>
+              <Link href="/courses" className="flex flex-1 justify-center">
                 <Image
                   src={logo}
                   alt="Generation Allergy Free Logo"

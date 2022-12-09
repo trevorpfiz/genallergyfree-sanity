@@ -1,3 +1,4 @@
+import ScrollUp from '#/components/ScrollUp';
 import { FeaturedAbout } from 'components/landing/featured-about';
 import { FeaturedTwins } from 'components/landing/featured-twins';
 import Quotes from 'components/landing/quotes';
@@ -5,6 +6,7 @@ import Quotes from 'components/landing/quotes';
 export default function About() {
   return (
     <>
+      <ScrollUp />
       <section className="bg-oldyellow">
         <div className="mx-auto flex max-w-6xl flex-col justify-between px-4 py-20 md:pb-40">
           <h1 className="font-display text-5xl font-bold uppercase leading-none md:text-8xl">

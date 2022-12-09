@@ -21,8 +21,8 @@ export default function NextPrev({
   slug: string;
   courseSections: Section[];
 }) {
-  const [prev, setPrev] = useState<SlugsList>({ slug: '', path: '/', title: 'title' });
-  const [next, setNext] = useState<SlugsList>({ slug: '', path: '/', title: 'title' });
+  const [prev, setPrev] = useState<SlugsList>({ slug: '', path: '/', title: 'Previous' });
+  const [next, setNext] = useState<SlugsList>({ slug: '', path: '/', title: 'Next' });
 
   const slugs = useMemo(() => {
     const result: SlugsList[] = [];

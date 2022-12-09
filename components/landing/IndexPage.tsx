@@ -4,6 +4,7 @@ import type { Course } from '#/lib/sanity.queries';
 import heroImage from '#/public/strawberry-kid.jpg';
 import { LinkButtonIntent } from '#/ui/LinkButton';
 import PreviewLayout from '../preview/PreviewLayout';
+import ScrollUp from '../ScrollUp';
 import { CourseUpdates } from './course-updates';
 import { FeaturedCourse } from './featured-course';
 import Quotes from './quotes';
@@ -19,6 +20,7 @@ export default function IndexPage(props: {
 
   return (
     <>
+      <ScrollUp />
       <PreviewLayout preview={preview || false} loading={loading}>
         <section className="bg-oldyellow">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between px-4 pt-20 pb-40">
