@@ -12,13 +12,13 @@ const oswald = Oswald({
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${oswald.variable} h-full overflow-hidden`}>
+    <html lang="en" className={`${inter.variable} ${oswald.variable} h-full overflow-x-hidden`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Generation Allergy Free</title>
         <meta name="description" content="Generation Allergy Free" key="desc" />
       </head>
-      <body className="h-full overflow-hidden">{children}</body>
+      <body className="h-full overflow-x-hidden">{children}</body>
     </html>
   );
 }

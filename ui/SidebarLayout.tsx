@@ -91,7 +91,7 @@ export default function SidebarLayout({
 
   return (
     <>
-      <div className="h-full">
+      <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
             <Transition.Child
@@ -160,9 +160,9 @@ export default function SidebarLayout({
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden h-full md:fixed md:inset-y-0 md:flex md:w-80">
+        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-80">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex h-full flex-grow flex-col border-r border-r-gray-200 bg-white">
+          <div className="flex flex-grow flex-col border-r border-r-gray-200 bg-white">
             <div className="flex flex-shrink-0 items-center px-4 pt-6 pb-6 shadow">
               <Link href="/">
                 <Image
@@ -190,7 +190,7 @@ export default function SidebarLayout({
         </div>
 
         {/* main */}
-        <div className="flex h-full flex-1 flex-col md:pl-80">
+        <div className="flex flex-1 flex-col md:pl-80">
           <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
             <button
               type="button"
@@ -209,7 +209,7 @@ export default function SidebarLayout({
             </div>
           </div>
 
-          <main className="overflow-y-auto">
+          <main>
             <div className="mx-auto max-w-7xl px-4 py-6">{children}</div>
           </main>
         </div>
