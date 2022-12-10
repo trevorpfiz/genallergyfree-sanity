@@ -1,4 +1,4 @@
-import AlertBanner from 'components/preview/AlertBanner';
+import AlertBanner from '#/components/preview/AlertBanner';
 
 export default function PreviewLayout({
   preview,

@@ -25,7 +25,7 @@ const linkButtonStyles = cva(
 export interface LinkButtonProps extends VariantProps<typeof linkButtonStyles> {
   href: string;
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }
 
 export type LinkButtonIntent = LinkButtonProps['intent'];

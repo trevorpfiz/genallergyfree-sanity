@@ -80,7 +80,7 @@ export default function Header({ intent }: HeaderProps) {
                   </Disclosure.Button>
                 </Link>
               </div>
-              <div className="border-t border-black bg-oldpink pt-4 pb-3">
+              <div className="border-t-2 border-black bg-oldpink pt-4 pb-3">
                 <div className="flex items-center px-4">
                   <Link href="/courses">
                     <Disclosure.Button className="rounded-full bg-oldyellow py-2 px-4 font-semibold text-black hover:bg-yellow-300">

@@ -14,15 +14,15 @@ interface SlugsList {
 
 export default function NextPrev({
   courseSlug,
-  slug,
+  sectionOrPostSlug,
   courseSections,
 }: {
   courseSlug: string;
-  slug: string;
+  sectionOrPostSlug: string;
   courseSections: Section[];
 }) {
-  const [prev, setPrev] = useState<SlugsList>({ slug: '', path: '/', title: 'title' });
-  const [next, setNext] = useState<SlugsList>({ slug: '', path: '/', title: 'title' });
+  const [prev, setPrev] = useState<SlugsList>({ slug: '', path: '/', title: 'Previous' });
+  const [next, setNext] = useState<SlugsList>({ slug: '', path: '/', title: 'Next' });
 
   const slugs = useMemo(() => {
     const result: SlugsList[] = [];
@@ -48,16 +48,16 @@ export default function NextPrev({
   }, [courseSections]);
 
   useEffect(() => {
-    if (slug) {
-      const index = slugs.findIndex((item) => item.slug === slug);
+    if (sectionOrPostSlug) {
+      const index = slugs.findIndex((item) => item.slug === sectionOrPostSlug);
 
       // nasty typescript error
-      const slugsPrev: SlugsList = slugs?.[index - 1] || {
+      const slugsPrev: SlugsList = slugs[index - 1] || {
         slug: '',
         path: '/',
         title: 'Dashboard',
       };
-      const slugsNext: SlugsList = slugs?.[index + 1] || {
+      const slugsNext: SlugsList = slugs[index + 1] || {
         slug: '',
         path: '/',
         title: 'Dashboard',
@@ -66,7 +66,7 @@ export default function NextPrev({
       setPrev(slugsPrev);
       setNext(slugsNext);
     }
-  }, [slugs, slug]);
+  }, [slugs, sectionOrPostSlug]);
 
   return (
     <div className="mx-auto mt-12 mb-16 max-w-4xl">

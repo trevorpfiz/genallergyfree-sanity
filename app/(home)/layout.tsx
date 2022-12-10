@@ -6,10 +6,14 @@ import { Inter, Oswald } from '@next/font/google';
 
 const inter = Inter({
   variable: '--font-inter',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 const oswald = Oswald({
   variable: '--font-oswald',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

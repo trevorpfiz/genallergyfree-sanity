@@ -1,9 +1,14 @@
 /* eslint-disable consistent-return */
-import { apiVersion, dataset, previewSecretId, projectId, useCdn } from 'lib/sanity.api';
-import { postBySlugQuery } from 'lib/sanity.queries';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse, PageConfig } from 'next';
 import { createClient } from 'next-sanity';
-import { getSecret } from 'plugins/productionUrl/utils';
+
+import { apiVersion, dataset, previewSecretId, projectId, useCdn } from '#/lib/sanity.api';
+import { postBySlugQuery } from '#/lib/sanity.queries';
+import { getSecret } from '#/plugins/productionUrl/utils';
+
+// res.setPreviewData only exists in the nodejs runtime, setting the config here allows changing the global runtime
+// option in next.config.mjs without breaking preview mode
+export const config: PageConfig = { runtime: 'nodejs' };
 
 function redirectToPreview(
   res: NextApiResponse<string | void>,
