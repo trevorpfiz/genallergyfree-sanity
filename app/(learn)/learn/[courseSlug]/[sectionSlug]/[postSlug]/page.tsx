@@ -1,9 +1,10 @@
+import { previewData } from 'next/headers';
+
 import PostPage from '#/components/content/PostPage';
 import PreviewPostPage from '#/components/preview/PreviewPostPage';
+import { PreviewSuspense } from '#/components/preview/PreviewSuspense';
 import { getAllPostsSlugs, getCourse, getPost } from '#/lib/sanity.client';
 import { Post } from '#/lib/sanity.queries';
-import { PreviewSuspense } from 'next-sanity/preview';
-import { previewData } from 'next/headers';
 
 // top-down
 // export async function generateStaticParams({ sectionSlug }) {
