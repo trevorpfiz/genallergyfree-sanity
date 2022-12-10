@@ -1,15 +1,17 @@
 import Meta from '#/components/seo/Meta';
 import MetaDescription from '#/components/seo/MetaDescription';
 import * as demo from '#/lib/demo.data';
-import { getSettings } from '#/lib/sanity.client';
+import { getCourse, getSettings } from '#/lib/sanity.client';
 
-export default async function Head() {
+export default async function CourseHead({ params }: { params: { courseSlug: string } }) {
   const { title = demo.title, description = demo.description, ogImage = {} } = await getSettings();
   const ogImageTitle = ogImage?.title || demo.ogImageTitle;
 
+  const course = await getCourse(params.courseSlug);
+
   return (
     <>
-      <title>{title}</title>
+      <title>{`${course.title} | ${title}`}</title>
       <Meta />
       <MetaDescription value={description} />
       <meta

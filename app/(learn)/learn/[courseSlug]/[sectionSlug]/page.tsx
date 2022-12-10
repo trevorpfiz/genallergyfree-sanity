@@ -22,6 +22,7 @@ export default async function SectionDashboard({
 }: {
   params: { courseSlug: string; sectionSlug: string };
 }) {
+  // console.log(params, 'section');
   const section = await getSection(params.sectionSlug);
   const course = await getCourse(params.courseSlug);
 

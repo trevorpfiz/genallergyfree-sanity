@@ -5,12 +5,14 @@ import { urlForImage } from '../../lib/sanity.image';
 export default function PostImage({ value }: any) {
   const image = value?.asset?._ref ? (
     <Image
-      style={{ width: '100%', height: 'auto' }}
-      width={720}
-      height={480}
+      className="my-4 h-auto max-w-full"
+      width={768}
+      height={432}
       alt={value?.altText ? `${value?.altText}` : 'Post image'}
-      src={urlForImage(value).width(720).url()}
-      sizes="100vw"
+      src={urlForImage(value).width(1920).url()}
+      sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
       placeholder="blur"
       blurDataURL={`${value?.lqip}`}
     />

@@ -5,7 +5,7 @@ import FillImage from '../content/fill-image';
 
 export function CourseCard({ course }: { course: Course }) {
   return (
-    <Link href={`/learn/${course.slug}`} style={{ textDecoration: 'none' }}>
+    <Link href={`/learn/${course.slug}`}>
       <div className="flex w-[300px] transform-gpu flex-col gap-4 border-8 border-oldpink bg-white transition-transform hover:scale-105">
         <div className="relative h-[169px] w-full max-w-[300px]">
           <FillImage image={course.thumbnail} priority width={300} height={169} />

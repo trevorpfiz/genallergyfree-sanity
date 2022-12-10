@@ -10,6 +10,7 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
     './ui/**/*.{js,ts,jsx,tsx}',
     './plugins/**/*.{js,ts,jsx,tsx}',
+    '!./node_modules', // might fix HMR issues
   ],
   theme: {
     extend: {

@@ -18,6 +18,8 @@ export default function PostPage(props: {
 }) {
   const { preview, loading, post, course } = props;
 
+  // console.log(post.title);
+
   const postSlug = post?.slug;
   const courseSlug = course?.slug;
 

@@ -36,7 +36,7 @@ export function FeaturedAbout() {
               (max-width: 1200px) 50vw,
               33vw"
             placeholder="blur"
-            style={{ objectFit: 'cover' }}
+            className="object-cover"
           />
         </div>
       </div>
@@ -63,7 +63,7 @@ export function FeaturedAbout() {
               (max-width: 1200px) 50vw,
               33vw"
             placeholder="blur"
-            style={{ objectFit: 'cover' }}
+            className="object-cover"
           />
         </div>
       </div>
@@ -91,7 +91,7 @@ export function FeaturedAbout() {
               (max-width: 1200px) 50vw,
               33vw"
             placeholder="blur"
-            style={{ objectFit: 'cover' }}
+            className="object-cover"
           />
         </div>
       </div>

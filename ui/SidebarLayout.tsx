@@ -146,7 +146,7 @@ export default function SidebarLayout({
                     >
                       <ChevronLeftIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                     </LinkButton>
-                    <Link href="/" className="flex flex-1 justify-center">
+                    <Link href="/courses" className="flex flex-1 justify-center">
                       <Image
                         src={logo}
                         alt="Generation Allergy Free Logo"
