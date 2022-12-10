@@ -26,7 +26,7 @@ export default function FillImage({
       priority={priority}
       placeholder="blur"
       blurDataURL={`${source?.lqip}`}
-      style={{ objectFit: 'cover' }}
+      className="object-cover"
     />
   ) : (
     <div className="bg-white pt-[50%]" />

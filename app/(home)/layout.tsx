@@ -18,12 +18,10 @@ const oswald = Oswald({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${oswald.variable} overflow-x-hidden`}>
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Generation Allergy Free</title>
-        <meta name="description" content="Generation Allergy Free" key="desc" />
-      </head>
+    <html
+      lang="en"
+      className={`${inter.variable} ${oswald.variable} overflow-x-hidden overflow-y-scroll`}
+    >
       <body className="overflow-x-hidden">
         <Header intent="primary" />
         <main className="min-h-screen">{children}</main>

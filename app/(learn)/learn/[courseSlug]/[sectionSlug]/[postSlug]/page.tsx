@@ -47,10 +47,13 @@ export default async function PostRoute({
 }: {
   params: { courseSlug: string; postSlug: string };
 }) {
+  // console.log(params, 'post');
   if (previewData()) {
+    // console.log(params.postSlug, 'page');
     const token = previewData().token || null;
     const post = getPost(params.postSlug, token);
     const course = getCourse(params.courseSlug, token);
+
     return (
       <PreviewSuspense
         fallback={<PostPage loading preview post={await post} course={await course} />}

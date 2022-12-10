@@ -40,7 +40,7 @@ export default function IndexPage(props: {
               33vw"
               placeholder="blur"
               priority
-              style={{ width: '100%', height: 'auto', border: '8px solid black' }}
+              className="h-auto w-full border-8 border-black"
             />
           </div>
         </section>

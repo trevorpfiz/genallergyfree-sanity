@@ -9,7 +9,7 @@ export default async function Head() {
 
   return (
     <>
-      <title>{title}</title>
+      <title>{`About Us | ${title}`}</title>
       <Meta />
       <MetaDescription value={description} />
       <meta

@@ -11,6 +11,7 @@ import Link from 'next/link';
 // }
 
 export default async function CourseDashboard({ params }: { params: { courseSlug: string } }) {
+  // console.log(params, 'course');
   const course = await getCourse(params.courseSlug);
 
   return (

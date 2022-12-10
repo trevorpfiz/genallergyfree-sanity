@@ -10,12 +10,14 @@ interface HeroImageProps {
 export default function HeroImage({ image: source, priority = true }: HeroImageProps) {
   const image = source?.asset?._ref ? (
     <Image
-      style={{ width: '100%', height: 'auto', maxHeight: 400, objectFit: 'cover' }}
-      width={2000}
-      height={1000}
+      className="h-auto max-h-[432px] w-full object-cover"
+      width={768}
+      height={432}
       alt={source?.altText ? `${source?.altText}` : 'Hero image'}
-      src={urlForImage(source).width(2000).url()}
-      sizes="100vw"
+      src={urlForImage(source).width(1920).url()}
+      sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
       priority={priority}
       placeholder="blur"
       blurDataURL={`${source?.lqip}`}

@@ -13,6 +13,7 @@ export default function PreviewPostPage({
   postSlug: string;
   courseSlug: string;
 }) {
+  // console.log(postSlug);
   const post: Post =
     usePreview(token, postQuery, {
       postSlug,
