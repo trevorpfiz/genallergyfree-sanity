@@ -1,13 +1,9 @@
-import { PortableText } from '@portabletext/react';
-
-import HeroImage from '#/components/content/hero-image';
-import NextPrev from '#/components/content/next-prev';
-import ScrollUpBody from '#/components/ScrollUpBody';
+import PostPage from '#/components/content/PostPage';
+import PreviewPostPage from '#/components/preview/PreviewPostPage';
 import { getAllPostsSlugs, getCourse, getPost } from '#/lib/sanity.client';
 import { Post } from '#/lib/sanity.queries';
-import Breadcrumbs from '#/ui/Breadcrumbs';
-import SectionSeparator from '#/ui/SectionSeparator';
-import { components } from './portable-text-components';
+import { PreviewSuspense } from 'next-sanity/preview';
+import { previewData } from 'next/headers';
 
 // top-down
 // export async function generateStaticParams({ sectionSlug }) {
@@ -18,64 +14,53 @@ import { components } from './portable-text-components';
 //   return paths.map((slug: string) => ({ postSlug: slug }));
 // }
 
-export const dynamicParams = false;
+// check if docsearch works without this, maybe can use notFound()
+// export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const paths = await getAllPostsSlugs();
 
   function loopParams(posts: Post[]) {
-    return posts.flatMap(
-      (post) =>
-        post?.sections &&
-        post?.sections.flatMap(
-          (section) =>
-            section?.courses &&
-            section?.courses.flatMap((course) => ({
-              courseSlug: course.slug,
-              sectionSlug: section.slug,
-              postSlug: post.slug,
-            }))
-        )
-    );
+    const params: { courseSlug: string; sectionSlug: string; postSlug: string }[] = [];
+
+    posts.forEach((post) => {
+      const postSlug = post?.slug;
+      post?.sections?.forEach((section) => {
+        const sectionSlug = section?.slug;
+        section?.courses?.forEach((course) => {
+          const courseSlug = course?.slug;
+
+          params.push({ courseSlug, sectionSlug, postSlug });
+        });
+      });
+    });
+
+    return params;
   }
 
   return loopParams(paths);
 }
 
-export default async function PostPage({
+export default async function PostRoute({
   params,
 }: {
   params: { courseSlug: string; postSlug: string };
 }) {
-  const post = await getPost(params.postSlug);
-  const course = await getCourse(params.courseSlug);
+  if (previewData()) {
+    const token = previewData().token || null;
+    const post = getPost(params.postSlug, token);
+    const course = getCourse(params.courseSlug, token);
+    return (
+      <PreviewSuspense
+        fallback={<PostPage loading preview post={await post} course={await course} />}
+      >
+        <PreviewPostPage token={token} postSlug={params.postSlug} courseSlug={params.courseSlug} />
+      </PreviewSuspense>
+    );
+  }
 
-  return (
-    <>
-      <ScrollUpBody />
-      <div>
-        <article>
-          <div className="mx-auto max-w-3xl">
-            <Breadcrumbs />
-            <h1 className="mt-6 mb-12 font-display text-5xl font-bold">{post.title}</h1>
-            <div className="-mx-4 mb-12 sm:mx-0">
-              <HeroImage image={post.heroImage} priority />
-            </div>
-          </div>
+  const post = getPost(params.postSlug);
+  const course = getCourse(params.courseSlug);
 
-          <div className="mx-auto mb-24 max-w-3xl">
-            <PortableText value={post.content} components={components} />
-          </div>
-        </article>
-        <SectionSeparator />
-        <NextPrev
-          courseSlug={params.courseSlug}
-          slug={params.postSlug}
-          courseSections={course?.sections ? course?.sections : []}
-        />
-      </div>
-    </>
-  );
+  return <PostPage post={await post} course={await course} />;
 }
-
-export const revalidate = 60;

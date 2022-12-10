@@ -1,6 +1,8 @@
 import 'server-only';
 
-import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api';
+import { createClient } from 'next-sanity';
+
+import { apiVersion, dataset, projectId, useCdn } from '#/lib/sanity.api';
 import {
   courseQuery,
   indexQuery,
@@ -13,8 +15,7 @@ import {
   type Post,
   type Section,
   type Settings,
-} from 'lib/sanity.queries';
-import { createClient } from 'next-sanity';
+} from '#/lib/sanity.queries';
 
 /**
  * Checks if it's safe to create a client instance, as `@sanity/client` will throw an error if `projectId` is false
@@ -38,8 +39,15 @@ export async function getAllCourses(): Promise<Course[]> {
 }
 
 // post
-export async function getPost(slug: string): Promise<Post> {
-  if (client) {
+export async function getPost(slug: string, token?: string | null): Promise<Post> {
+  if (projectId) {
+    const client = createClient({
+      projectId,
+      dataset,
+      apiVersion,
+      useCdn,
+      token: token || undefined,
+    });
     return (await client.fetch(postQuery, { slug })) || ({} as any);
   }
   return {} as any;
@@ -68,8 +76,15 @@ export async function getSection(slug: string): Promise<Section> {
 }
 
 // course
-export async function getCourse(slug: string): Promise<Course> {
-  if (client) {
+export async function getCourse(slug: string, token?: string | null): Promise<Course> {
+  if (projectId) {
+    const client = createClient({
+      projectId,
+      dataset,
+      apiVersion,
+      useCdn,
+      token: token || undefined,
+    });
     return (await client.fetch(courseQuery, { slug })) || ({} as any);
   }
   return {} as any;

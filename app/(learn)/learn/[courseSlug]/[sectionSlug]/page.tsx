@@ -57,12 +57,10 @@ export default async function SectionDashboard({
         <SectionSeparator />
         <NextPrev
           courseSlug={params.courseSlug}
-          slug={params.sectionSlug}
+          sectionOrPostSlug={params.sectionSlug}
           courseSections={course?.sections ? course?.sections : []}
         />
       </div>
     </>
   );
 }
-
-export const revalidate = 60;

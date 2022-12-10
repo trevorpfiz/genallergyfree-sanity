@@ -1,31 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import IndexPage from '#/components/landing/IndexPage';
-import { getAllCourses } from 'lib/sanity.client';
-import { lazy } from 'react';
+import { previewData } from 'next/headers';
 
-const PreviewIndexPage = lazy(() => import('#/components/preview/PreviewIndexPage'));
+import IndexPage from '#/components/landing/IndexPage';
+import PreviewIndexPage from '#/components/preview/PreviewIndexPage';
+import { PreviewSuspense } from '#/components/preview/PreviewSuspense';
+import { getAllCourses } from '#/lib/sanity.client';
 
 export default async function IndexRoute() {
   // Fetch queries in parallel
   const [courses] = await Promise.all([getAllCourses()]);
 
-  /*
-  // FIXME: https://github.com/sanity-io/nextjs-blog-cms-sanity-v3/issues/95
-  import { previewData } from 'next/headers'
-  import { PreviewSuspense } from 'components/PreviewSuspense'
   if (previewData()) {
-    const token = previewData().token || null
+    const token = previewData().token || null;
+
     return (
-      <PreviewSuspense
-        fallback={<IndexPage loading preview posts={posts} settings={settings} />}
-      >
+      <PreviewSuspense fallback={<IndexPage loading preview courses={courses} />}>
         <PreviewIndexPage token={token} />
       </PreviewSuspense>
-    )
+    );
   }
-  // */
 
   return <IndexPage courses={courses} />;
 }
-
-export const revalidate = 60;

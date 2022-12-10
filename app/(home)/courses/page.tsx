@@ -26,5 +26,3 @@ export default async function Courses() {
     </>
   );
 }
-
-export const revalidate = 60;

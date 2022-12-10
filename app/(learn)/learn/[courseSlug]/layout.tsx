@@ -20,5 +20,3 @@ export default async function CourseLayout({
     </SidebarLayout>
   );
 }
-
-export const revalidate = 60;

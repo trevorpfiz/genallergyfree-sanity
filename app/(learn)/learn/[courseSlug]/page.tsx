@@ -38,5 +38,3 @@ export default async function CourseDashboard({ params }: { params: { courseSlug
     </>
   );
 }
-
-export const revalidate = 60;

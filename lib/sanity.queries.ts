@@ -74,19 +74,6 @@ export const postQuery = groq`
   }
   `;
 
-export const prevNextPostQuery = groq`
- {
-  "prev": *[_type == "post" && orderRank == $order - 1] | order(orderRank) [0] {
-    "slug": slug.current,
-    "section": sections[0]->slug.current,
-  },
-  "next": *[_type == "post" && orderRank == $order + 1] | order(orderRank) [0] {
-    "slug": slug.current,
-    "section": sections[0]->slug.current,
-  }
-}
-`;
-
 // export const postSlugsQuery = groq`
 // *[_type == "post" && references(*[_type == "section" && slug.current == $sectionSlug]._id)][].slug.current
 // `;
@@ -212,4 +199,6 @@ export interface Author {
   slug: string;
   portrait: any;
   orderRank?: any;
+  // ---
+  posts?: Post[];
 }
