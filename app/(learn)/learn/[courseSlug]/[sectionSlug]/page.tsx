@@ -8,11 +8,8 @@ import Breadcrumbs from '#/ui/Breadcrumbs';
 import SectionSeparator from '#/ui/SectionSeparator';
 
 // top-down
-// export async function generateStaticParams({ courseSlug }) {
-//   console.log(courseSlug);
-//   const paths = await sanityClient.fetch(sectionSlugsQuery, {
-//     courseSlug,
-//   });
+// export async function generateStaticParams({ params }: any) {
+//   const paths = await getSectionSlugs(params.courseSlug);
 
 //   return paths.map((slug: string) => ({ sectionSlug: slug }));
 // }
@@ -22,7 +19,6 @@ export default async function SectionDashboard({
 }: {
   params: { courseSlug: string; sectionSlug: string };
 }) {
-  // console.log(params, 'section');
   const section = await getSection(params.sectionSlug);
   const course = await getCourse(params.courseSlug);
 

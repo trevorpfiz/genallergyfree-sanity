@@ -15,9 +15,7 @@ export default function HeroImage({ image: source, priority = true }: HeroImageP
       height={432}
       alt={source?.altText ? `${source?.altText}` : 'Hero image'}
       src={urlForImage(source).width(1920).url()}
-      sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
+      sizes="(max-width: 768px) 100vw"
       priority={priority}
       placeholder="blur"
       blurDataURL={`${source?.lqip}`}

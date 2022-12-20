@@ -32,9 +32,7 @@ export function FeaturedAbout() {
             fill
             src={glassesImage}
             alt="One short and one tall glass."
-            sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
+            sizes="(max-width: 768px) 100vw"
             placeholder="blur"
             className="object-cover"
           />
@@ -59,9 +57,7 @@ export function FeaturedAbout() {
             fill
             src={couchImage}
             alt="Man and woman sitting on couch holding a laptop."
-            sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
+            sizes="(max-width: 768px) 100vw"
             placeholder="blur"
             className="object-cover"
           />
@@ -87,9 +83,7 @@ export function FeaturedAbout() {
             fill
             src={danceImage}
             alt="Mother teaching daughter how to dance."
-            sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
+            sizes="(max-width: 768px) 100vw"
             placeholder="blur"
             className="object-cover"
           />

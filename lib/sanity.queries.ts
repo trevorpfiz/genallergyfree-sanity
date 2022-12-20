@@ -74,11 +74,11 @@ export const postQuery = groq`
   }
   `;
 
-// export const postSlugsQuery = groq`
-// *[_type == "post" && references(*[_type == "section" && slug.current == $sectionSlug]._id)][].slug.current
-// `;
-
 export const postSlugsQuery = groq`
+*[_type == "post" && references(*[_type == "section" && slug.current == $sectionSlug]._id)][].slug.current
+`;
+
+export const allPostSlugsQuery = groq`
 *[_type == "post" && defined(slug.current)] {
   "slug": slug.current,
   sections[]->{
@@ -113,17 +113,8 @@ export const sectionQuery = groq`
   }
 `;
 
-// export const sectionSlugsQuery = groq`
-// *[_type == "section" && references(*[_type == "course" && slug.current == $courseSlug]._id)][].slug.current
-// `;
-
 export const sectionSlugsQuery = groq`
-*[_type == "section" && defined(slug.current)] {
-  "slug": slug.current,
-  courses[]->{
-    "slug": slug.current
-  }
-}
+*[_type == "section" && references(*[_type == "course" && slug.current == $courseSlug]._id)][].slug.current
 `;
 
 // course

@@ -20,9 +20,7 @@ export default function FillImage({
       fill
       alt={source?.altText ? `${source?.altText}` : 'Image'}
       src={urlForImage(source).width(width).height(height).url()}
-      sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
+      sizes="(max-width: 768px) 100vw"
       priority={priority}
       placeholder="blur"
       blurDataURL={`${source?.lqip}`}

@@ -5,6 +5,13 @@ import 'overlayscrollbars/overlayscrollbars.css';
 import { getCourse } from '#/lib/sanity.client';
 import SidebarLayout from '#/ui/SidebarLayout';
 
+// top-down
+// export async function generateStaticParams() {
+//   const paths = await getCourseSlugs();
+
+//   return paths.map((slug: string) => ({ courseSlug: slug }));
+// }
+
 export default async function CourseLayout({
   children,
   params,

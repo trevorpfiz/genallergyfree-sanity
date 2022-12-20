@@ -4,12 +4,15 @@ import { createClient } from 'next-sanity';
 
 import { apiVersion, dataset, projectId, useCdn } from '#/lib/sanity.api';
 import {
+  allPostSlugsQuery,
   courseQuery,
+  courseSlugsQuery,
   indexQuery,
   postBySlugQuery,
   postQuery,
   postSlugsQuery,
   sectionQuery,
+  sectionSlugsQuery,
   settingsQuery,
   type Course,
   type Post,
@@ -53,9 +56,16 @@ export async function getPost(slug: string, token?: string | null): Promise<Post
   return {} as any;
 }
 
-export async function getAllPostsSlugs(): Promise<Post[]> {
+export async function getPostSlugs(sectionSlug: string): Promise<any> {
   if (client) {
-    return (await client.fetch(postSlugsQuery)) || [];
+    return (await client.fetch(postSlugsQuery, { sectionSlug })) || [];
+  }
+  return [];
+}
+
+export async function getAllPostSlugs(): Promise<Post[]> {
+  if (client) {
+    return (await client.fetch(allPostSlugsQuery)) || [];
   }
   return [];
 }
@@ -75,6 +85,13 @@ export async function getSection(slug: string): Promise<Section> {
   return {} as any;
 }
 
+export async function getSectionSlugs(courseSlug: string): Promise<any> {
+  if (client) {
+    return (await client.fetch(sectionSlugsQuery, { courseSlug })) || [];
+  }
+  return [];
+}
+
 // course
 export async function getCourse(slug: string, token?: string | null): Promise<Course> {
   if (projectId) {
@@ -88,4 +105,11 @@ export async function getCourse(slug: string, token?: string | null): Promise<Co
     return (await client.fetch(courseQuery, { slug })) || ({} as any);
   }
   return {} as any;
+}
+
+export async function getCourseSlugs(): Promise<any> {
+  if (client) {
+    return (await client.fetch(courseSlugsQuery)) || [];
+  }
+  return [];
 }

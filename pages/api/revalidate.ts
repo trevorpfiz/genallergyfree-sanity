@@ -25,7 +25,7 @@ import { createClient, groq, type SanityClient } from 'next-sanity';
 import { parseBody, type ParseBody } from 'next-sanity/webhook';
 
 import { apiVersion, dataset, projectId } from '#/lib/sanity.api';
-import { Author, Course, Post, postSlugsQuery, Section } from '#/lib/sanity.queries';
+import { allPostSlugsQuery, Author, Course, Post, Section } from '#/lib/sanity.queries';
 
 export { config } from 'next-sanity/webhook';
 
@@ -77,7 +77,7 @@ type StaleRoute =
   | `/learn/${string}/${string}/${string}`;
 
 async function _queryAllRoutes(client: SanityClient): Promise<Post[]> {
-  return client.fetch(postSlugsQuery);
+  return client.fetch(allPostSlugsQuery);
 }
 
 async function queryAllRoutes(client: SanityClient): Promise<StaleRoute[]> {

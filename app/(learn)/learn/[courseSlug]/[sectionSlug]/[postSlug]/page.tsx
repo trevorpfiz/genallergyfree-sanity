@@ -3,23 +3,22 @@ import { previewData } from 'next/headers';
 import PostPage from '#/components/content/PostPage';
 import PreviewPostPage from '#/components/preview/PreviewPostPage';
 import { PreviewSuspense } from '#/components/preview/PreviewSuspense';
-import { getAllPostsSlugs, getCourse, getPost } from '#/lib/sanity.client';
+import { getAllPostSlugs, getCourse, getPost } from '#/lib/sanity.client';
 import { Post } from '#/lib/sanity.queries';
-
-// top-down
-// export async function generateStaticParams({ sectionSlug }) {
-//   const paths = await sanityClient.fetch(postSlugsQuery, {
-//     sectionSlug,
-//   });
-
-//   return paths.map((slug: string) => ({ postSlug: slug }));
-// }
 
 // check if docsearch works without this, maybe can use notFound()
 // export const dynamicParams = false;
 
+// top-down
+// export async function generateStaticParams({ params }: any) {
+//   const paths = await getPostSlugs(params.sectionSlug);
+
+//   return paths.map((slug: string) => ({ postSlug: slug }));
+// }
+
+// bottom-up
 export async function generateStaticParams() {
-  const paths = await getAllPostsSlugs();
+  const paths = await getAllPostSlugs();
 
   function loopParams(posts: Post[]) {
     const params: { courseSlug: string; sectionSlug: string; postSlug: string }[] = [];
@@ -47,9 +46,7 @@ export default async function PostRoute({
 }: {
   params: { courseSlug: string; postSlug: string };
 }) {
-  // console.log(params, 'post');
   if (previewData()) {
-    // console.log(params.postSlug, 'page');
     const token = previewData().token || null;
     const post = getPost(params.postSlug, token);
     const course = getCourse(params.courseSlug, token);

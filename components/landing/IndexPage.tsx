@@ -35,9 +35,7 @@ export default function IndexPage(props: {
             <Image
               src={heroImage}
               alt="Young boy reaching for strawberry on countertop."
-              sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
+              sizes="(max-width: 768px) 100vw"
               placeholder="blur"
               priority
               className="h-auto w-full border-8 border-black"

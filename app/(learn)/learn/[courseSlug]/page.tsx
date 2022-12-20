@@ -3,15 +3,7 @@ import { getCourse } from '#/lib/sanity.client';
 import FillImage from 'components/content/fill-image';
 import Link from 'next/link';
 
-// top-down
-// export async function generateStaticParams() {
-//   const paths = await sanityClient.fetch(courseSlugsQuery);
-
-//   return paths.map((slug: string) => ({ courseSlug: slug }));
-// }
-
 export default async function CourseDashboard({ params }: { params: { courseSlug: string } }) {
-  // console.log(params, 'course');
   const course = await getCourse(params.courseSlug);
 
   return (

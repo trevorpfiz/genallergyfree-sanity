@@ -11,7 +11,7 @@ export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2022-11
 // useCdn == true gives fast, cheap responses using a globally distributed cache.
 // When in production the Sanity API is only queried on build-time, and on-demand when responding to webhooks.
 // Thus the data need to be fresh and API response time is less important.
-// When in development/working locally, it's more important to keep costs down as hot reloading can incurr a lot of API calls
+// When in development/working locally, it's more important to keep costs down as hot reloading can incur a lot of API calls
 // And every page load calls getStaticProps.
 // To get the lowest latency, lowest cost, and latest data, use the Instant Preview mode
 export const useCdn = typeof document !== 'undefined' && process.env.NODE_ENV === 'production';
