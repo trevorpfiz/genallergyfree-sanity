@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.generationallergyfree.com/
+
+# Sitemaps
+Sitemap: https://www.generationallergyfree.com/sitemap.xml
