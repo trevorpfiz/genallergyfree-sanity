@@ -4,6 +4,7 @@ import { orderRankField } from '@sanity/orderable-document-list';
 import { defineType } from 'sanity';
 
 import authorType from './author';
+import RichTextEditor from './RichTextEditor';
 import sectionType from './section';
 
 /**
@@ -40,98 +41,7 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     },
-    {
-      name: 'content',
-      title: 'Content',
-      type: 'array',
-      of: [
-        {
-          type: 'block',
-          styles: [
-            { title: 'Normal', value: 'normal' },
-            { title: 'Heading 1', value: 'h1' },
-            { title: 'Heading 2', value: 'h2' },
-            { title: 'Heading 3', value: 'h3' },
-            { title: 'Heading 4', value: 'h4' },
-            { title: 'Heading 5', value: 'h5' },
-            { title: 'Heading 6', value: 'h6' },
-            { title: 'Quote', value: 'blockquote' },
-            {
-              title: 'Intro',
-              value: 'intro',
-            },
-            {
-              title: 'Summary',
-              value: 'summary',
-            },
-          ],
-          marks: {
-            decorators: [
-              { title: 'Strong', value: 'strong' },
-              { title: 'Emphasis', value: 'em' },
-              { title: 'Underline', value: 'underline' },
-              { title: 'Strike', value: 'strike-through' },
-              {
-                title: 'Sup',
-                value: 'sup',
-              },
-            ],
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'External link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'URL',
-                  },
-                  {
-                    title: 'Open in new tab',
-                    name: 'blank',
-                    type: 'boolean',
-                  },
-                ],
-              },
-              {
-                name: 'internalLink',
-                type: 'object',
-                title: 'Internal link',
-                fields: [
-                  {
-                    name: 'reference',
-                    type: 'reference',
-                    title: 'Reference',
-                    to: [{ type: 'post' }],
-                  },
-                ],
-              },
-              {
-                name: 'footnote',
-                type: 'object',
-                title: 'Footnote',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'URL',
-                  },
-                  {
-                    title: 'Open in new tab',
-                    name: 'blank',
-                    type: 'boolean',
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          type: 'image',
-        },
-      ],
-    },
+    RichTextEditor, // content block
     {
       name: 'excerpt',
       title: 'Excerpt',
@@ -150,6 +60,12 @@ export default defineType({
     {
       name: 'publishedDate',
       title: 'Published Date',
+      type: 'datetime',
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'modifiedDate',
+      title: 'Modified Date',
       type: 'datetime',
       validation: (Rule) => Rule.required(),
     },

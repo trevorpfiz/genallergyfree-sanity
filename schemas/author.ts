@@ -31,6 +31,12 @@ export default defineType({
       options: { hotspot: true },
       validation: (Rule) => Rule.required(),
     },
+    {
+      name: 'url',
+      title: 'URL',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    },
     orderRankField({ type: 'author' }),
   ],
 });

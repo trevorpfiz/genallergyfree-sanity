@@ -12,7 +12,7 @@ const postFields = groq`
     "lqip": asset->metadata.lqip
   },
   orderRank,
-  "authors": authors[]->{name, portrait},
+  "authors": authors[]->{name, portrait, url},
   "slug": slug.current,
 `;
 
@@ -139,6 +139,7 @@ export const courseSlugsQuery = groq`
 export interface Settings {
   title: string;
   description: string;
+  logo: any;
   ogImage?: {
     title?: string;
   };
@@ -152,6 +153,7 @@ export interface Post {
   excerpt: string;
   heroImage: any;
   publishedDate: string;
+  modifiedDate: string;
   authors?: Author[];
   sections?: Section[];
   orderRank?: any;
@@ -189,6 +191,7 @@ export interface Author {
   name: string;
   slug: string;
   portrait: any;
+  url: string;
   orderRank?: any;
   // ---
   posts?: Post[];

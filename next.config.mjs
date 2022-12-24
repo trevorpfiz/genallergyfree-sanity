@@ -8,6 +8,14 @@ const nextConfig = {
   images: {
     remotePatterns: [{ hostname: 'cdn.sanity.io' }, { hostname: 'source.unsplash.com' }],
   },
+
+  redirects: async () => [
+    {
+      source: '/learn',
+      destination: '/courses',
+      permanent: true,
+    },
+  ],
 };
 
 export default nextConfig;

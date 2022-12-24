@@ -30,6 +30,13 @@ export default defineType({
       validation: (rule) => rule.max(155).required(),
     }),
     defineField({
+      name: 'logo',
+      description: 'This field is the logo of your blog.',
+      title: 'Logo',
+      type: 'image',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'ogImage',
       title: 'Open Graph Image',
       description: 'Used for social media previews when linking to the index page.',

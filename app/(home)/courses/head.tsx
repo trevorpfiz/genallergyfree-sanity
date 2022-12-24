@@ -1,17 +1,21 @@
+import CoursesStructuredData from '#/components/seo/CoursesStructuredData';
 import Meta from '#/components/seo/Meta';
 import MetaDescription from '#/components/seo/MetaDescription';
 import * as demo from '#/lib/demo.data';
-import { getSettings } from '#/lib/sanity.client';
+import { getAllCourses, getSettings } from '#/lib/sanity.client';
 
 export default async function Head() {
   const { title = demo.title, description = demo.description, ogImage = {} } = await getSettings();
   const ogImageTitle = ogImage?.title || demo.ogImageTitle;
+
+  const courses = await getAllCourses();
 
   return (
     <>
       <title>{`Courses | ${title}`}</title>
       <Meta />
       <MetaDescription value={description} />
+      <CoursesStructuredData courses={courses} />
       <meta
         property="og:image"
         // Because OG images must have a absolute URL, we use the
