@@ -1,4 +1,4 @@
-import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from '@tabler/icons';
+import { IconBrandLinkedin, IconBrandPatreon } from '@tabler/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -20,14 +20,15 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center justify-between gap-4">
+            <a
+              href="https://www.linkedin.com/company/generationallergyfree/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <IconBrandLinkedin size={20} stroke={1.5} color="white" />
+            </a>
             <button type="button">
-              <IconBrandTwitter size={18} stroke={1.5} color="white" />
-            </button>
-            <button type="button">
-              <IconBrandYoutube size={18} stroke={1.5} color="white" />
-            </button>
-            <button type="button">
-              <IconBrandInstagram size={18} stroke={1.5} color="white" />
+              <IconBrandPatreon size={20} stroke={1.5} color="white" />
             </button>
           </div>
         </div>

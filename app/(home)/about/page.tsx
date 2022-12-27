@@ -1,7 +1,7 @@
 import ScrollUp from '#/components/ScrollUp';
 import { FeaturedAbout } from 'components/landing/featured-about';
 import { FeaturedTwins } from 'components/landing/featured-twins';
-import Quotes from 'components/landing/quotes';
+import Testimonials from 'components/landing/Testimonials';
 
 export default function About() {
   return (
@@ -31,7 +31,7 @@ export default function About() {
       </section>
       <div className="mt-[-5vw] h-0 w-0 max-w-full border-r-[100vw] border-b-[5vw] border-r-transparent border-b-oldpink" />
       <section className="bg-oldpink">
-        <Quotes color="oldyellow" />
+        <Testimonials color="oldyellow" />
       </section>
     </>
   );

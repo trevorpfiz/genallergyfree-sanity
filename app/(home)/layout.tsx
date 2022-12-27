@@ -3,6 +3,7 @@ import '#/styles/globals.css';
 import Footer from '#/ui/Footer';
 import Header from '#/ui/Header';
 import { Inter, Oswald } from '@next/font/google';
+import { Providers } from './Providers';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -24,7 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="overflow-x-hidden">
         <Header intent="primary" />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen">
+          <Providers>{children}</Providers>
+        </main>
         <Footer />
       </body>
     </html>
