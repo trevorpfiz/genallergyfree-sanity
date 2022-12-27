@@ -34,12 +34,15 @@ export default function PayPal() {
               )
           }
           onApprove={
-            (data, actions) => setSuccess(true) // You can add optional success message for the subscriber here
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            async (data, actions) => setSuccess(true) // You can add optional success message for the subscriber here
           }
           onError={(err) => {
+            console.log(err);
             setError(true);
           }}
           onCancel={(err) => {
+            console.log(err);
             setCancel(true);
           }}
         />
