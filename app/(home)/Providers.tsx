@@ -6,8 +6,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <PayPalScriptProvider
       options={{
-        'client-id':
-          'Afj4ZnkBSoAUoESXVB1tkCmw9K7Nru_sBMtijIu6GWsIzKSNrMnUxEa3NlSycyxRSTs7g2HxY4tbXA7U',
+        'client-id': process.env.NEXT_PUBLIC_PAYPAL_SANDBOX_CLIENT_ID || '',
         components: 'buttons',
         intent: 'subscription',
         vault: true,

@@ -20,12 +20,12 @@ export default function PayPal() {
       {fundingSources.map((fundingSource) => (
         <PayPalButtons
           key={fundingSource}
-          style={{ label: 'paypal' }}
+          style={{ layout: 'vertical' }}
           fundingSource={fundingSource}
           createSubscription={(data, actions) =>
             actions.subscription
               .create({
-                plan_id: 'P-96388462MV377654MMOVNTMY',
+                plan_id: process.env.NEXT_PUBLIC_PAYPAL_SANDBOX_PLAN_ID || '',
               })
               .then(
                 (orderId) =>
