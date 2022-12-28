@@ -8,7 +8,7 @@ export function FeaturedAbout() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col items-center justify-between px-4 pb-20">
       <div className="my-10 flex w-full flex-col items-center justify-between gap-10 md:flex-row md:even:flex-row-reverse">
-        <div className="flex flex-col gap-4 sm:max-w-[400px]">
+        <div className="flex flex-col gap-4 md:max-w-[400px]">
           <h2 className="font-display text-4xl font-bold uppercase leading-none text-oldpink sm:text-5xl">
             Our Story
           </h2>
@@ -27,7 +27,7 @@ export function FeaturedAbout() {
             was born.
           </p>
         </div>
-        <div className="relative h-[200px] w-full border-8 border-black md:h-[420px] md:w-[300px] lg:h-[540px] lg:w-[400px]">
+        <div className="relative h-[420px] w-full border-8 border-black md:w-[300px] lg:h-[540px] lg:w-[400px]">
           <Image
             fill
             src={glassesImage}
@@ -39,7 +39,7 @@ export function FeaturedAbout() {
         </div>
       </div>
       <div className="my-10 flex w-full flex-col items-center justify-between gap-10 md:flex-row md:even:flex-row-reverse">
-        <div className="flex flex-col gap-4 sm:max-w-[400px]">
+        <div className="flex flex-col gap-4 md:max-w-[400px]">
           <h2 className="font-display text-4xl font-bold uppercase leading-none text-cyan-400 sm:text-5xl">
             Why do we teach?
           </h2>
@@ -52,7 +52,7 @@ export function FeaturedAbout() {
             many more lives than just our eventual children.
           </p>
         </div>
-        <div className="relative h-[200px] w-full border-8 border-black md:h-[420px] md:w-[300px] lg:h-[540px] lg:w-[400px]">
+        <div className="relative h-[420px] w-full border-8 border-black md:w-[300px] lg:h-[540px] lg:w-[400px]">
           <Image
             fill
             src={couchImage}
@@ -64,7 +64,7 @@ export function FeaturedAbout() {
         </div>
       </div>
       <div className="my-10 flex w-full flex-col items-center justify-between gap-10 md:flex-row md:even:flex-row-reverse">
-        <div className="flex flex-col gap-4 sm:max-w-[400px]">
+        <div className="flex flex-col gap-4 md:max-w-[400px]">
           <h2 className="font-display text-4xl font-bold uppercase leading-none text-oldyellow sm:text-5xl">
             Our values
           </h2>
@@ -78,7 +78,7 @@ export function FeaturedAbout() {
             putting our beliefs into action.
           </p>
         </div>
-        <div className="relative h-[200px] w-full border-8 border-black md:h-[420px] md:w-[300px] lg:h-[540px] lg:w-[400px]">
+        <div className="relative h-[420px] w-full border-8 border-black md:w-[300px] lg:h-[540px] lg:w-[400px]">
           <Image
             fill
             src={danceImage}

@@ -68,7 +68,7 @@ export default function IndexPage(props: {
           <CourseUpdates />
         </section>
         <div className="mt-[-5vw] h-0 w-0 max-w-full border-l-[100vw] border-b-[5vw] border-l-transparent border-b-oldyellow" />
-        <section className="bg-oldyellow">
+        <section className="bg-oldyellow py-8">
           <Testimonials color="oldpink" />
         </section>
       </PreviewLayout>

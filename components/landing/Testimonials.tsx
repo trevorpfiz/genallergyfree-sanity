@@ -53,7 +53,7 @@ export default function Testimonials({ color = 'oldyellow' }: { color: string })
 
   return (
     <>
-      <div className="relative mx-auto max-w-2xl">
+      <div className="relative mx-auto max-w-6xl">
         <div ref={sliderRef} className="keen-slider">
           <div className="keen-slider__slide">
             <div className="py-12 px-4">
