@@ -2,6 +2,7 @@
 
 import { Disclosure } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
 import Link from 'next/link';
 
 const faqs = [
@@ -84,10 +85,6 @@ const faqs = [
   },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
-
 export default function FAQs() {
   return (
     <div className="bg-oldyellow">
@@ -106,10 +103,7 @@ export default function FAQs() {
                         <span className="font-medium text-gray-900">{faq.question}</span>
                         <span className="ml-6 flex h-7 items-center">
                           <ChevronDownIcon
-                            className={classNames(
-                              open ? '-rotate-180' : 'rotate-0',
-                              'h-6 w-6 transform'
-                            )}
+                            className={clsx(open ? '-rotate-180' : 'rotate-0', 'h-6 w-6 transform')}
                             aria-hidden="true"
                           />
                         </span>
