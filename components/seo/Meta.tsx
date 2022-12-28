@@ -7,9 +7,9 @@ export default function Meta() {
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
       <link rel="manifest" href="/favicon/site.webmanifest" />
       <link rel="shortcut icon" href="/favicon/favicon.ico" />
-      <meta name="msapplication-TileColor" content="#000000" />
+      <meta name="msapplication-TileColor" content="#FF65BE" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
-      <meta name="theme-color" content="#000" />
+      <meta name="theme-color" content="#FF65BE" />
     </>
   );
 }

@@ -25,7 +25,7 @@ export default function PayPal() {
           createSubscription={(data, actions) =>
             actions.subscription
               .create({
-                plan_id: process.env.NEXT_PUBLIC_PAYPAL_SANDBOX_PLAN_ID || '',
+                plan_id: process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID || '',
               })
               .then(
                 (orderId) =>

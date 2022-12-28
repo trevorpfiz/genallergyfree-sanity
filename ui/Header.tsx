@@ -1,20 +1,38 @@
 'use client';
 
-import { Disclosure } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Popover, Transition } from '@headlessui/react';
+import {
+  AtSymbolIcon,
+  BanknotesIcon,
+  Bars3Icon,
+  IdentificationIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
-import Image from 'next/image';
 import Link from 'next/link';
+import { Fragment } from 'react';
 
 import logo from '#/public/genallergyfree-upscaled-crop.jpg';
-import LinkButton from '#/ui/LinkButton';
+import Image from 'next/image';
+import LinkButton from './LinkButton';
+
+const navigation = [
+  { name: 'About Us', href: '/about' },
+  { name: 'Donate', href: '/donate' },
+];
+
+const navigationMobile = [
+  { name: 'About Us', href: '/about', icon: IdentificationIcon },
+  { name: 'Contact', href: '/contact', icon: AtSymbolIcon },
+  { name: 'Donate', href: '/donate', icon: BanknotesIcon },
+];
 
 const headerStyles = cva('', {
   variants: {
     intent: {
-      primary: 'bg-oldyellow',
-      secondary: 'bg-white',
+      primary: 'bg-oldyellow relative',
+      secondary: 'bg-white relative',
     },
   },
   defaultVariants: {
@@ -24,75 +42,106 @@ const headerStyles = cva('', {
 
 export type HeaderProps = VariantProps<typeof headerStyles>;
 
-export default function Header({ intent }: HeaderProps) {
+export default function HeaderNew({ intent }: HeaderProps) {
   return (
-    <header className={headerStyles({ intent })}>
-      <Disclosure as="nav">
-        {({ open }) => (
-          <>
-            <div className="mx-auto max-w-7xl py-2 px-4 sm:px-6 lg:px-8">
-              <div className="flex h-16 justify-between">
-                <div className="flex">
-                  <div className="flex flex-shrink-0 items-center">
-                    <Link href="/">
-                      <Image
-                        src={logo}
-                        alt="Generation Allergy Free Logo"
-                        style={{ width: '230px', height: 'auto' }}
-                        priority
-                      />
-                    </Link>
-                  </div>
-                </div>
-                <div className="hidden sm:flex sm:items-center sm:justify-between sm:gap-6">
-                  <Link href="/about" className="font-medium hover:underline">
-                    About Us
-                  </Link>
-                  <LinkButton href="/courses" intent="primary" className="px-4 py-2">
-                    Courses
-                  </LinkButton>
-                </div>
-                <div className="-mr-2 flex items-center sm:hidden">
-                  {/* Mobile menu button */}
-                  <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <XMarkIcon className="block h-8 w-8" aria-hidden="true" />
-                    ) : (
-                      <Bars3Icon className="block h-8 w-8" aria-hidden="true" />
-                    )}
-                  </Disclosure.Button>
-                </div>
+    <Popover as="header" className={headerStyles({ intent })}>
+      <nav
+        className="relative mx-auto flex max-w-7xl items-center justify-between px-4 pt-6 sm:px-6"
+        aria-label="Global"
+      >
+        <div className="flex flex-1 items-center">
+          <div className="flex w-full items-center justify-between md:w-auto">
+            <Link href="/">
+              <span className="sr-only">Generation Allergy Free</span>
+              <Image
+                src={logo}
+                alt="Generation Allergy Free Logo"
+                style={{ width: '230px', height: 'auto' }}
+                priority
+              />
+            </Link>
+            <div className="-mr-2 flex items-center md:hidden">
+              {/* Mobile menu button */}
+              <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <span className="sr-only">Open main menu</span>
+                <Bars3Icon className="block h-8 w-8" aria-hidden="true" />
+              </Popover.Button>
+            </div>
+          </div>
+        </div>
+        <div className="hidden md:flex md:items-center md:space-x-6">
+          {navigation.map((item) => (
+            <Link key={item.name} href={item.href} className="font-medium hover:underline">
+              {item.name}
+            </Link>
+          ))}
+          <LinkButton href="/courses" intent="primary" className="px-4 py-2">
+            Courses
+          </LinkButton>
+        </div>
+      </nav>
+
+      <Transition
+        as={Fragment}
+        enter="duration-150 ease-out"
+        enterFrom="opacity-0 scale-95"
+        enterTo="opacity-100 scale-100"
+        leave="duration-100 ease-in"
+        leaveFrom="opacity-100 scale-100"
+        leaveTo="opacity-0 scale-95"
+      >
+        <Popover.Panel className="absolute inset-x-0 top-0 origin-top transform p-2 transition md:hidden">
+          <div className="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
+            <div className="flex items-center justify-between px-5 pt-4">
+              <div>
+                <Link href="/">
+                  <Popover.Button>
+                    <Image
+                      src={logo}
+                      alt="Generation Allergy Free Logo"
+                      style={{ width: '200px', height: 'auto' }}
+                      priority
+                    />
+                  </Popover.Button>
+                </Link>
+              </div>
+              <div className="-mr-2">
+                <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600">
+                  <span className="sr-only">Close menu</span>
+                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                </Popover.Button>
               </div>
             </div>
-
-            <Disclosure.Panel className="sm:hidden">
-              <div className="space-y-1 bg-oldpink pt-2 pb-3">
-                {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-                <Link href="/about">
-                  <Disclosure.Button className="block w-full py-2 px-4 text-left text-base font-medium text-black">
-                    About Us
-                  </Disclosure.Button>
-                </Link>
-                <Link href="/contact">
-                  <Disclosure.Button className="block w-full py-2 px-4 text-left text-base font-medium text-black">
-                    Contact
-                  </Disclosure.Button>
-                </Link>
-              </div>
-              <div className="border-t-2 border-black bg-oldpink pt-4 pb-3">
-                <div className="flex items-center px-4">
-                  <Link href="/courses">
-                    <Disclosure.Button className="rounded-full bg-oldyellow py-2 px-4 font-semibold text-black hover:bg-yellow-300">
-                      Courses
-                    </Disclosure.Button>
+            <div className="pt-3 pb-6">
+              <div className="space-y-1 px-2">
+                {navigationMobile.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
+                  >
+                    <Popover.Button className="-my-3 flex w-full items-start rounded-lg p-3 hover:bg-gray-50">
+                      <item.icon
+                        className="h-6 w-6 flex-shrink-0 text-pink-500"
+                        aria-hidden="true"
+                      />
+                      <p className="ml-3">{item.name}</p>
+                    </Popover.Button>
                   </Link>
-                </div>
+                ))}
               </div>
-            </Disclosure.Panel>
-          </>
-        )}
-      </Disclosure>
-    </header>
+              <div className="mt-6 px-5">
+                <Link
+                  href="/courses"
+                  className="block w-full rounded-md bg-gradient-to-r from-pink-500 to-pink-600 py-3 px-4 text-center font-medium text-white shadow hover:from-pink-600 hover:to-pink-700"
+                >
+                  <Popover.Button>Courses</Popover.Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Popover.Panel>
+      </Transition>
+    </Popover>
   );
 }
