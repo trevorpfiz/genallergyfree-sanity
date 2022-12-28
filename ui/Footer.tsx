@@ -1,4 +1,4 @@
-import { IconBrandInstagram, IconBrandTwitter, IconBrandYoutube } from '@tabler/icons';
+import { IconBrandLinkedin, IconBrandPatreon } from '@tabler/icons';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -20,21 +20,26 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center justify-between gap-4">
-            <button type="button">
-              <IconBrandTwitter size={18} stroke={1.5} color="white" />
-            </button>
-            <button type="button">
-              <IconBrandYoutube size={18} stroke={1.5} color="white" />
-            </button>
-            <button type="button">
-              <IconBrandInstagram size={18} stroke={1.5} color="white" />
-            </button>
+            <a
+              href="https://www.linkedin.com/company/generationallergyfree/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <IconBrandLinkedin size={20} stroke={1.5} color="white" />
+            </a>
+            <a
+              href="https://www.patreon.com/user?u=84526279"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <IconBrandPatreon size={20} stroke={1.5} color="white" />
+            </a>
           </div>
         </div>
         <div className="flex flex-col items-center justify-between gap-y-4 pt-16 pb-6 md:flex-row">
           <p className="text-sm text-white">© 2022 TwinZ LLC - All Rights Reserved</p>
 
-          <nav className="flex items-center justify-between gap-4 text-xs">
+          <nav className="flex flex-wrap items-center justify-between gap-4 text-xs">
             <Link href="/about">
               <p className="text-white hover:underline">About</p>
             </Link>
@@ -43,6 +48,9 @@ export default function Footer() {
             </Link>
             <Link href="/contact">
               <p className="text-white hover:underline">Contact</p>
+            </Link>
+            <Link href="/donate">
+              <p className="text-white hover:underline">Donate</p>
             </Link>
             <Link href="/legal/privacy-policy">
               <p className="text-white hover:underline">Privacy</p>

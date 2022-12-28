@@ -7,7 +7,7 @@ import PreviewLayout from '../preview/PreviewLayout';
 import ScrollUp from '../ScrollUp';
 import { CourseUpdates } from './course-updates';
 import { FeaturedCourse } from './featured-course';
-import Quotes from './quotes';
+import Testimonials from './Testimonials';
 
 export default function IndexPage(props: {
   preview?: boolean;
@@ -69,7 +69,7 @@ export default function IndexPage(props: {
         </section>
         <div className="mt-[-5vw] h-0 w-0 max-w-full border-l-[100vw] border-b-[5vw] border-l-transparent border-b-oldyellow" />
         <section className="bg-oldyellow">
-          <Quotes color="oldpink" />
+          <Testimonials color="oldpink" />
         </section>
       </PreviewLayout>
     </>

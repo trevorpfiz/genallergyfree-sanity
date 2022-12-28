@@ -3,6 +3,7 @@ import '#/styles/globals.css';
 import Footer from '#/ui/Footer';
 import Header from '#/ui/Header';
 import { Inter, Oswald } from '@next/font/google';
+import { Providers } from './Providers';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -18,13 +19,12 @@ const oswald = Oswald({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${oswald.variable} overflow-x-hidden overflow-y-scroll`}
-    >
+    <html lang="en" className={`${inter.variable} ${oswald.variable} overflow-x-hidden`}>
       <body className="overflow-x-hidden">
         <Header intent="primary" />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen">
+          <Providers>{children}</Providers>
+        </main>
         <Footer />
       </body>
     </html>
