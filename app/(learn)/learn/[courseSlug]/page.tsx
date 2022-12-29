@@ -1,4 +1,4 @@
-import ScrollUpBody from '#/components/ScrollUpBody';
+import ScrollUp from '#/components/ScrollUp';
 import { getCourse } from '#/lib/sanity.client';
 import FillImage from 'components/content/fill-image';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ export default async function CourseDashboard({ params }: { params: { courseSlug
 
   return (
     <>
-      <ScrollUpBody />
+      <ScrollUp />
       <div className="mx-auto mb-24 flex max-w-3xl flex-col gap-6">
         <h1 className="font-display text-4xl font-bold">{course.title}</h1>
         <div className="flex flex-col gap-4">

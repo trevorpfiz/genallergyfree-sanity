@@ -29,9 +29,11 @@ export default function Donate() {
             Confirm a donation of $5 / month:
           </h4>
           <fieldset className="mt-8 max-w-sm rounded-md border-2 border-black/40 p-4">
-            <legend className="mb-4 flex items-center px-1">
-              <LockClosedIcon className="mr-2 h-6 w-6" />
-              <h3 className="text-lg">Secure donation</h3>
+            <legend>
+              <span className="flex items-center px-1">
+                <LockClosedIcon className="mr-2 h-6 w-6" />
+                <h3 className="text-lg">Secure donation</h3>
+              </span>
             </legend>
             <PayPal />
             <Patreon />

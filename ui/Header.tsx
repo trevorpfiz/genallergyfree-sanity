@@ -94,16 +94,14 @@ export default function HeaderNew({ intent }: HeaderProps) {
           <div className="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
             <div className="flex items-center justify-between px-5 pt-4">
               <div>
-                <Link href="/">
-                  <Popover.Button>
-                    <Image
-                      src={logo}
-                      alt="Generation Allergy Free Logo"
-                      style={{ width: '200px', height: 'auto' }}
-                      priority
-                    />
-                  </Popover.Button>
-                </Link>
+                <Popover.Button as={Link} href="/">
+                  <Image
+                    src={logo}
+                    alt="Generation Allergy Free Logo"
+                    style={{ width: '200px', height: 'auto' }}
+                    priority
+                  />
+                </Popover.Button>
               </div>
               <div className="-mr-2">
                 <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600">
@@ -115,28 +113,25 @@ export default function HeaderNew({ intent }: HeaderProps) {
             <div className="pt-3 pb-6">
               <div className="space-y-1 px-2">
                 {navigationMobile.map((item) => (
-                  <Link
+                  <Popover.Button
+                    as={Link}
                     key={item.name}
                     href={item.href}
-                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
+                    className="flex items-start rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
                   >
-                    <Popover.Button className="-my-3 flex w-full items-start rounded-lg p-3 hover:bg-gray-50">
-                      <item.icon
-                        className="h-6 w-6 flex-shrink-0 text-pink-500"
-                        aria-hidden="true"
-                      />
-                      <p className="ml-3">{item.name}</p>
-                    </Popover.Button>
-                  </Link>
+                    <item.icon className="h-6 w-6 flex-shrink-0 text-pink-500" aria-hidden="true" />
+                    <p className="ml-3">{item.name}</p>
+                  </Popover.Button>
                 ))}
               </div>
               <div className="mt-6 px-5">
-                <Link
+                <Popover.Button
+                  as={Link}
                   href="/courses"
                   className="block w-full rounded-md bg-gradient-to-r from-pink-500 to-pink-600 py-3 px-4 text-center font-medium text-white shadow hover:from-pink-600 hover:to-pink-700"
                 >
-                  <Popover.Button>Courses</Popover.Button>
-                </Link>
+                  Courses
+                </Popover.Button>
               </div>
             </div>
           </div>

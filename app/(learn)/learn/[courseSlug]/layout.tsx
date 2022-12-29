@@ -5,6 +5,20 @@ import 'overlayscrollbars/overlayscrollbars.css';
 import { getCourse } from '#/lib/sanity.client';
 import SidebarLayout from '#/ui/SidebarLayout';
 
+import { Inter, Oswald } from '@next/font/google';
+
+const inter = Inter({
+  variable: '--font-inter',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const oswald = Oswald({
+  variable: '--font-oswald',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
 // top-down
 // export async function generateStaticParams() {
 //   const paths = await getCourseSlugs();
@@ -22,8 +36,15 @@ export default async function CourseLayout({
   const course = await getCourse(params.courseSlug);
 
   return (
-    <SidebarLayout linksData={course?.sections ? course?.sections : []} params={params}>
-      {children}
-    </SidebarLayout>
+    <html
+      lang="en"
+      className={`${inter.variable} ${oswald.variable} h-full overflow-auto overflow-x-hidden`}
+    >
+      <body className="h-full">
+        <SidebarLayout linksData={course?.sections ? course?.sections : []} params={params}>
+          {children}
+        </SidebarLayout>
+      </body>
+    </html>
   );
 }

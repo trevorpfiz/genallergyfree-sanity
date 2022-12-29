@@ -43,7 +43,7 @@ const PatreonButton = () => {
         rel="noreferrer noopener"
         target="_blank"
       >
-        <PatreonLogo className="max-h-3 fill-white" />
+        <PatreonLogo className="max-h-3 fill-white" height="12px" width="87px" />
       </a>
     </>
   );

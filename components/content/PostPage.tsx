@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import HeroImage from '#/components/content/hero-image';
 import NextPrev from '#/components/content/next-prev';
-import ScrollUpBody from '#/components/ScrollUpBody';
+import ScrollUp from '#/components/ScrollUp';
 import { Course, Post } from '#/lib/sanity.queries';
 import Breadcrumbs from '#/ui/Breadcrumbs';
 import SectionSeparator from '#/ui/SectionSeparator';
@@ -27,7 +27,7 @@ export default function PostPage(props: {
 
   return (
     <>
-      <ScrollUpBody />
+      <ScrollUp />
       <PreviewLayout preview={preview || false} loading={loading}>
         <div>
           <article>
