@@ -10,6 +10,7 @@
     margin-block-end: revert;
     padding-inline-start: revert;
     font-size: 18px;
+    overflow-wrap: break-word;
   }
 
   [data-nextjs-scroll-focus-boundary] {

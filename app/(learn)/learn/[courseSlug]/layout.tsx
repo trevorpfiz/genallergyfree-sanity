@@ -38,7 +38,7 @@ export default async function CourseLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${oswald.variable} h-full overflow-auto overflow-x-hidden`}
+      className={`${inter.variable} ${oswald.variable} h-full overflow-y-auto overflow-x-hidden`}
     >
       <body className="h-full">
         <SidebarLayout linksData={course?.sections ? course?.sections : []} params={params}>

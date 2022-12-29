@@ -4,7 +4,9 @@ import PostImage from '#/components/content/post-image';
 
 export const components: any = {
   block: {
-    normal: ({ children }: any) => <p className="my-5 text-lg sm:text-xl">{children}</p>,
+    normal: ({ children }: any) => (
+      <p className="my-5 break-words text-lg sm:text-xl">{children}</p>
+    ),
     h1: ({ children }: any) => (
       <h1 className="mt-12 font-display text-5xl font-bold">{children}</h1>
     ),
