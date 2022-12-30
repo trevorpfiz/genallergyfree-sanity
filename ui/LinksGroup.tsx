@@ -5,7 +5,8 @@
 import { Transition } from '@headlessui/react';
 import { IconChevronRight, TablerIcon } from '@tabler/icons';
 import { usePathname } from 'next/navigation';
-import { Dispatch, forwardRef, SetStateAction, useState } from 'react';
+import * as React from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import ActivePost from '#/ui/ActivePost';
 import ActiveSection from './ActiveSection';
@@ -28,9 +29,10 @@ export interface LinksGroupProps {
   sidebarOpenState: [boolean, Dispatch<SetStateAction<boolean>>];
   params?: { courseSlug: string };
   icon?: TablerIcon;
+  scrollRef: React.RefObject<HTMLDivElement>;
 }
 
-export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, ref) => {
+export const LinksGroup = (props: LinksGroupProps) => {
   const {
     title,
     slug: sectionSlug,
@@ -38,7 +40,8 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
     sidebarOpenState: [sidebarOpen, setSidebarOpen],
     params,
     icon: Icon,
-  }: LinksGroupProps = props;
+    scrollRef,
+  } = props;
   const pathname = usePathname();
 
   const [opened, setOpened] = useState(pathname?.split('/').slice(2)[1] === sectionSlug || false);
@@ -63,18 +66,28 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
     setOpened((o) => !o);
   }
 
-  const items = (hasPosts ? posts : []).map((post) => (
-    <ActivePost
-      key={post.slug}
-      href={`/learn/${params?.courseSlug}/${sectionSlug}/${post.slug}`}
-      intent={pathname?.split('/').slice(2)[2] === post.slug ? 'active' : 'inactive'}
-      onClick={sidebarOpen ? () => setSidebarOpen((o) => !o) : undefined}
-    >
-      <p className="scroll-mt-72" ref={pathname?.split('/').slice(2)[2] === post.slug ? ref : null}>
-        {post.title}
-      </p>
-    </ActivePost>
-  ));
+  const items = (hasPosts ? posts : []).map((post) => {
+    const active = pathname?.split('/').slice(2)[2] === post.slug;
+
+    return (
+      <ActivePost
+        key={post.slug}
+        href={`/learn/${params?.courseSlug}/${sectionSlug}/${post.slug}`}
+        intent={active ? 'active' : 'inactive'}
+        onClick={sidebarOpen ? () => setSidebarOpen((o) => !o) : undefined}
+      >
+        <p className="scroll-mt-72" ref={active ? scrollRef : null}>
+          {post.title}
+        </p>
+      </ActivePost>
+    );
+  });
+
+  useEffect(() => {
+    if (sidebarOpen && scrollRef.current) {
+      scrollRef.current.scrollIntoView(true);
+    }
+  }, [sidebarOpen, scrollRef]);
 
   return (
     <>
@@ -127,4 +140,4 @@ export const LinksGroup = forwardRef<HTMLDivElement, LinksGroupProps>((props, re
       ) : null}
     </>
   );
-});
+};

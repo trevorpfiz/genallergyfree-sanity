@@ -27,7 +27,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 
 import { Section } from '#/lib/sanity.queries';
 import logo from '#/public/genallergyfree-upscaled-crop.jpg';
@@ -74,29 +74,17 @@ export default function SidebarLayout({
   params: { courseSlug: string };
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const links = addIcon(linksData).map((section) => (
     <LinksGroup
       {...section}
-      ref={scrollRef}
+      scrollRef={scrollRef}
       key={section._id}
       sidebarOpenState={[sidebarOpen, setSidebarOpen]}
       params={params}
     />
   ));
-
-  useEffect(() => {
-    if (sidebarOpen) {
-      const timer = setTimeout(() => {
-        scrollRef.current?.scrollIntoView();
-      }, 0);
-      return () => clearTimeout(timer);
-    }
-
-    return undefined;
-  }, [sidebarOpen]);
 
   return (
     <>
