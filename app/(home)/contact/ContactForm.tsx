@@ -46,10 +46,10 @@ export default function ContactForm() {
         <h1 className="font-display text-5xl font-bold uppercase leading-none md:text-8xl">
           Let&apos;s connect
         </h1>
-        <h4 className="mt-8 max-w-prose text-lg md:text-xl">
+        <h2 className="mt-8 max-w-prose text-lg md:text-xl">
           Insight and feedback helps everyone. Send us a message with the form below to start the
           conversation.
-        </h4>
+        </h2>
         <div className="mt-8 lg:col-span-3">
           <div className="mx-auto max-w-lg lg:max-w-none">
             <form

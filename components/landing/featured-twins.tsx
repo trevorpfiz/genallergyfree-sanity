@@ -13,6 +13,7 @@ export function FeaturedTwins() {
             alt="Zachary and Trevor"
             sizes="(max-width: 768px) 100vw"
             placeholder="blur"
+            priority
             className="object-cover"
           />
         </div>

@@ -36,9 +36,9 @@ export default async function SectionDashboard({
                   href={`/learn/${params.courseSlug}/${section.slug}/${post.slug}`}
                   key={post._id}
                 >
-                  <div className="relative flex h-[92px] items-center space-x-4 overflow-hidden rounded-lg border border-gray-300 bg-white pr-1 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400 lg:h-[172px]">
+                  <div className="relative flex h-[92px] items-center space-x-4 overflow-hidden rounded-lg border border-gray-300 bg-white pr-1 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400 lg:h-[171px]">
                     <div className="relative aspect-video h-full flex-shrink-0">
-                      <FillImage image={post.heroImage} priority width={640} height={360} />
+                      <FillImage image={post.heroImage} priority width={300} height={169} />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-semibold line-clamp-2 lg:text-xl">{post.title}</p>

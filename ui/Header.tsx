@@ -99,7 +99,6 @@ export default function HeaderNew({ intent }: HeaderProps) {
                     src={logo}
                     alt="Generation Allergy Free Logo"
                     style={{ width: '200px', height: 'auto' }}
-                    priority
                   />
                 </Popover.Button>
               </div>

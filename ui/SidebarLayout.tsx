@@ -147,7 +147,6 @@ export default function SidebarLayout({
                         src={logo}
                         alt="Generation Allergy Free Logo"
                         style={{ width: '180px', height: '16px' }}
-                        priority
                       />
                     </Link>
                   </div>

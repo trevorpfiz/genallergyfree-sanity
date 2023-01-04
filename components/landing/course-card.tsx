@@ -13,7 +13,7 @@ export function CourseCard({ course }: { course: Course }) {
 
         <div className="flex flex-col gap-4 p-4">
           <div className="flex flex-col gap-4">
-            <h4 className="font-display text-2xl font-medium">{course.title}</h4>
+            <h2 className="font-display text-2xl font-medium">{course.title}</h2>
             <div className="rounded-full bg-pink-100 py-[2px] text-center text-[11px] font-bold uppercase text-pink-500">
               For: {course.targetAudience}
             </div>

@@ -11,7 +11,7 @@ interface FillImageProps {
 
 export default function FillImage({
   image: source,
-  priority = true,
+  priority = false,
   width,
   height,
 }: FillImageProps) {
