@@ -152,7 +152,9 @@ export default function SidebarLayout({
                     </Link>
                   </div>
                   <div className="h-0 flex-1 overflow-y-auto">
-                    <nav className="pt-1 pb-6">{links}</nav>
+                    <nav className="pt-1 pb-6">
+                      <ul>{links}</ul>
+                    </nav>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -194,7 +196,9 @@ export default function SidebarLayout({
                   scrollbars: { autoHide: 'leave', autoHideDelay: 0 },
                 }}
               >
-                <nav className="flex-1 pt-1 pb-6">{links}</nav>
+                <nav className="flex-1 pt-1 pb-6">
+                  <ul>{links}</ul>
+                </nav>
               </OverlayScrollbarsComponent>
             </div>
           </div>

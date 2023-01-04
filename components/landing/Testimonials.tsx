@@ -163,13 +163,17 @@ export default function Testimonials({ color = 'oldyellow' }: { color: string })
             <button
               key={idx}
               type="button"
+              aria-label="Carousel"
               onClick={() => {
                 instanceRef.current?.moveToIdx(idx);
               }}
-              className={clsx('mx-1 cursor-pointer rounded-full bg-black p-2', {
-                'bg-black': currentSlide === idx,
-                'opacity-25': currentSlide !== idx,
-              })}
+              className={clsx(
+                'relative mx-2 cursor-pointer rounded-full bg-black p-2 after:absolute after:-inset-4 after:block after:h-12 after:w-12',
+                {
+                  'bg-black': currentSlide === idx,
+                  'opacity-25': currentSlide !== idx,
+                }
+              )}
             />
           ))}
         </div>

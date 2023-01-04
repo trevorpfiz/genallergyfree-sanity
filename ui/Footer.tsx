@@ -24,6 +24,7 @@ export default function Footer() {
               href="https://www.linkedin.com/company/generationallergyfree/"
               target="_blank"
               rel="noreferrer noopener"
+              aria-label="LinkedIn"
             >
               <IconBrandLinkedin size={20} stroke={1.5} color="white" />
             </a>
@@ -31,6 +32,7 @@ export default function Footer() {
               href="https://www.patreon.com/user?u=84526279"
               target="_blank"
               rel="noreferrer noopener"
+              aria-label="Patreon"
             >
               <IconBrandPatreon size={20} stroke={1.5} color="white" />
             </a>

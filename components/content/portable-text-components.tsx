@@ -24,6 +24,38 @@ export const components: any = {
     intro: ({ children }: any) => <h3 className="mt-12 text-2xl">{children}</h3>,
     summary: ({ children }: any) => <h4 className="mt-12 text-2xl">{children}</h4>,
   },
+  list: {
+    bullet: ({ children }: any) => (
+      <ul
+        className="break-words text-lg"
+        style={{
+          listStyle: 'revert',
+          marginBlockStart: 'revert',
+          marginBlockEnd: 'revert',
+          paddingInlineStart: 'revert',
+        }}
+      >
+        {children}
+      </ul>
+    ),
+    number: ({ children }: any) => (
+      <ol
+        className="text-lg"
+        style={{
+          listStyle: 'revert',
+          marginBlockStart: 'revert',
+          marginBlockEnd: 'revert',
+          paddingInlineStart: 'revert',
+        }}
+      >
+        {children}
+      </ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }: any) => <li>{children}</li>,
+    number: ({ children }: any) => <li>{children}</li>,
+  },
   marks: {
     internalLink: ({ value, children }: any) => {
       const { slug, section, course } = value;

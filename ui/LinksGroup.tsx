@@ -2,23 +2,32 @@
 
 'use client';
 
-import { Transition } from '@headlessui/react';
 import { IconChevronRight, TablerIcon } from '@tabler/icons';
 import { usePathname } from 'next/navigation';
 import * as React from 'react';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import ActivePost from '#/ui/ActivePost';
+import { Transition } from '@headlessui/react';
 import ActiveSection from './ActiveSection';
 
 export const transitionClasses = {
-  enter: 'transition ease duration-500 transform',
-  enterFrom: 'opacity-0 -translate-y-6',
-  enterTo: 'opacity-100 translate-y-0',
-  leave: 'transition ease duration-300 transform',
-  leaveFrom: 'opacity-100 translate-y-0',
-  leaveTo: 'opacity-0 -translate-y-6',
+  enter: 'transition-opacity duration-200 ease',
+  enterFrom: 'opacity-0',
+  enterTo: 'opacity-100',
+  leave: 'transition-opacity duration-100 ease',
+  leaveFrom: 'opacity-100',
+  leaveTo: 'opacity-0',
 };
+
+// export const transitionClasses = {
+//   enter: 'transition ease duration-500 transform',
+//   enterFrom: 'opacity-0 -translate-y-6',
+//   enterTo: 'opacity-100 translate-y-0',
+//   leave: 'transition ease duration-300 transform',
+//   leaveFrom: 'opacity-100 translate-y-0',
+//   leaveTo: 'opacity-0 -translate-y-6',
+// };
 
 export interface LinksGroupProps {
   title: string;
@@ -43,6 +52,9 @@ export const LinksGroup = (props: LinksGroupProps) => {
     scrollRef,
   } = props;
   const pathname = usePathname();
+  const urlParts = pathname?.split('/').slice(2) as string[];
+
+  const activeSection = urlParts[1] === sectionSlug && !urlParts[2];
 
   const [opened, setOpened] = useState(pathname?.split('/').slice(2)[1] === sectionSlug || false);
 
@@ -67,16 +79,16 @@ export const LinksGroup = (props: LinksGroupProps) => {
   }
 
   const items = (hasPosts ? posts : []).map((post) => {
-    const active = pathname?.split('/').slice(2)[2] === post.slug;
+    const activePost = urlParts[2] === post.slug;
 
     return (
       <ActivePost
         key={post.slug}
         href={`/learn/${params?.courseSlug}/${sectionSlug}/${post.slug}`}
-        intent={active ? 'active' : 'inactive'}
+        intent={activePost ? 'active' : 'inactive'}
         onClick={sidebarOpen ? () => setSidebarOpen((o) => !o) : undefined}
       >
-        <p className="scroll-mt-72" ref={active ? scrollRef : null}>
+        <p className="scroll-mt-72" ref={activePost ? scrollRef : null}>
           {post.title}
         </p>
       </ActivePost>
@@ -90,14 +102,10 @@ export const LinksGroup = (props: LinksGroupProps) => {
   }, [sidebarOpen, scrollRef]);
 
   return (
-    <>
+    <li>
       <ActiveSection
         href={`/learn/${params?.courseSlug}/${sectionSlug}`}
-        intent={
-          pathname?.split('/').slice(2)[1] === sectionSlug && !pathname?.split('/').slice(2)[2]
-            ? 'active'
-            : 'inactive'
-        }
+        intent={activeSection ? 'active' : 'inactive'}
         onClick={openClose}
       >
         <div className="flex items-center justify-between">
@@ -105,7 +113,9 @@ export const LinksGroup = (props: LinksGroupProps) => {
             <div className="flex min-h-[30px] min-w-[30px] items-center justify-center rounded bg-blue-100">
               {Icon && <Icon size={18} color="rgb(34, 139, 230)" />}
             </div>
-            <p className="ml-3 text-left text-[13px]">{title}</p>
+            <p className="ml-3 text-left text-[13px]" ref={activeSection ? scrollRef : null}>
+              {title}
+            </p>
           </div>
           {hasPosts && (
             <button
@@ -126,18 +136,10 @@ export const LinksGroup = (props: LinksGroupProps) => {
         </div>
       </ActiveSection>
       {hasPosts ? (
-        <Transition
-          show={opened}
-          enter="transition-opacity duration-200 ease"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="transition-opacity duration-100 ease"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
+        <Transition show={opened} {...transitionClasses}>
           {items}
         </Transition>
       ) : null}
-    </>
+    </li>
   );
 };

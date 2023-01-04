@@ -13,7 +13,9 @@ export function FeaturedCourse({ course, intent = 'primary' }: FeaturedCoursePro
   return (
     <div className="my-10 flex w-full flex-col items-center justify-between gap-10 md:flex-row md:even:flex-row-reverse">
       <div className="flex flex-col gap-2 md:max-w-[400px]">
-        <h5 className="font-display text-sm font-bold uppercase">Featured Course</h5>
+        <span>
+          <h5 className="font-display text-sm font-bold uppercase">Featured Course</h5>
+        </span>
         <h2
           className={clsx('font-display text-4xl font-bold uppercase leading-none sm:text-5xl', {
             'text-pink-400': intent === 'primary',
