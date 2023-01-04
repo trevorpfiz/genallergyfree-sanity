@@ -1,7 +1,7 @@
-import ScrollUp from '#/components/ScrollUp';
 import sanitizeHtml from 'sanitize-html';
 
-import rawHTML from '../../../../lib/legal/terms-html';
+import ScrollUp from '#/components/ScrollUp';
+import rawHTML from '#/lib/legal/terms-html';
 
 export default function TermsPage() {
   return (

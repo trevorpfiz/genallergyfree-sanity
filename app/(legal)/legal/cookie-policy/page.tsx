@@ -1,6 +1,6 @@
 import sanitizeHtml from 'sanitize-html';
 
-import rawHTML from '../../../../lib/legal/cookie-html';
+import rawHTML from '#/lib/legal/cookie-html';
 
 export default function CookiePage() {
   return (

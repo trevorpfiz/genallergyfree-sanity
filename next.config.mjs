@@ -5,20 +5,9 @@ const bundleAnalyzer = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
-// const ContentSecurityPolicy = `
-//   default-src 'self';
-//   child-src 'self';
-//   font-src 'self' data:;
-//   img-src 'self' data:;
-//   object-src 'none';
-//   script-src 'self';
-//   style-src 'self';
-//   base-uri 'none';
-//   require-trusted-types-for 'script';
-//   frame-ancestors 'none';
-// `;
-
 const ContentSecurityPolicy = `
+  object-src 'none';
+  script-src * data: blob: 'unsafe-inline' 'unsafe-eval';
   frame-ancestors 'none';
 `;
 
@@ -26,6 +15,18 @@ const securityHeaders = [
   {
     key: 'Content-Security-Policy',
     value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim(),
+  },
+  {
+    key: 'Strict-Transport-Security',
+    value: 'max-age=63072000; includeSubDomains; preload',
+  },
+  {
+    key: 'X-Content-Type-Options',
+    value: 'nosniff',
+  },
+  {
+    key: 'Referrer-Policy',
+    value: 'origin-when-cross-origin',
   },
 ];
 
