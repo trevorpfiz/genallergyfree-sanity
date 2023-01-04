@@ -40,7 +40,7 @@ export const components: any = {
     ),
     number: ({ children }: any) => (
       <ol
-        className="text-lg"
+        className="break-words text-lg"
         style={{
           listStyle: 'revert',
           marginBlockStart: 'revert',
