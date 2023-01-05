@@ -53,7 +53,7 @@ export default function HeaderNew({ intent }: HeaderProps) {
           <div className="flex w-full items-center justify-between md:w-auto">
             <Link href="/">
               <span className="sr-only">Generation Allergy Free</span>
-              <LogoBlack width="230" height="20" />
+              <LogoBlack width="230" height="20" title="Generation Allergy Free Logo" />
             </Link>
             <div className="-mr-2 flex items-center md:hidden">
               {/* Mobile menu button */}
@@ -90,7 +90,7 @@ export default function HeaderNew({ intent }: HeaderProps) {
             <div className="flex items-center justify-between px-5 pt-4">
               <div>
                 <Popover.Button as={Link} href="/">
-                  <LogoBlack width="200" height="18" />
+                  <LogoBlack width="200" height="18" title="Generation Allergy Free Logo" />
                 </Popover.Button>
               </div>
               <div className="-mr-2">

@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-y-4 md:flex-row">
           <div>
             <Link href="/">
-              <LogoWhite width="200" height="18" />
+              <LogoWhite width="200" height="18" title="Generation Allergy Free Logo" />
             </Link>
           </div>
 
