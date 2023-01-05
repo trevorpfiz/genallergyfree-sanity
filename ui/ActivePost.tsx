@@ -33,6 +33,7 @@ export default function ActivePost({ intent, fullWidth, href, children, onClick 
       href={href}
       className={activePostStyles({ intent, fullWidth })}
       onClick={onClick || undefined}
+      scroll
     >
       {children}
     </Link>

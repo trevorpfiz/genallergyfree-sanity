@@ -26,7 +26,12 @@ export interface Props extends VariantProps<typeof activeSectionStyles> {
 
 export default function ActiveSection({ intent, fullWidth, href, children, onClick }: Props) {
   return (
-    <Link href={href} className={activeSectionStyles({ intent, fullWidth })} onClick={onClick}>
+    <Link
+      href={href}
+      className={activeSectionStyles({ intent, fullWidth })}
+      onClick={onClick}
+      scroll
+    >
       {children}
     </Link>
   );
