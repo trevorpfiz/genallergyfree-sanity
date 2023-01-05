@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import couchImage from 'public/couch.jpg';
-import danceImage from 'public/dance.jpg';
-import glassesImage from 'public/glasses.jpg';
+import couchImage from '#/public/couch.jpg';
+import danceImage from '#/public/dance.jpg';
+import glassesImage from '#/public/glasses.jpg';
 
 export function FeaturedAbout() {
   return (

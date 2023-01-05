@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import twinsImage from 'public/twins.jpg';
+import twinsImage from '#/public/twins.jpg';
 
 export function FeaturedTwins() {
   return (

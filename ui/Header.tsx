@@ -13,8 +13,8 @@ import { cva } from 'class-variance-authority';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
-import logo from '#/public/genallergyfree-upscaled-crop.jpg';
-import Image from 'next/image';
+import LogoBlack from '#/public/genallergyfree-black.svg';
+
 import LinkButton from './LinkButton';
 
 const navigation = [
@@ -53,12 +53,7 @@ export default function HeaderNew({ intent }: HeaderProps) {
           <div className="flex w-full items-center justify-between md:w-auto">
             <Link href="/">
               <span className="sr-only">Generation Allergy Free</span>
-              <Image
-                src={logo}
-                alt="Generation Allergy Free Logo"
-                style={{ width: '230px', height: 'auto' }}
-                priority
-              />
+              <LogoBlack width="230" height="20" />
             </Link>
             <div className="-mr-2 flex items-center md:hidden">
               {/* Mobile menu button */}
@@ -95,11 +90,7 @@ export default function HeaderNew({ intent }: HeaderProps) {
             <div className="flex items-center justify-between px-5 pt-4">
               <div>
                 <Popover.Button as={Link} href="/">
-                  <Image
-                    src={logo}
-                    alt="Generation Allergy Free Logo"
-                    style={{ width: '200px', height: 'auto' }}
-                  />
+                  <LogoBlack width="200" height="18" />
                 </Popover.Button>
               </div>
               <div className="-mr-2">

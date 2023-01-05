@@ -24,13 +24,12 @@ import {
   IconNumber8,
   IconNumber9,
 } from '@tabler/icons';
-import Image from 'next/image';
 import Link from 'next/link';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { Fragment, useRef, useState } from 'react';
 
 import { Section } from '#/lib/sanity.queries';
-import logo from '#/public/genallergyfree-upscaled-crop.jpg';
+import LogoBlack from '#/public/genallergyfree-black.svg';
 import clsx from 'clsx';
 import LinkButton from './LinkButton';
 import { LinksGroup } from './LinksGroup';
@@ -143,11 +142,7 @@ export default function SidebarLayout({
                       <ChevronLeftIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                     </LinkButton>
                     <Link href="/courses" className="flex flex-1 justify-center">
-                      <Image
-                        src={logo}
-                        alt="Generation Allergy Free Logo"
-                        style={{ width: '180px', height: '16px' }}
-                      />
+                      <LogoBlack width="180" height="16" />
                     </Link>
                   </div>
                   <div className="h-0 flex-1 overflow-y-auto">
@@ -177,12 +172,7 @@ export default function SidebarLayout({
                 <ChevronLeftIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
               </LinkButton>
               <Link href="/courses" className="flex flex-1 justify-center">
-                <Image
-                  src={logo}
-                  alt="Generation Allergy Free Logo"
-                  style={{ width: '180px', height: '16px' }}
-                  priority
-                />
+                <LogoBlack width="180" height="16" />
               </Link>
             </div>
             <div className="flex h-0 flex-1 flex-col">

@@ -40,6 +40,16 @@ const nextConfig = {
     remotePatterns: [{ hostname: 'cdn.sanity.io' }, { hostname: 'source.unsplash.com' }],
   },
 
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    });
+
+    return config;
+  },
+
   productionBrowserSourceMaps: true,
 
   redirects: async () => [
