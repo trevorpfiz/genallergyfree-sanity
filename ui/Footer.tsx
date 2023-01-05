@@ -1,7 +1,8 @@
 import { IconBrandLinkedin, IconBrandPatreon } from '@tabler/icons';
 import Link from 'next/link';
 
-import LogoWhite from '#/public/genallergyfree-white.svg';
+import logoWhite from '#/public/genallergyfree-white.png';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -10,7 +11,11 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-y-4 md:flex-row">
           <div>
             <Link href="/">
-              <LogoWhite width="200" height="18" title="Generation Allergy Free Logo" />
+              <Image
+                src={logoWhite}
+                alt="Generation Allergy Free Logo"
+                style={{ width: '200px', height: 'auto' }}
+              />
             </Link>
           </div>
 

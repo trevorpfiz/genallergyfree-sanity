@@ -29,8 +29,9 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { Fragment, useRef, useState } from 'react';
 
 import { Section } from '#/lib/sanity.queries';
-import LogoBlack from '#/public/genallergyfree-black.svg';
+import logoBlack from '#/public/genallergyfree-black.png';
 import clsx from 'clsx';
+import Image from 'next/image';
 import LinkButton from './LinkButton';
 import { LinksGroup } from './LinksGroup';
 import Search from './Search';
@@ -142,7 +143,12 @@ export default function SidebarLayout({
                       <ChevronLeftIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
                     </LinkButton>
                     <Link href="/courses" className="flex flex-1 justify-center">
-                      <LogoBlack width="180" height="16" title="Generation Allergy Free Logo" />
+                      <Image
+                        src={logoBlack}
+                        alt="Generation Allergy Free Logo"
+                        style={{ width: '180px', height: '16px' }}
+                        priority
+                      />
                     </Link>
                   </div>
                   <div className="h-0 flex-1 overflow-y-auto">
@@ -172,7 +178,12 @@ export default function SidebarLayout({
                 <ChevronLeftIcon className="h-6 w-6 flex-shrink-0" aria-hidden="true" />
               </LinkButton>
               <Link href="/courses" className="flex flex-1 justify-center">
-                <LogoBlack width="180" height="16" title="Generation Allergy Free Logo" />
+                <Image
+                  src={logoBlack}
+                  alt="Generation Allergy Free Logo"
+                  style={{ width: '180px', height: '16px' }}
+                  priority
+                />
               </Link>
             </div>
             <div className="flex h-0 flex-1 flex-col">

@@ -29,12 +29,7 @@ export interface Props extends VariantProps<typeof activePostStyles> {
 
 export default function ActivePost({ intent, fullWidth, href, children, onClick }: Props) {
   return (
-    <Link
-      href={href}
-      className={activePostStyles({ intent, fullWidth })}
-      onClick={onClick || undefined}
-      scroll
-    >
+    <Link href={href} className={activePostStyles({ intent, fullWidth })} onClick={onClick}>
       {children}
     </Link>
   );

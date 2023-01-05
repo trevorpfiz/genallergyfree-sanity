@@ -61,12 +61,23 @@ export const LinksGroup = (props: LinksGroupProps) => {
   const hasPosts = Array.isArray(posts);
   const ChevronIcon = IconChevronRight;
 
-  function openClose() {
+  function sectionCloseSidebar() {
+    // clear scroll lock
+    const htmlElement = document.documentElement;
+    htmlElement.setAttribute('style', '');
     // close sidebar on mobile
     sidebarOpen ? setSidebarOpen((o) => !o) : undefined;
 
     // set opened to true
     setOpened(true);
+  }
+
+  function postCloseSidebar() {
+    // clear scroll lock
+    const htmlElement = document.documentElement;
+    htmlElement.setAttribute('style', '');
+    // close sidebar on mobile
+    sidebarOpen ? setSidebarOpen((o) => !o) : undefined;
   }
 
   function clickChevron(e: React.MouseEvent) {
@@ -86,7 +97,7 @@ export const LinksGroup = (props: LinksGroupProps) => {
         key={post.slug}
         href={`/learn/${params?.courseSlug}/${sectionSlug}/${post.slug}`}
         intent={activePost ? 'active' : 'inactive'}
-        onClick={sidebarOpen ? () => setSidebarOpen((o) => !o) : undefined}
+        onClick={postCloseSidebar}
       >
         <p className="scroll-mt-72" ref={activePost ? scrollRef : null}>
           {post.title}
@@ -106,14 +117,17 @@ export const LinksGroup = (props: LinksGroupProps) => {
       <ActiveSection
         href={`/learn/${params?.courseSlug}/${sectionSlug}`}
         intent={activeSection ? 'active' : 'inactive'}
-        onClick={openClose}
+        onClick={sectionCloseSidebar}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <div className="flex min-h-[30px] min-w-[30px] items-center justify-center rounded bg-blue-100">
               {Icon && <Icon size={18} color="rgb(34, 139, 230)" />}
             </div>
-            <p className="ml-3 text-left text-[13px]" ref={activeSection ? scrollRef : null}>
+            <p
+              className="ml-3 scroll-mt-72 text-left text-[13px]"
+              ref={activeSection ? scrollRef : null}
+            >
               {title}
             </p>
           </div>
