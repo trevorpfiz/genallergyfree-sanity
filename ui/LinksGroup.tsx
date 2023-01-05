@@ -2,13 +2,13 @@
 
 'use client';
 
+import { Transition } from '@headlessui/react';
 import { IconChevronRight, TablerIcon } from '@tabler/icons';
 import { usePathname } from 'next/navigation';
 import * as React from 'react';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import ActivePost from '#/ui/ActivePost';
-import { Transition } from '@headlessui/react';
 import ActiveSection from './ActiveSection';
 
 export const transitionClasses = {
