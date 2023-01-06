@@ -7,7 +7,7 @@ export default function ScrollUpLearn() {
     // seems I have to match transition time
     setTimeout(() => {
       document.getElementById('scroll')?.scrollTo(0, 0);
-    }, 301);
+    }, 400);
   }, []);
 
   return null;
