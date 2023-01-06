@@ -3,7 +3,9 @@
 import { useEffect } from 'react';
 
 export default function ScrollUp() {
-  useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(() => {
+    document.getElementById('scroll')?.scrollTo(0, 0);
+  }, []);
 
   return null;
 }

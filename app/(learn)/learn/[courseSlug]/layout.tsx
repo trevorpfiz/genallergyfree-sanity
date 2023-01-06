@@ -36,7 +36,11 @@ export default async function CourseLayout({
   const course = await getCourse(params.courseSlug);
 
   return (
-    <html lang="en" className={`${inter.variable} ${oswald.variable} h-full overflow-auto`}>
+    <html
+      lang="en"
+      id="scroll"
+      className={`${inter.variable} ${oswald.variable} h-full overflow-auto`}
+    >
       <body className="h-full">
         <SidebarLayout linksData={course?.sections ? course?.sections : []} params={params}>
           {children}

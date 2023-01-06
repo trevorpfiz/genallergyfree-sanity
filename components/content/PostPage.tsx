@@ -8,6 +8,7 @@ import { Course, Post } from '#/lib/sanity.queries';
 import Breadcrumbs from '#/ui/Breadcrumbs';
 import SectionSeparator from '#/ui/SectionSeparator';
 import PreviewLayout from '../preview/PreviewLayout';
+import ScrollUpLearn from '../ScrollUpLearn';
 import { components } from './portable-text-components';
 
 export default function PostPage(props: {
@@ -28,6 +29,7 @@ export default function PostPage(props: {
   return (
     <>
       <ScrollUp />
+      <ScrollUpLearn />
       <PreviewLayout preview={preview || false} loading={loading}>
         <div>
           <article>
