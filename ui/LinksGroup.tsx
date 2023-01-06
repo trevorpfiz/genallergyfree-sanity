@@ -150,12 +150,9 @@ export const LinksGroup = (props: LinksGroupProps) => {
         </div>
       </ActiveSection>
       {hasPosts ? (
-        <>
-          <Transition show={opened} {...transitionClasses}>
-            {items}
-          </Transition>
-          <div>{items}</div>
-        </>
+        <Transition show={opened} {...transitionClasses}>
+          {items}
+        </Transition>
       ) : null}
     </li>
   );
