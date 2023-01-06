@@ -3,6 +3,7 @@ import Link from 'next/link';
 import FillImage from '#/components/content/fill-image';
 import NextPrev from '#/components/content/next-prev';
 import ScrollUp from '#/components/ScrollUp';
+import ScrollUpLearn from '#/components/ScrollUpLearn';
 import { getCourse, getSection } from '#/lib/sanity.client';
 import Breadcrumbs from '#/ui/Breadcrumbs';
 import SectionSeparator from '#/ui/SectionSeparator';
@@ -25,6 +26,7 @@ export default async function SectionDashboard({
   return (
     <>
       <ScrollUp />
+      <ScrollUpLearn />
       <div>
         <div className="mx-auto mb-24 flex max-w-3xl flex-col gap-6">
           <Breadcrumbs />
