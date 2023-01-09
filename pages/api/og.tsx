@@ -9,7 +9,7 @@ import { height, OpenGraphImage, width } from '#/components/seo/OpenGraphImage';
 import * as demo from '#/lib/demo.data';
 import { Settings, settingsQuery } from '#/lib/sanity.queries';
 
-export const config: PageConfig = { runtime: 'experimental-edge' };
+export const config: PageConfig = { runtime: 'edge' };
 
 export default async function og(req: NextRequest, nextRes: NextResponse) {
   const font = fetch(new URL('public/Inter-Bold.woff', import.meta.url)).then((res) =>

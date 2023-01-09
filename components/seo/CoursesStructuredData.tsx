@@ -12,7 +12,7 @@ export default function CoursesStructuredData({ courses }: { courses: Course[] }
         position: 1,
         item: {
           '@type': 'Course',
-          url: 'https://www.generationallergyfree.com/learn/allergy-prevention',
+          url: `${WEBSITE_URL}/learn/allergy-prevention`,
           name: courses[0]?.title,
           description: courses[0]?.heroDescription,
           provider: {
@@ -27,7 +27,7 @@ export default function CoursesStructuredData({ courses }: { courses: Course[] }
         position: 2,
         item: {
           '@type': 'Course',
-          url: 'https://www.generationallergyfree.com/learn/allergy-management',
+          url: `${WEBSITE_URL}/learn/allergy-management`,
           name: courses[1]?.title,
           description: courses[1]?.heroDescription,
           provider: {
@@ -42,7 +42,7 @@ export default function CoursesStructuredData({ courses }: { courses: Course[] }
         position: 3,
         item: {
           '@type': 'Course',
-          url: 'https://www.generationallergyfree.com/learn/allergy-treatment',
+          url: `${WEBSITE_URL}/learn/allergy-treatment`,
           name: courses[2]?.title,
           description: courses[2]?.heroDescription,
           provider: {

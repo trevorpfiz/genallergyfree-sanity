@@ -1,3 +1,5 @@
+import { WEBSITE_URL } from '#/lib/constants';
+
 const PatreonLogo = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
 ): JSX.Element => (
@@ -15,8 +17,8 @@ const PatreonLogo = (
 );
 
 const donationUrls = {
-  successUrl: 'https://www.generationallergyfree.com/donate',
-  cancelUrl: 'https://www.generationallergyfree.com/donate',
+  successUrl: `${WEBSITE_URL}/donate`,
+  cancelUrl: `${WEBSITE_URL}/donate`,
 };
 
 const patreonDefaultPledgeAmount = 500;
