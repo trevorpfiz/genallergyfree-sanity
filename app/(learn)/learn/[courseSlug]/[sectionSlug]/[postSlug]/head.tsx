@@ -35,14 +35,10 @@ export default async function PostHead({
       <meta property="og:type" content="article" />
       <meta property="og:title" content={`${post.title} | ${title}`} />
       <meta
-        name="image"
         property="og:image"
-        // Because OG images must have a absolute URL, we use the
-        // `VERCEL_URL` environment variable to get the deployment’s URL.
-        // More info:
-        // https://vercel.com/docs/concepts/projects/environment-variables
         content={`${
-          process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : `${WEBSITE_URL}`
+          // eslint-disable-next-line prefer-template
+          process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : `${WEBSITE_URL}`
         }/api/og?${new URLSearchParams({ title: ogImageTitle })}`}
       />
 
