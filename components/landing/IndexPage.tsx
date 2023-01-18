@@ -29,8 +29,8 @@ export default function IndexPage(props: {
               <span className="uppercase text-oldpink underline decoration-black">allergy</span>!
             </h1>
             <h2 className="my-10 max-w-prose text-center text-lg font-normal md:text-2xl">
-              We believe that everyone should be allergy free. Our free research-focused courses
-              make this a reality for the generations to come.
+              We provide free research-focused courses to make allergy freedom a reality for the
+              generations to come.
             </h2>
             <Image
               src={heroImage}
