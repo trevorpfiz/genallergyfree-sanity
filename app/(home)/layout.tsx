@@ -1,5 +1,7 @@
 import '#/styles/globals.css';
 
+import Script from 'next/script';
+
 import Footer from '#/ui/Footer';
 import Header from '#/ui/Header';
 import { Inter, Oswald } from '@next/font/google';
@@ -24,6 +26,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="min-h-screen overflow-x-hidden">{children}</main>
         <Footer />
       </body>
+      <Script
+        src="https://cdn.jsdelivr.net/gh/ElektrikSpark/thinkhive-widget@latest/index.min.js"
+        data-expertId="clgbs2q660001lb08uddtsl1t"
+      />
     </html>
   );
 }

@@ -6,6 +6,7 @@ import { getCourse } from '#/lib/sanity.client';
 import SidebarLayout from '#/ui/SidebarLayout';
 
 import { Inter, Oswald } from '@next/font/google';
+import Script from 'next/script';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -46,6 +47,10 @@ export default async function CourseLayout({
           {children}
         </SidebarLayout>
       </body>
+      <Script
+        src="https://cdn.jsdelivr.net/gh/ElektrikSpark/thinkhive-widget@latest/index.min.js"
+        data-expertId="clgbs2q660001lb08uddtsl1t"
+      />
     </html>
   );
 }
