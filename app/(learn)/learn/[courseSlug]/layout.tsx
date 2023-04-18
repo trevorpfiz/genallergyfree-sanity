@@ -49,7 +49,7 @@ export default async function CourseLayout({
       </body>
       <Script
         src="https://cdn.jsdelivr.net/gh/ElektrikSpark/thinkhive-widget@latest/index.min.js"
-        data-expertId="clgbs2q660001lb08uddtsl1t"
+        data-assistantId="clglu3fpd0003rt0hu30l2zrt"
       />
     </html>
   );
